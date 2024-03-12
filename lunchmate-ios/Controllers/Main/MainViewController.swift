@@ -1,0 +1,198 @@
+//
+//  MainViewController.swift
+//  lunchmate-ios
+//
+//  Created by Maria Slepneva on 07.02.2024.
+//
+
+import UIKit
+
+class MainViewController: UIViewController {
+    
+    // MARK: - Variables
+    
+    private var users: [MainCellViewModel] = []
+    private var viewModel = MainViewModel()
+    
+    // MARK: - Subviews
+    
+    private let navigationTitle: UILabel = {
+        let navigationTitle = UILabel()
+        navigationTitle.text = "Поиск коллег"
+        navigationTitle.textColor = .black
+        navigationTitle.font = UIFont(name: "SFPro-Semibold", size: 17)
+        navigationTitle.sizeToFit()
+        return navigationTitle
+    }()
+    
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.searchTextField.layer.borderWidth = 1
+        searchController.searchBar.searchTextField.layer.cornerRadius = 8
+        searchController.searchBar.searchTextField.layer.borderColor = UIColor(named: "Base20")?.cgColor
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.definesPresentationContext = false
+        searchController.searchBar.changeSearchBarColor(color: .white)
+        searchController.searchBar.searchTextField.leftView?.tintColor = UIColor(named: "Base70")
+        if let xmarkImage = UIImage(systemName: "xmark")?.withTintColor(UIColor(named: "Base70") ?? .gray) {
+            searchController.searchBar.setImage(xmarkImage, for: .clear, state: .normal)
+        }
+        searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
+            string: "Найти по имени",
+            attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor(named: "Base30") ?? UIColor.lightGray,
+                NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 16) ?? UIFont.systemFont(ofSize: 16)
+            ]
+        )
+        let cancelButton = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
+        cancelButton.title = "Отмена"
+        let offset = UIOffset(horizontal: 0, vertical: 5)
+        cancelButton.setTitlePositionAdjustment(offset, for: .default)
+        cancelButton.setTitleTextAttributes(
+            [
+                NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 16) ?? UIFont.systemFont(ofSize: 16)
+            ],
+            for: .normal
+        )
+        return searchController
+    }()
+    
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .white
+        collectionView.contentInsetAdjustmentBehavior = .always
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
+        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionInsetReference = .fromLayoutMargins
+        return collectionView
+    }()
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidAppear(_ animated: Bool) {
+        bindViewModel()
+        viewModel.getUsers()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+        //printFonts()
+    }
+    
+    // MARK: - Methods
+    
+    private func printFonts() {
+        for family in UIFont.familyNames {
+            print("Шрифт семейства: \(family)")
+            for name in UIFont.fontNames(forFamilyName: family) {
+                print("   \(name)")
+            }
+        }
+    }
+    
+    private func setupView() {
+        view.backgroundColor = .white
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        navigationItem.titleView = navigationTitle
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(
+                systemName: "line.3.horizontal.decrease",
+                withConfiguration: UIImage.SymbolConfiguration(
+                    scale: .medium
+                )
+            ),
+            style: .plain,
+            target: self,
+            action: #selector(openFilter)
+        )
+        navigationItem.rightBarButtonItem?.tintColor = .gray
+        navigationItem.searchController = searchController
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
+    }
+    
+    private func bindViewModel() {
+        viewModel.filteredData.bind({ (users) in
+            DispatchQueue.main.async {
+                self.users = users
+                self.collectionView.reloadData()
+            }
+        })
+    }
+    
+    @objc private func openFilter() {
+        let filterController = FilterViewController()
+        navigationController?.pushViewController(filterController, animated: true)
+    }
+    
+    private func openModalView(id: String) {
+        guard let user = viewModel.retriveUser(with: id) else { return }
+        let accountViewModel = AccountViewModel(user: user)
+        accountViewModel.changeIsCanEdit(flag: false)
+        let accountViewController = AccountViewController(viewModel: accountViewModel)
+        navigationController?.pushViewController(accountViewController, animated: true)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension MainViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        viewModel.numberOfSections()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel.numberOfRows(in: section)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
+        cell.configure(person: users[indexPath.row])
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
+            let referenceHeight: CGFloat = 100
+            let referenceWidth = collectionView.safeAreaLayoutGuide.layoutFrame.width
+                - sectionInset.left
+                - sectionInset.right
+                - collectionView.contentInset.left
+                - collectionView.contentInset.right
+            return CGSize(width: referenceWidth, height: referenceHeight)
+        }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.openModalView(id: viewModel.filteredData.value[indexPath.row].id)
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        viewModel.filterUsers(text: searchController.searchBar.text)
+    }
+}
+
