@@ -88,7 +88,7 @@ final class TabBarController: UITabBarController {
             rootViewController: NotificationsViewController()
         ),
         UINavigationController(
-            rootViewController: AccountViewController(viewModel: AccountViewModel(user: nil))
+            rootViewController: AccountViewController(viewModel: AccountViewModel())
         )
     ]
     

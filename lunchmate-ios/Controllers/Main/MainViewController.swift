@@ -79,6 +79,7 @@ class MainViewController: UIViewController {
     // MARK: - Lifecycle
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         bindViewModel()
         viewModel.getUsers()
     }
@@ -128,8 +129,9 @@ class MainViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.filteredData.bind({ (users) in
+        viewModel.filteredData.bind({ [weak self] (users) in
             DispatchQueue.main.async {
+                guard let self = self else { return }
                 self.users = users
                 self.collectionView.reloadData()
             }
@@ -144,7 +146,7 @@ class MainViewController: UIViewController {
     private func openModalView(id: String) {
         guard let user = viewModel.retriveUser(with: id) else { return }
         let accountViewModel = AccountViewModel(user: user)
-        accountViewModel.changeIsCanEdit(flag: false)
+        accountViewModel.changeIsCanEdit()
         let accountViewController = AccountViewController(viewModel: accountViewModel)
         navigationController?.pushViewController(accountViewController, animated: true)
     }
