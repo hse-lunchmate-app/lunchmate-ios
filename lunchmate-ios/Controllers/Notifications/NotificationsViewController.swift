@@ -9,7 +9,7 @@ import UIKit
 
 class NotificationsViewController: UIViewController {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     private var notificationCount = 1
     

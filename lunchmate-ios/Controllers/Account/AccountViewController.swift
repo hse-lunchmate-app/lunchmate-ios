@@ -9,7 +9,7 @@ import UIKit
 
 class AccountViewController: UIViewController {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     var viewModel: AccountViewModel
     
@@ -63,6 +63,7 @@ class AccountViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .white
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUserInfo), name: Notification.Name("AccountInfoDidChange"), object: nil)
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backButton
         navigationItem.titleView = navigationTitle
@@ -92,10 +93,19 @@ class AccountViewController: UIViewController {
     }
     
     @objc func openEditAccountView() {
-        let controller = EditAccountViewController()
+        let viewModel = AccountEditingViewModel()
+        let controller = AccountEditingViewController(viewModel: viewModel)
         navigationController?.pushViewController(controller, animated: true)
     }
-
+    
+    @objc func updateUserInfo(notification: Notification) {
+        if let updatedUser = notification.object as? User {
+            DispatchQueue.main.async {
+                self.viewModel.updateUser(newUser: updatedUser)
+                self.collectionView.reloadData()
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -111,17 +121,33 @@ extension AccountViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AccountCollectionViewCell.identifier, for: indexPath) as? AccountCollectionViewCell else { return UICollectionViewCell() }
-        cell.configure(
-            title: viewModel.titles[indexPath.row],
-            description: viewModel.descriptions[indexPath.row],
-            imageTitle: viewModel.imageNames[indexPath.row]
-        )
+        let descriptions = viewModel.descriptions[indexPath.row]
+        switch descriptions {
+        case .description(let title, let description, let imageTitle):
+            cell.configure(
+                title: title,
+                description: description,
+                imageTitle: imageTitle
+            )
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AccountHeaderCollectionView.identifier, for: indexPath) as? AccountHeaderCollectionView else { return UICollectionReusableView() }
-        header.configure(name: viewModel.user.name, login: viewModel.user.login)
+        var image: UIImage? = UIImage(named: "Mock photo")
+        var isImageLoaded = false
+        self.viewModel.getImage { data in
+            if let imageData = data {
+                image = UIImage(data: imageData)
+                isImageLoaded = true
+            } else {
+                isImageLoaded = true
+            }
+            if isImageLoaded {
+                header.configure(name: self.viewModel.user.name, login: self.viewModel.user.login, image: image)
+            }
+        }
         return header
     }
     

@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     private var users: [MainCellViewModel] = []
     private var viewModel = MainViewModel()

@@ -8,6 +8,8 @@
 import UIKit
 
 class FilterViewController: UIViewController {
+    
+    // MARK: - Subviews
 
     private let navigationTitle: UILabel = {
         let navigationTitle = UILabel()
@@ -17,11 +19,15 @@ class FilterViewController: UIViewController {
         navigationTitle.sizeToFit()
         return navigationTitle
     }()
+    
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
+    
+    // MARK: - Methods
     
     private func setupView() {
         view.backgroundColor = .white

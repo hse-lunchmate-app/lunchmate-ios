@@ -9,8 +9,12 @@ import Foundation
 
 final class APIManager {
     
+    // MARK: - Properties
+    
     private let baseURL = "http://185.44.8.151:8080"
     static let shared = APIManager()
+    
+    // MARK: - Methods
 
     func getCities(completion: @escaping (_ data: [City]) -> Void) {
         guard let url = URL(string: baseURL + "/cities") else { return }

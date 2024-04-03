@@ -9,46 +9,28 @@ import Foundation
 
 class AccountViewModel {
     
-    // MARK: - Variables
+    // MARK: - Properties
+    
+    enum AccountInfo {
+        case description(String, String, String)
+    }
+    
+    var descriptions: [AccountInfo] = []
     
     var user: User
-    var descriptions: [String]
+    
     var isCanEdit = true
-    
-    var titles = [
-        "Telegram",
-        "Офис",
-        "Вкусовые предпочтения",
-        "О себе"
-    ]
-    
-    var imageNames = [
-        "tg",
-        "map-marker",
-        "food",
-        "about me"
-    ]
     
     // MARK: - Init
     
     init() {
         self.user = User.currentUser
-        descriptions = [
-            user.messenger,
-            user.office.name,
-            user.tastes,
-            user.aboutMe
-        ]
+        descriptions = createDescriptions()
     }
     
     init(user: User) {
         self.user = user
-        descriptions = [
-            user.messenger,
-            user.office.name,
-            user.tastes,
-            user.aboutMe
-        ]
+        descriptions = createDescriptions()
     }
     
     // MARK: - Methods
@@ -58,10 +40,39 @@ class AccountViewModel {
     }
     
     func numberOfRows(in section: Int) -> Int {
-        return titles.count
+        return descriptions.count
     }
     
     func numberOfSections() -> Int {
         return 1
+    }
+    
+    func createDescriptions() -> [AccountInfo] {
+        let tg = AccountInfo.description("Telegram", user.messenger, "tg")
+        let office = AccountInfo.description("Офис", user.office.name, "map-marker")
+        let food = AccountInfo.description("Вкусовые предпочтения", user.tastes, "food")
+        let about = AccountInfo.description("О себе", user.aboutMe, "about me")
+        return [tg, office, food, about]
+    }
+    
+    func getImage(completion: @escaping (Data?) -> Void) {
+        if let photoURL = user.image {
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: photoURL) {
+                    DispatchQueue.main.async {
+                        completion(data)
+                    }
+                } else {
+                    completion(nil)
+                }
+            }
+        } else {
+            completion(nil)
+        }
+    }
+    
+    func updateUser(newUser: User) {
+        user = newUser
+        descriptions = createDescriptions()
     }
 }

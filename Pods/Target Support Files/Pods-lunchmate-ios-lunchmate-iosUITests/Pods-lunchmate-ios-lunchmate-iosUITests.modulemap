@@ -1,0 +1,6 @@
+framework module Pods_lunchmate_ios_lunchmate_iosUITests {
+  umbrella header "Pods-lunchmate-ios-lunchmate-iosUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

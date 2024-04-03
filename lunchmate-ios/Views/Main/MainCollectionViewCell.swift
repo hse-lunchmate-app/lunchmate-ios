@@ -69,7 +69,7 @@ final class MainCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         nameLabel.text = nil
-        tastePreferencesLabel.text = nil
+        tastePreferencesLabel.attributedText = nil
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {

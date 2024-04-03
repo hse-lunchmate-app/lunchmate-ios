@@ -9,6 +9,8 @@ import UIKit
 
 class SlotAdditionViewController: UIViewController {
     
+    // MARK: - Subviews
+    
     private let navigationTitle: UILabel = {
         let navigationTitle = UILabel()
         navigationTitle.text = "Слот"
@@ -17,11 +19,15 @@ class SlotAdditionViewController: UIViewController {
         navigationTitle.sizeToFit()
         return navigationTitle
     }()
+    
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
+    
+    // MARK: - Methods
     
     private func setupView() {
         view.backgroundColor = .white

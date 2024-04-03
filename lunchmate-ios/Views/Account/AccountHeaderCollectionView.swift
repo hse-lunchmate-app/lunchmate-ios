@@ -16,9 +16,8 @@ class AccountHeaderCollectionView: UICollectionReusableView {
     // MARK: - Subviews
     
     private lazy var imageView: UIImageView = {
-        let image = UIImage(named: "Mock photo")
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFit
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.borderWidth = 2.0
         imageView.layer.masksToBounds = false
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -55,7 +54,10 @@ class AccountHeaderCollectionView: UICollectionReusableView {
     
     // MARK: - Methods
     
-    func configure(name: String, login: String) {
+    func configure(name: String, login: String, image: UIImage?) {
+        if let image {
+            imageView.image = image
+        }
         nameLabel.text = name
         loginLabel.text = "@" + login
         

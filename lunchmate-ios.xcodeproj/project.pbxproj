@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ECAD61027363EF0515B97B2 /* Pods_lunchmate_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2A5948068B4AA73A055C01 /* Pods_lunchmate_ios.framework */; };
 		2D23B4E12BA0D19000D59418 /* AccountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D23B4E02BA0D19000D59418 /* AccountCollectionViewCell.swift */; };
 		2D23B4E42BA0E09400D59418 /* AccountHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D23B4E32BA0E09400D59418 /* AccountHeaderCollectionView.swift */; };
+		2D484DB62BB982D800C291AB /* AccountEditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DB52BB982D800C291AB /* AccountEditingViewModel.swift */; };
+		2D484DB92BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DB82BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift */; };
+		2D484DBB2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DBA2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift */; };
+		2D484DBF2BBC0B7D00C291AB /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DBE2BBC0B7D00C291AB /* CustomTextField.swift */; };
+		2D484DC32BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DC22BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift */; };
 		2D7C23752B9864CB0095B94D /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23742B9864CB0095B94D /* Dynamic.swift */; };
 		2D7C23782B987EC20095B94D /* MainCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23772B987EC20095B94D /* MainCellViewModel.swift */; };
 		2D7C237D2B988B3E0095B94D /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C237C2B988B3E0095B94D /* AccountViewModel.swift */; };
@@ -35,9 +41,9 @@
 		2DFC57C22B8E4F8E000AEE8D /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DFC57C12B8E4F8E000AEE8D /* SF-Pro.ttf */; };
 		2DFC57C32B8E4F8E000AEE8D /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DFC57C12B8E4F8E000AEE8D /* SF-Pro.ttf */; };
 		2DFC57C42B8E4F8E000AEE8D /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DFC57C12B8E4F8E000AEE8D /* SF-Pro.ttf */; };
-		2DFC57C72B8E71E5000AEE8D /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC57C62B8E71E4000AEE8D /* EditAccountViewController.swift */; };
-		2DFC57C82B8E71E5000AEE8D /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC57C62B8E71E4000AEE8D /* EditAccountViewController.swift */; };
-		2DFC57C92B8E71E5000AEE8D /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC57C62B8E71E4000AEE8D /* EditAccountViewController.swift */; };
+		2DFC57C72B8E71E5000AEE8D /* AccountEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC57C62B8E71E4000AEE8D /* AccountEditingViewController.swift */; };
+		2DFC57C82B8E71E5000AEE8D /* AccountEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC57C62B8E71E4000AEE8D /* AccountEditingViewController.swift */; };
+		2DFC57C92B8E71E5000AEE8D /* AccountEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC57C62B8E71E4000AEE8D /* AccountEditingViewController.swift */; };
 		2DFC57CC2B8F209D000AEE8D /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC57CB2B8F209D000AEE8D /* MainCollectionViewCell.swift */; };
 		2DFC57CD2B8F209D000AEE8D /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC57CB2B8F209D000AEE8D /* MainCollectionViewCell.swift */; };
 		2DFC57CE2B8F209D000AEE8D /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC57CB2B8F209D000AEE8D /* MainCollectionViewCell.swift */; };
@@ -50,6 +56,8 @@
 		2DFC57D82B8F3FC3000AEE8D /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DFC57D02B8F3FAD000AEE8D /* Roboto-Medium.ttf */; };
 		2DFC57D92B8F3FC4000AEE8D /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DFC57D02B8F3FAD000AEE8D /* Roboto-Medium.ttf */; };
 		2DFC57DA2B8F3FC4000AEE8D /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DFC57D02B8F3FAD000AEE8D /* Roboto-Medium.ttf */; };
+		9C2442D4462D4AEE513F6890 /* Pods_lunchmate_ios_lunchmate_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C6A6641ABE2444C15FFA420 /* Pods_lunchmate_ios_lunchmate_iosUITests.framework */; };
+		A6486A3573579FD6753AA8F0 /* Pods_lunchmate_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68C1316B61646D8DE810008 /* Pods_lunchmate_iosTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,8 +78,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		023EBB108182700843D5734F /* Pods-lunchmate-ios-lunchmate-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lunchmate-ios-lunchmate-iosUITests.release.xcconfig"; path = "Target Support Files/Pods-lunchmate-ios-lunchmate-iosUITests/Pods-lunchmate-ios-lunchmate-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
+		24723832350E1C9FCBE78C3F /* Pods-lunchmate-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lunchmate-ios.debug.xcconfig"; path = "Target Support Files/Pods-lunchmate-ios/Pods-lunchmate-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		2D23B4E02BA0D19000D59418 /* AccountCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D23B4E32BA0E09400D59418 /* AccountHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHeaderCollectionView.swift; sourceTree = "<group>"; };
+		2D484DB52BB982D800C291AB /* AccountEditingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditingViewModel.swift; sourceTree = "<group>"; };
+		2D484DB82BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditionHeaderCollectionView.swift; sourceTree = "<group>"; };
+		2D484DBA2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditionCollectionViewCell.swift; sourceTree = "<group>"; };
+		2D484DBE2BBC0B7D00C291AB /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		2D484DC22BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditingCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		2D7C23742B9864CB0095B94D /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		2D7C23772B987EC20095B94D /* MainCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellViewModel.swift; sourceTree = "<group>"; };
 		2D7C237C2B988B3E0095B94D /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -100,11 +115,18 @@
 		2DFC57BD2B8E0681000AEE8D /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		2DFC57BF2B8E0694000AEE8D /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		2DFC57C12B8E4F8E000AEE8D /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
-		2DFC57C62B8E71E4000AEE8D /* EditAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountViewController.swift; sourceTree = "<group>"; };
+		2DFC57C62B8E71E4000AEE8D /* AccountEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditingViewController.swift; sourceTree = "<group>"; };
 		2DFC57CB2B8F209D000AEE8D /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DFC57CF2B8F3F99000AEE8D /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		2DFC57D02B8F3FAD000AEE8D /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		2DFC57D12B8F3FBA000AEE8D /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		3E2A5948068B4AA73A055C01 /* Pods_lunchmate_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lunchmate_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C6A6641ABE2444C15FFA420 /* Pods_lunchmate_ios_lunchmate_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lunchmate_ios_lunchmate_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		855080B62BCD389800CE8746 /* Pods-lunchmate-ios-lunchmate-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lunchmate-ios-lunchmate-iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-lunchmate-ios-lunchmate-iosUITests/Pods-lunchmate-ios-lunchmate-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9AE0CBFC250C095B4B9B8A04 /* Pods-lunchmate-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lunchmate-ios.release.xcconfig"; path = "Target Support Files/Pods-lunchmate-ios/Pods-lunchmate-ios.release.xcconfig"; sourceTree = "<group>"; };
+		A68C1316B61646D8DE810008 /* Pods_lunchmate_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lunchmate_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E94D166225897D3A9946FBEB /* Pods-lunchmate-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lunchmate-iosTests.debug.xcconfig"; path = "Target Support Files/Pods-lunchmate-iosTests/Pods-lunchmate-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F9B1F2B52E0DA2B7604EE98E /* Pods-lunchmate-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lunchmate-iosTests.release.xcconfig"; path = "Target Support Files/Pods-lunchmate-iosTests/Pods-lunchmate-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ECAD61027363EF0515B97B2 /* Pods_lunchmate_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6486A3573579FD6753AA8F0 /* Pods_lunchmate_iosTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C2442D4462D4AEE513F6890 /* Pods_lunchmate_ios_lunchmate_iosUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +181,32 @@
 				2D7C237C2B988B3E0095B94D /* AccountViewModel.swift */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		2D484DB72BBABE6D00C291AB /* AccountEditing */ = {
+			isa = PBXGroup;
+			children = (
+				2D484DB82BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift */,
+				2D484DBA2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift */,
+			);
+			path = AccountEditing;
+			sourceTree = "<group>";
+		};
+		2D484DC02BBD5FC100C291AB /* AccountEditing */ = {
+			isa = PBXGroup;
+			children = (
+				2D484DB52BB982D800C291AB /* AccountEditingViewModel.swift */,
+				2D484DC22BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift */,
+			);
+			path = AccountEditing;
+			sourceTree = "<group>";
+		};
+		2D484DC12BBD5FE800C291AB /* CustomTextField */ = {
+			isa = PBXGroup;
+			children = (
+				2D484DBE2BBC0B7D00C291AB /* CustomTextField.swift */,
+			);
+			path = CustomTextField;
 			sourceTree = "<group>";
 		};
 		2D7C236E2B9863630095B94D /* Storyboards */ = {
@@ -190,12 +241,12 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		2D7C23722B9863C20095B94D /* AccountEdition */ = {
+		2D7C23722B9863C20095B94D /* AccountEditing */ = {
 			isa = PBXGroup;
 			children = (
-				2DFC57C62B8E71E4000AEE8D /* EditAccountViewController.swift */,
+				2DFC57C62B8E71E4000AEE8D /* AccountEditingViewController.swift */,
 			);
-			path = AccountEdition;
+			path = AccountEditing;
 			sourceTree = "<group>";
 		};
 		2D7C23732B9864720095B94D /* Bindings */ = {
@@ -221,7 +272,7 @@
 				2D7C23832B989F700095B94D /* Filter */,
 				2D7C237E2B989D760095B94D /* SlotAddition */,
 				2D7C23762B9864F90095B94D /* TabBar */,
-				2D7C23722B9863C20095B94D /* AccountEdition */,
+				2D7C23722B9863C20095B94D /* AccountEditing */,
 				2D7C23712B9863A70095B94D /* Notifications */,
 				2D7C23702B98639A0095B94D /* Schedule */,
 				2D7C236F2B9863860095B94D /* Account */,
@@ -268,6 +319,8 @@
 				2D8BC11E2B73B0AD00CA1D07 /* lunchmate-iosTests */,
 				2D8BC1282B73B0AD00CA1D07 /* lunchmate-iosUITests */,
 				2D8BC1062B73B0AB00CA1D07 /* Products */,
+				37EB2AFEDAE643158FBB17D8 /* Pods */,
+				2DF0F94E3AA02BC14C1E11D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -315,6 +368,16 @@
 			path = "lunchmate-iosUITests";
 			sourceTree = "<group>";
 		};
+		2DF0F94E3AA02BC14C1E11D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E2A5948068B4AA73A055C01 /* Pods_lunchmate_ios.framework */,
+				6C6A6641ABE2444C15FFA420 /* Pods_lunchmate_ios_lunchmate_iosUITests.framework */,
+				A68C1316B61646D8DE810008 /* Pods_lunchmate_iosTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2DFC57AE2B8DEDAE000AEE8D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +391,8 @@
 		2DFC57B52B8E0516000AEE8D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2D484DC12BBD5FE800C291AB /* CustomTextField */,
+				2D484DB72BBABE6D00C291AB /* AccountEditing */,
 				2D23B4E52BA0E56A00D59418 /* Account */,
 				2D7C237B2B988A5E0095B94D /* Main */,
 				2D7C236E2B9863630095B94D /* Storyboards */,
@@ -338,6 +403,7 @@
 		2DFC57B62B8E0551000AEE8D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2D484DC02BBD5FC100C291AB /* AccountEditing */,
 				2D23B4E72BA0E5B100D59418 /* Account */,
 				2D23B4E62BA0E5A000D59418 /* Main */,
 				2D7C23732B9864720095B94D /* Bindings */,
@@ -381,6 +447,19 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		37EB2AFEDAE643158FBB17D8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				24723832350E1C9FCBE78C3F /* Pods-lunchmate-ios.debug.xcconfig */,
+				9AE0CBFC250C095B4B9B8A04 /* Pods-lunchmate-ios.release.xcconfig */,
+				855080B62BCD389800CE8746 /* Pods-lunchmate-ios-lunchmate-iosUITests.debug.xcconfig */,
+				023EBB108182700843D5734F /* Pods-lunchmate-ios-lunchmate-iosUITests.release.xcconfig */,
+				E94D166225897D3A9946FBEB /* Pods-lunchmate-iosTests.debug.xcconfig */,
+				F9B1F2B52E0DA2B7604EE98E /* Pods-lunchmate-iosTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -388,9 +467,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D8BC12F2B73B0AD00CA1D07 /* Build configuration list for PBXNativeTarget "lunchmate-ios" */;
 			buildPhases = (
+				3A614E2F59774387935346ED /* [CP] Check Pods Manifest.lock */,
 				2D8BC1012B73B0AB00CA1D07 /* Sources */,
 				2D8BC1022B73B0AB00CA1D07 /* Frameworks */,
 				2D8BC1032B73B0AB00CA1D07 /* Resources */,
+				4FFC2864554D08DBB0AA327D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -405,6 +486,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D8BC1322B73B0AD00CA1D07 /* Build configuration list for PBXNativeTarget "lunchmate-iosTests" */;
 			buildPhases = (
+				6393D99D7436C19D7B4316FC /* [CP] Check Pods Manifest.lock */,
 				2D8BC1172B73B0AD00CA1D07 /* Sources */,
 				2D8BC1182B73B0AD00CA1D07 /* Frameworks */,
 				2D8BC1192B73B0AD00CA1D07 /* Resources */,
@@ -423,9 +505,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D8BC1352B73B0AD00CA1D07 /* Build configuration list for PBXNativeTarget "lunchmate-iosUITests" */;
 			buildPhases = (
+				F7DD12110AE941C711560376 /* [CP] Check Pods Manifest.lock */,
 				2D8BC1212B73B0AD00CA1D07 /* Sources */,
 				2D8BC1222B73B0AD00CA1D07 /* Frameworks */,
 				2D8BC1232B73B0AD00CA1D07 /* Resources */,
+				92E74F43EDCB649C0240C6AD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -518,14 +602,120 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3A614E2F59774387935346ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lunchmate-ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FFC2864554D08DBB0AA327D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lunchmate-ios/Pods-lunchmate-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lunchmate-ios/Pods-lunchmate-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lunchmate-ios/Pods-lunchmate-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6393D99D7436C19D7B4316FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lunchmate-iosTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92E74F43EDCB649C0240C6AD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lunchmate-ios-lunchmate-iosUITests/Pods-lunchmate-ios-lunchmate-iosUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lunchmate-ios-lunchmate-iosUITests/Pods-lunchmate-ios-lunchmate-iosUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lunchmate-ios-lunchmate-iosUITests/Pods-lunchmate-ios-lunchmate-iosUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7DD12110AE941C711560376 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lunchmate-ios-lunchmate-iosUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2D8BC1012B73B0AB00CA1D07 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D484DBF2BBC0B7D00C291AB /* CustomTextField.swift in Sources */,
 				2DFC57BA2B8E0619000AEE8D /* TabBarController.swift in Sources */,
 				2DFC57A92B8DEBEB000AEE8D /* User.swift in Sources */,
 				2DFC57AB2B8DEC8B000AEE8D /* City.swift in Sources */,
+				2D484DB62BB982D800C291AB /* AccountEditingViewModel.swift in Sources */,
+				2D484DB92BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift in Sources */,
 				2D7C23782B987EC20095B94D /* MainCellViewModel.swift in Sources */,
 				2D7C23802B989DAC0095B94D /* SlotAdditionViewController.swift in Sources */,
 				2D23B4E12BA0D19000D59418 /* AccountCollectionViewCell.swift in Sources */,
@@ -534,17 +724,19 @@
 				2D7C23892B98B8620095B94D /* UISearchBarExtencion.swift in Sources */,
 				2DFC57AD2B8DEC98000AEE8D /* Office.swift in Sources */,
 				2D7C23752B9864CB0095B94D /* Dynamic.swift in Sources */,
+				2D484DBB2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift in Sources */,
 				2D8BC1092B73B0AB00CA1D07 /* AppDelegate.swift in Sources */,
 				2DFC57CC2B8F209D000AEE8D /* MainCollectionViewCell.swift in Sources */,
 				2DFC57BC2B8E065A000AEE8D /* AccountViewController.swift in Sources */,
 				2D8BC10B2B73B0AB00CA1D07 /* SceneDelegate.swift in Sources */,
 				2D7C23822B989F5C0095B94D /* FilterViewController.swift in Sources */,
 				2DFC57B42B8E04D9000AEE8D /* MainViewModel.swift in Sources */,
+				2D484DC32BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift in Sources */,
 				2D23B4E42BA0E09400D59418 /* AccountHeaderCollectionView.swift in Sources */,
 				2DFC57BE2B8E0681000AEE8D /* ScheduleViewController.swift in Sources */,
 				2D7C237D2B988B3E0095B94D /* AccountViewModel.swift in Sources */,
 				2DFC57B22B8DF9DE000AEE8D /* APIManager.swift in Sources */,
-				2DFC57C72B8E71E5000AEE8D /* EditAccountViewController.swift in Sources */,
+				2DFC57C72B8E71E5000AEE8D /* AccountEditingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +744,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DFC57C82B8E71E5000AEE8D /* EditAccountViewController.swift in Sources */,
+				2DFC57C82B8E71E5000AEE8D /* AccountEditingViewController.swift in Sources */,
 				2DFC57CD2B8F209D000AEE8D /* MainCollectionViewCell.swift in Sources */,
 				2D8BC1202B73B0AD00CA1D07 /* lunchmate_iosTests.swift in Sources */,
 			);
@@ -562,7 +754,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DFC57C92B8E71E5000AEE8D /* EditAccountViewController.swift in Sources */,
+				2DFC57C92B8E71E5000AEE8D /* AccountEditingViewController.swift in Sources */,
 				2D8BC12C2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift in Sources */,
 				2D8BC12A2B73B0AD00CA1D07 /* lunchmate_iosUITests.swift in Sources */,
 				2DFC57CE2B8F209D000AEE8D /* MainCollectionViewCell.swift in Sources */,
@@ -712,6 +904,7 @@
 		};
 		2D8BC1302B73B0AD00CA1D07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24723832350E1C9FCBE78C3F /* Pods-lunchmate-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -739,6 +932,7 @@
 		};
 		2D8BC1312B73B0AD00CA1D07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AE0CBFC250C095B4B9B8A04 /* Pods-lunchmate-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -766,6 +960,7 @@
 		};
 		2D8BC1332B73B0AD00CA1D07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E94D166225897D3A9946FBEB /* Pods-lunchmate-iosTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -786,6 +981,7 @@
 		};
 		2D8BC1342B73B0AD00CA1D07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9B1F2B52E0DA2B7604EE98E /* Pods-lunchmate-iosTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -806,6 +1002,7 @@
 		};
 		2D8BC1362B73B0AD00CA1D07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 855080B62BCD389800CE8746 /* Pods-lunchmate-ios-lunchmate-iosUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -824,6 +1021,7 @@
 		};
 		2D8BC1372B73B0AD00CA1D07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 023EBB108182700843D5734F /* Pods-lunchmate-ios-lunchmate-iosUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -14,5 +14,5 @@ struct Office: Codable {
 }
 
 extension Office {
-    static var office = Office(id: 0, name: "Main", city: City.city)
+    static var offices = [Office(id: 0, name: "Main", city: City.city), Office(id: 1, name: "Not main", city: City.city)]
 }
