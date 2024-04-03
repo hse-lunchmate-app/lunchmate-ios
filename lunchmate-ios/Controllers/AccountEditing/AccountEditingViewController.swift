@@ -120,6 +120,12 @@ class AccountEditingViewController: UIViewController {
     }
     
     private func deletePhoto() {
+        if viewModel.user.image != nil {
+            changeSaveButtonColor(isBlue: true)
+        }
+        else {
+            changeSaveButtonColor(isBlue: false)
+        }
         viewModel.setNewImageURL(url: nil)
         collectionView.reloadData()
     }
@@ -300,6 +306,12 @@ extension AccountEditingViewController: UICollectionViewDelegateFlowLayout {
 extension AccountEditingViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate  {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let imageUrl = info[.imageURL] as? URL {
+            if viewModel.user.image != imageUrl {
+                changeSaveButtonColor(isBlue: true)
+            }
+            else {
+                changeSaveButtonColor(isBlue: false)
+            }
             viewModel.setNewImageURL(url: imageUrl)
             collectionView.reloadData()
         }
