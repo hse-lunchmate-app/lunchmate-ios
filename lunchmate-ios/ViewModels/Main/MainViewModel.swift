@@ -26,7 +26,7 @@ class MainViewModel {
             return
         }
         isLoading.value = true
-        apiManager.getUsers(id: "1,2,3") { [weak self] data in
+        apiManager.getUsers(id: User.currentUser.office.id) { [weak self] data in
             self?.isLoading.value = false
             self?.users = data
             self?.users.removeAll(where: { $0.office.id != User.currentUser.office.id })

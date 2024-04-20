@@ -51,7 +51,10 @@ class ScheduleViewModel {
         calendar.timeZone = TimeZone(secondsFromGMT: 3 * 3600)!
         let currentDate = Date()
         let weekday = calendar.component(.weekday, from: currentDate)
-        let daysFromMonday = (weekday + 5) % 7
+        var daysFromMonday = (weekday + 5) % 7
+        if daysFromMonday == 6 || daysFromMonday == 5 {
+            daysFromMonday = 4
+        }
         return daysFromMonday
     }
     
@@ -84,7 +87,7 @@ class ScheduleViewModel {
         dateFormatter.locale = Locale(identifier: "ru_RU")
         let date = dates[index]
         var listOfData: [Timeslot] = []
-        for i in User.timeTable {
+        for i in Timeslot.timeTable {
             if dateFormatter.string(from: date) == i.date {
                 listOfData.append(i)
             }

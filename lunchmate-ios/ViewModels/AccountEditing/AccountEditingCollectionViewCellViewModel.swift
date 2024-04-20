@@ -12,6 +12,8 @@ class AccountEditingCollectionViewCellViewModel {
     
     // MARK: - Properties
     
+    let apiManager = APIManager.shared
+    let offices = Dynamic([Office]())
     let title: String
     let description: String
     
@@ -22,11 +24,18 @@ class AccountEditingCollectionViewCellViewModel {
         self.description = description
     }
     
+    func getOffices() {
+        apiManager.getOffices() { [weak self] data in
+            guard let self = self else { return }
+            self.offices.value = data
+        }
+    }
+    
     // MARK: - Methods
     
     func getOfficesNames() -> [String] {
         var officesNames: [String] = []
-        for i in Office.offices {
+        for i in offices.value {
             officesNames.append(i.name)
         }
         return officesNames

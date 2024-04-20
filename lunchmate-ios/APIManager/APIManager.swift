@@ -10,20 +10,19 @@ import Foundation
 final class APIManager {
     
     // MARK: - Properties
-    
     private let baseURL = "http://185.44.8.179:8080"
     static let shared = APIManager()
     
     // MARK: - Methods
 
-    func getCities(completion: @escaping (_ data: [City]) -> Void) {
-        guard let url = URL(string: baseURL + "/cities") else { return }
+    func getOffices(completion: @escaping (_ data: [Office]) -> Void) {
+        guard let url = URL(string: baseURL + "/offices") else { return }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data , response, error in
             guard response != nil else { return }
             guard let data else {return}
-            if let citiesData = try? JSONDecoder().decode([City].self, from: data) {
-                completion(citiesData)
+            if let officesData = try? JSONDecoder().decode([Office].self, from: data) {
+                completion(officesData)
             }
             else {
                 print("Fail")
@@ -32,8 +31,8 @@ final class APIManager {
         task.resume()
     }
 
-    func getUsers(id: String, completion: @escaping (_ data: [User]) -> Void) {
-        guard let url = URL(string: baseURL + "/users?id=" + id) else { return }
+    func getUsers(id: Int, completion: @escaping (_ data: [User]) -> Void) {
+        guard let url = URL(string: baseURL + "/users/office/" + String(id)) else { return }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data , response, error in
             guard response != nil else { return }

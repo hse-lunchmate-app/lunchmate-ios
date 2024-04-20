@@ -103,10 +103,14 @@ final class AccountEditingCollectionViewCell: UICollectionViewCell {
 
     func configure(viewModel: AccountEditingCollectionViewCellViewModel) {
         self.viewModel = viewModel
+        bind()
+        setupText()
+        viewModel.getOffices()
+        configureUI()
+    }
+    
+    private func setupText() {
         titleLabel.text = viewModel.title
-        if viewModel.title == "Пароль" {
-            descriptionTextField.isSecureTextEntry = true
-        }
         if viewModel.title == "Telegram" {
             let image = UIImage(systemName: "at")?.withRenderingMode(.alwaysTemplate)
             let imageView = UIImageView(image: image)
@@ -120,8 +124,17 @@ final class AccountEditingCollectionViewCell: UICollectionViewCell {
         else {
             descriptionTextField.text = viewModel.description
         }
-        officesDropDown.dataSource = viewModel.getOfficesNames()
-        configureUI()
+    }
+    
+    private func bind() {
+        viewModel.offices.bind({ [weak self] offices in
+            guard let self = self else {
+                return
+            }
+            DispatchQueue.main.async {
+                self.officesDropDown.dataSource = self.viewModel.getOfficesNames()
+            }
+        })
     }
 
     private func configureUI() {
@@ -147,6 +160,10 @@ final class AccountEditingCollectionViewCell: UICollectionViewCell {
             dropDownButton.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -2),
             dropDownButton.widthAnchor.constraint(equalToConstant: 24),
         ])
+        
+        if viewModel.title == "Пароль" {
+            descriptionTextField.isSecureTextEntry = true
+        }
         
         if viewModel.title != "Офис" {
             dropDownButton.removeFromSuperview()
