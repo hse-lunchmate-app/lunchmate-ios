@@ -250,7 +250,7 @@ extension AccountEditingViewController: UICollectionViewDataSource {
         case .password:
             let viewModel = AccountEditingCollectionViewCellViewModel(
                 title: index.rawValue,
-                description: viewModel.user.password
+                description: viewModel.user.password ?? ""
             )
             cell.delegate = self
             cell.configure(viewModel: viewModel)

@@ -14,5 +14,5 @@ struct City: Codable {
 
 
 extension City {
-    static var city = City(id: 0, name: "Moscow")
+    static var cities = [City(id: 1, name: "Москва"), City(id: 2, name: "Нижний Новгород")]
 }

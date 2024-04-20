@@ -55,6 +55,10 @@ class AccountViewModel {
         return [tg, office, food, about]
     }
     
+    func getTgDescription() -> String {
+        return user.messenger
+    }
+    
     func getImage(completion: @escaping (Data?) -> Void) {
         if let photoURL = user.image {
             DispatchQueue.global().async {

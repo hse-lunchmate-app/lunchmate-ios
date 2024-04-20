@@ -11,7 +11,7 @@ final class APIManager {
     
     // MARK: - Properties
     
-    private let baseURL = "http://185.44.8.151:8080"
+    private let baseURL = "http://185.44.8.179:8080"
     static let shared = APIManager()
     
     // MARK: - Methods
@@ -32,8 +32,8 @@ final class APIManager {
         task.resume()
     }
 
-    func getUsers(id: Int, completion: @escaping (_ data: [User]) -> Void) {
-        guard let url = URL(string: baseURL + "/users?id=" + String(id)) else { return }
+    func getUsers(id: String, completion: @escaping (_ data: [User]) -> Void) {
+        guard let url = URL(string: baseURL + "/users?id=" + id) else { return }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data , response, error in
             guard response != nil else { return }

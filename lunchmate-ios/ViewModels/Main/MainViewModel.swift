@@ -17,12 +17,21 @@ class MainViewModel {
     
     var users: [User] = []
     var filteredData = Dynamic([MainCellViewModel]())
+    var isLoading: Dynamic<Bool> = Dynamic(false)
     
     // MARK: - Methods
     
     func getUsers() {
-        users = User.users
-        filteredData.value = User.users.compactMap({MainCellViewModel(user: $0)})
+        if isLoading.value == true {
+            return
+        }
+        isLoading.value = true
+        apiManager.getUsers(id: "1,2,3") { [weak self] data in
+            self?.isLoading.value = false
+            self?.users = data
+            self?.users.removeAll(where: { $0.office.id != User.currentUser.office.id })
+            self?.filteredData.value = self?.users.compactMap({MainCellViewModel(user: $0)}) ?? []
+        }
     }
     
     func filterUsers(text: String?) {

@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-lunchmate-ios/Pods-lunchmate-ios-frameworks.sh
+${BUILT_PRODUCTS_DIR}/DateScrollPicker/DateScrollPicker.framework
 ${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework

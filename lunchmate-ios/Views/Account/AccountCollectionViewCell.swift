@@ -15,7 +15,7 @@ final class AccountCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Subviews
 
-    private lazy var titleLabel: UILabel = {
+    private var titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
         label.font = UIFont(name: "Roboto-Regular", size: 10)
@@ -34,14 +34,14 @@ final class AccountCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var stackWithLabels: UIStackView = {
+    private var stackWithLabels: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 4
         return stack
     }()
     
-    private lazy var imageView: UIImageView = {
+    private var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView

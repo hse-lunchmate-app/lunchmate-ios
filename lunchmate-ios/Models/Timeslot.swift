@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct Timeslot {
+    let id: Int
+    let weekDay: Int
+    let date: String
+    let startTime: String
+    let endTime: String
+    let permanent: Bool
+    let collegue: User?
+}

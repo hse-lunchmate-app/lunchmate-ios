@@ -25,6 +25,15 @@ class MainViewController: UIViewController {
         return navigationTitle
     }()
     
+    private lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.center = view.center
+        indicator.hidesWhenStopped = true
+        indicator.color = .gray
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
@@ -33,9 +42,9 @@ class MainViewController: UIViewController {
         searchController.searchBar.searchTextField.layer.borderColor = UIColor(named: "Base20")?.cgColor
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.definesPresentationContext = false
         searchController.searchBar.changeSearchBarColor(color: .white)
         searchController.searchBar.searchTextField.leftView?.tintColor = UIColor(named: "Base70")
+        searchController.definesPresentationContext = false
         if let xmarkImage = UIImage(systemName: "xmark")?.withTintColor(UIColor(named: "Base70") ?? .gray) {
             searchController.searchBar.setImage(xmarkImage, for: .clear, state: .normal)
         }
@@ -78,14 +87,23 @@ class MainViewController: UIViewController {
     
     // MARK: - Lifecycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let searchController = navigationItem.searchController {
+            navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
+            definesPresentationContext = true
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        bindViewModel()
         viewModel.getUsers()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindViewModel()
         setupView()
         //printFonts()
     }
@@ -106,6 +124,7 @@ class MainViewController: UIViewController {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
         navigationItem.titleView = navigationTitle
+        navigationItem.searchController = searchController
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(
                 systemName: "line.3.horizontal.decrease",
@@ -118,20 +137,38 @@ class MainViewController: UIViewController {
             action: #selector(openFilter)
         )
         navigationItem.rightBarButtonItem?.tintColor = .gray
-        navigationItem.searchController = searchController
         view.addSubview(collectionView)
+        view.addSubview(activityIndicatorView)
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicatorView.widthAnchor.constraint(equalToConstant: 50),
+            activityIndicatorView.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
     private func bindViewModel() {
-        viewModel.filteredData.bind({ [weak self] (users) in
+        viewModel.isLoading.bind({ [weak self] isLoading in
+            guard let self = self else {
+                return
+            }
             DispatchQueue.main.async {
-                guard let self = self else { return }
+                if isLoading {
+                    self.activityIndicatorView.startAnimating()
+                } else {
+                    self.activityIndicatorView.stopAnimating()
+                }
+            }
+        })
+        viewModel.filteredData.bind({ [weak self] (users) in
+            guard let self = self else {
+                return
+            }
+            DispatchQueue.main.async {
                 self.users = users
                 self.collectionView.reloadData()
             }
@@ -197,4 +234,3 @@ extension MainViewController: UISearchResultsUpdating {
         viewModel.filterUsers(text: searchController.searchBar.text)
     }
 }
-

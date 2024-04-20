@@ -7,6 +7,34 @@
 
 import UIKit
 
+class CustomMessageView: UIView {
+    
+    private lazy var label: UILabel = {
+        let label = UILabel(frame: CGRect(x: 10, y: 0, width: frame.width - 20, height: frame.height))
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        label.textColor = UIColor.darkGray
+        label.font = UIFont(name: "Roboto-Medium", size: 16)
+        return label
+    }()
+    
+    init(message: String) {
+        super.init(frame: CGRect(x: 8, y: 0, width: UIScreen.main.bounds.width - 16, height: 40))
+        label.text = message
+        setupView()
+    }
+    
+    private func setupView() {
+        backgroundColor = UIColor.white
+        addSubview(label)
+        layer.cornerRadius = 12
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class AccountViewController: UIViewController {
     
     // MARK: - Properties
@@ -65,7 +93,7 @@ class AccountViewController: UIViewController {
         view.backgroundColor = .white
         NotificationCenter.default.addObserver(self, selector: #selector(updateUserInfo), name: Notification.Name("AccountInfoDidChange"), object: nil)
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = backButton
+        navigationItem.backBarButtonItem = backButton
         navigationItem.titleView = navigationTitle
         if viewModel.isCanEdit {
             navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -132,6 +160,43 @@ extension AccountViewController: UICollectionViewDataSource {
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 && !viewModel.isCanEdit {
+            UIPasteboard.general.string = viewModel.getTgDescription()
+            
+            let dimView = UIView(frame: UIScreen.main.bounds)
+            dimView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+            
+            let messageView = CustomMessageView(message: "Telegram скопирован")
+            messageView.frame.origin.y = UIScreen.main.bounds.height
+            messageView.alpha = 0
+            
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                if let mainWindow = windowScene.windows.first {
+                    mainWindow.addSubview(dimView)
+                    mainWindow.addSubview(messageView)
+                    
+                    UIView.animate(withDuration: 0.3, animations: {
+                        messageView.alpha = 1
+                        messageView.frame.origin.y -= messageView.frame.height + 35
+                    })
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.25) {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            dimView.backgroundColor = UIColor.black.withAlphaComponent(0)
+                            messageView.alpha = 0
+                            messageView.frame.origin.y += messageView.frame.height
+                        }, completion: { _ in
+                            dimView.removeFromSuperview()
+                            messageView.removeFromSuperview()
+                        })
+                    }
+                }
+            }
+        }
+    }
+
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AccountHeaderCollectionView.identifier, for: indexPath) as? AccountHeaderCollectionView else { return UICollectionReusableView() }
