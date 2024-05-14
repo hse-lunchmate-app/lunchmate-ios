@@ -14,7 +14,7 @@ class SlotsCollectionViewCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
         label.font = UIFont(name: "Roboto-Medium", size: 20)
-        label.textColor = .black
+        label.textColor = UIColor(named: "Base80")
         return label
     }()
     

@@ -34,7 +34,7 @@ class AccountEditingViewController: UIViewController {
     private let navigationTitle: UILabel = {
         let navigationTitle = UILabel()
         navigationTitle.text = "Редактирование профиля"
-        navigationTitle.textColor = .black
+        navigationTitle.textColor = UIColor(named: "Base90")
         navigationTitle.font = UIFont(name: "SFPro-Semibold", size: 17)
         navigationTitle.sizeToFit()
         return navigationTitle
@@ -49,7 +49,7 @@ class AccountEditingViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: "Base0")
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
         (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -67,7 +67,7 @@ class AccountEditingViewController: UIViewController {
     // MARK: - Methods
     
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "Base0")
         navigationItem.titleView = navigationTitle
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(

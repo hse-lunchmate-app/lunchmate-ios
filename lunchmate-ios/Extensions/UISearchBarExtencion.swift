@@ -13,7 +13,7 @@ extension UISearchBar {
         UIGraphicsBeginImageContext(size)
         color.setFill()
         UIBezierPath(rect: self.frame).fill()
-        let bgImage = UIGraphicsGetImageFromCurrentImageContext()!
+        let bgImage = UIGraphicsGetImageFromCurrentImageContext()!.withTintColor(UIColor(named: "Base0") ?? .white)
         UIGraphicsEndImageContext()
         self.setSearchFieldBackgroundImage(bgImage, for: .normal)
     }

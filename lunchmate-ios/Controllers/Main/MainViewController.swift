@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
     private let navigationTitle: UILabel = {
         let navigationTitle = UILabel()
         navigationTitle.text = "Поиск коллег"
-        navigationTitle.textColor = .black
+        navigationTitle.textColor = UIColor(named: "Base90")
         navigationTitle.font = UIFont(name: "SFPro-Semibold", size: 17)
         navigationTitle.sizeToFit()
         return navigationTitle
@@ -43,9 +43,9 @@ class MainViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.changeSearchBarColor(color: .white)
-        searchController.searchBar.searchTextField.leftView?.tintColor = UIColor(named: "Base70")
+        searchController.searchBar.searchTextField.leftView?.tintColor = UIColor(named: "Base80")
         searchController.definesPresentationContext = false
-        if let xmarkImage = UIImage(systemName: "xmark")?.withTintColor(UIColor(named: "Base70") ?? .gray) {
+        if let xmarkImage = UIImage(systemName: "xmark") {
             searchController.searchBar.setImage(xmarkImage, for: .clear, state: .normal)
         }
         searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
@@ -77,7 +77,7 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: "Base0")
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
         (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -120,7 +120,7 @@ class MainViewController: UIViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "Base0")
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
         navigationItem.titleView = navigationTitle

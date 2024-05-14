@@ -19,6 +19,7 @@
 		2D484DBB2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DBA2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift */; };
 		2D484DBF2BBC0B7D00C291AB /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DBE2BBC0B7D00C291AB /* CustomTextField.swift */; };
 		2D484DC32BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DC22BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift */; };
+		2D570D7B2BF3B40000E50A03 /* Lunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7A2BF3B40000E50A03 /* Lunch.swift */; };
 		2D76BECD2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D76BECC2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift */; };
 		2D7C23752B9864CB0095B94D /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23742B9864CB0095B94D /* Dynamic.swift */; };
 		2D7C23782B987EC20095B94D /* MainCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23772B987EC20095B94D /* MainCellViewModel.swift */; };
@@ -101,6 +102,7 @@
 		2D484DBA2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditionCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D484DBE2BBC0B7D00C291AB /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		2D484DC22BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditingCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		2D570D7A2BF3B40000E50A03 /* Lunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lunch.swift; sourceTree = "<group>"; };
 		2D76BECC2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D7C23742B9864CB0095B94D /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		2D7C23772B987EC20095B94D /* MainCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellViewModel.swift; sourceTree = "<group>"; };
@@ -227,6 +229,14 @@
 				2D484DBE2BBC0B7D00C291AB /* CustomTextField.swift */,
 			);
 			path = CustomTextField;
+			sourceTree = "<group>";
+		};
+		2D570D7C2BF3C7A900E50A03 /* SlotAddition */ = {
+			isa = PBXGroup;
+			children = (
+				2D1E236F2BEA8FFF00C94D8B /* SlotAdditionViewModel.swift */,
+			);
+			path = SlotAddition;
 			sourceTree = "<group>";
 		};
 		2D7C236E2B9863630095B94D /* Storyboards */ = {
@@ -434,6 +444,7 @@
 				2DFC57AA2B8DEC8B000AEE8D /* City.swift */,
 				2DFC57AC2B8DEC98000AEE8D /* Office.swift */,
 				2DE3A1472BCD3450008D79EE /* Timeslot.swift */,
+				2D570D7A2BF3B40000E50A03 /* Lunch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -455,12 +466,12 @@
 		2DFC57B62B8E0551000AEE8D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2D570D7C2BF3C7A900E50A03 /* SlotAddition */,
 				2DE3A1502BCDC63B008D79EE /* Schedule */,
 				2D484DC02BBD5FC100C291AB /* AccountEditing */,
 				2D23B4E72BA0E5B100D59418 /* Account */,
 				2D23B4E62BA0E5A000D59418 /* Main */,
 				2D7C23732B9864720095B94D /* Bindings */,
-				2D1E236F2BEA8FFF00C94D8B /* SlotAdditionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -770,6 +781,7 @@
 				2DE3A1482BCD3450008D79EE /* Timeslot.swift in Sources */,
 				2DE3A14B2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift in Sources */,
 				2D1E23702BEA8FFF00C94D8B /* SlotAdditionViewModel.swift in Sources */,
+				2D570D7B2BF3B40000E50A03 /* Lunch.swift in Sources */,
 				2DFC57A92B8DEBEB000AEE8D /* User.swift in Sources */,
 				2D1E236E2BEA8EE100C94D8B /* SlotAdditionOverlayViewController.swift in Sources */,
 				2DFC57AB2B8DEC8B000AEE8D /* City.swift in Sources */,

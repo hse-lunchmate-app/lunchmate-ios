@@ -24,7 +24,7 @@ class ScheduleViewController: UIViewController {
     private let navigationTitle: UILabel = {
         let navigationTitle = UILabel()
         navigationTitle.text = "Расписание"
-        navigationTitle.textColor = .black
+        navigationTitle.textColor = UIColor(named: "Base90")
         navigationTitle.font = UIFont(name: "SFPro-Semibold", size: 17)
         navigationTitle.sizeToFit()
         return navigationTitle
@@ -37,7 +37,7 @@ class ScheduleViewController: UIViewController {
         collectionView.register(DataPickerHeaderCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DataPickerHeaderCollectionView.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: "Base0")
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 16)
         (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -53,7 +53,7 @@ class ScheduleViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: "Base0")
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
         (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionInsetReference = .fromLayoutMargins
@@ -77,7 +77,7 @@ class ScheduleViewController: UIViewController {
     // MARK: - Methods
     
     func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "Base0")
         navigationItem.titleView = navigationTitle
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton

@@ -19,7 +19,7 @@ final class MainCollectionViewCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
         label.font = UIFont(name: "Roboto-Medium", size: 24)
-        label.textColor = .black
+        label.textColor = UIColor(named: "Base90")
         label.lineBreakMode = .byWordWrapping
         label.sizeToFit()
         return label
@@ -29,7 +29,7 @@ final class MainCollectionViewCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
         label.font = UIFont(name: "Roboto-Regular", size: 16)
-        label.textColor = .black
+        label.textColor = UIColor(named: "Base90")
         label.textAlignment = .left
         label.lineBreakMode = .byWordWrapping
         return label
@@ -71,7 +71,7 @@ final class MainCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         nameLabel.text = nil
         tastePreferencesLabel.attributedText = nil
-        tastePreferencesLabel.textColor = .black
+        tastePreferencesLabel.textColor = UIColor(named: "Base80")
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
@@ -102,10 +102,10 @@ final class MainCollectionViewCell: UICollectionViewCell {
     }
 
     private func configureUI() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = UIColor(named: "Base0")
         contentView.layer.cornerRadius = 20
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor(named: "Border")?.cgColor
+        contentView.layer.borderColor = UIColor(named: "Base40")?.cgColor
         [nameLabel, tastePreferencesLabel].forEach {
             stackWithLabels.addArrangedSubview($0)
         }

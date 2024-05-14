@@ -30,7 +30,7 @@ class AccountHeaderCollectionView: UICollectionReusableView {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
         label.font = UIFont(name: "Roboto-Medium", size: 22)
-        label.textColor = .black
+        label.textColor = UIColor(named: "Base90")
         label.lineBreakMode = .byWordWrapping
         return label
     }()
@@ -39,7 +39,7 @@ class AccountHeaderCollectionView: UICollectionReusableView {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
         label.font = UIFont(name: "Roboto-Regular", size: 16)
-        label.textColor = UIColor(named: "Base80")
+        label.textColor = UIColor(named: "Base40")
         label.lineBreakMode = .byWordWrapping
         return label
     }()

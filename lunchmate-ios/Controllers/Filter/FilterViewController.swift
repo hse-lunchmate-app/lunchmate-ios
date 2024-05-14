@@ -14,7 +14,7 @@ class FilterViewController: UIViewController {
     private let navigationTitle: UILabel = {
         let navigationTitle = UILabel()
         navigationTitle.text = "Фильтр"
-        navigationTitle.textColor = .black
+        navigationTitle.textColor = UIColor(named: "Base90")
         navigationTitle.font = UIFont(name: "SFPro-Semibold", size: 17)
         navigationTitle.sizeToFit()
         return navigationTitle
@@ -30,7 +30,7 @@ class FilterViewController: UIViewController {
     // MARK: - Methods
     
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "Base0")
         navigationItem.titleView = navigationTitle
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(

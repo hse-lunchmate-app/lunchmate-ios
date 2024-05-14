@@ -32,7 +32,7 @@ class SlotAdditionOverlayViewController: UIViewController {
     let clockImageView: UIImageView = {
         let image = UIImage(systemName: "clock")
         let imageView = UIImageView(image: image)
-        imageView.tintColor = .black
+        imageView.tintColor = UIColor(named: "Base80")
         return imageView
     }()
     
@@ -208,7 +208,7 @@ class SlotAdditionOverlayViewController: UIViewController {
     }
     
     func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "Base0")
         [slideIdicator, dateLabel, clockImageView, startTime, separatorLabel, endTime, repeatImageView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)

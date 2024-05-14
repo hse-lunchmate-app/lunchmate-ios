@@ -47,7 +47,7 @@ final class AccountEditingCollectionViewCell: UICollectionViewCell {
     private lazy var descriptionTextField: CustomTextField = {
         let label = CustomTextField(frame: .zero)
         label.font = UIFont(name: "Roboto-Regular", size: 15)
-        label.textColor = .black
+        label.textColor = UIColor(named: "Base90")
         label.textAlignment = .left
         return label
     }()
@@ -140,7 +140,7 @@ final class AccountEditingCollectionViewCell: UICollectionViewCell {
     private func configureUI() {
         contentView.layer.cornerRadius = 7
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.borderColor = UIColor(named: "Base90")?.cgColor
         descriptionTextField.delegate = self
 
         [titleLabel, descriptionTextField].forEach {

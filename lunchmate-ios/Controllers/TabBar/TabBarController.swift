@@ -108,7 +108,7 @@ final class TabBarController: UITabBarController {
     
     func configurateTab() {
         let tabBarAppearance = UITabBarAppearance()
-        tabBarAppearance.backgroundColor = .white
+        tabBarAppearance.backgroundColor = UIColor(named: "Base0")
         UITabBar.appearance().standardAppearance = tabBarAppearance
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         
@@ -133,13 +133,13 @@ final class TabBarController: UITabBarController {
     private func configurateBadge(tabBarAppearance: UITabBarAppearance) {
         tabBarAppearance.stackedLayoutAppearance.selected.badgeBackgroundColor = UIColor(named: "Yellow")
         tabBarAppearance.stackedLayoutAppearance.selected.badgeTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: "Base90") ?? .black
+            NSAttributedString.Key.foregroundColor: UIColor.black
         ]
         tabBarAppearance.stackedLayoutAppearance.selected.badgePositionAdjustment = UIOffset(horizontal: 6, vertical: 1)
         
         tabBarAppearance.stackedLayoutAppearance.normal.badgeBackgroundColor = UIColor(named: "Yellow")
         tabBarAppearance.stackedLayoutAppearance.normal.badgeTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: "Base90") ?? .black,
+            NSAttributedString.Key.foregroundColor: UIColor.black,
         ]
         tabBarAppearance.stackedLayoutAppearance.normal.badgePositionAdjustment = UIOffset(horizontal: 6, vertical: 1)
     }

@@ -27,7 +27,7 @@ class AccountEditingHeaderCollectionView: UICollectionReusableView {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
         label.font = UIFont(name: "Roboto-Medium", size: 15)
-        label.textColor = .black
+        label.textColor = UIColor(named: "Base90")
         label.lineBreakMode = .byWordWrapping
         return label
     }()
