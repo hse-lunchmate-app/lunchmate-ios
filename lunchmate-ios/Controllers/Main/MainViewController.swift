@@ -105,6 +105,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         bindViewModel()
         setupView()
+        //viewModel.testPostUser()
         //printFonts()
     }
     
@@ -186,9 +187,10 @@ class MainViewController: UIViewController {
                 // Обработка ошибки
             } else if let user = user {
                 DispatchQueue.main.async {
-                    let accountViewModel = AccountViewModel(user: user)
+                    let accountViewModel = AccountViewModel()
                     accountViewModel.changeIsCanEdit()
                     let accountViewController = AccountViewController(viewModel: accountViewModel)
+                    accountViewModel.user.value = user
                     self?.navigationController?.pushViewController(accountViewController, animated: true)
                 }
             }

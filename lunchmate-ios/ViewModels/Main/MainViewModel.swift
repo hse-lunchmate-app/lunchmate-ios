@@ -26,15 +26,16 @@ class MainViewModel {
             return
         }
         isLoading.value = true
-        apiManager.getUsers(id: User.currentUser.office.id) { [weak self] data, error in
-            if let error = error {
-                self?.users = [User.currentUser]
-            }
-            else {
+        apiManager.getUsers(id: User.currentUser.office.id) { [weak self] result in
+            switch result {
+            case .success(let data):
                 self?.users = data
+            case .failure(let error):
+                self?.users = []
             }
             self?.isLoading.value = false
             self?.users.removeAll(where: { $0.office.id != User.currentUser.office.id })
+            self?.users.removeAll(where: { $0.id == "id3" })
             self?.filteredData.value = self?.users.compactMap({MainCellViewModel(user: $0)}) ?? []
         }
     }
@@ -59,13 +60,19 @@ class MainViewModel {
     }
     
     func retrieveUser(with id: String, completion: @escaping (_ user: User?, _ error: Error?) -> Void) {
-        apiManager.getUser(id: id) { data, error in
-            if let error = error {
-                completion(nil, error)
-            } else {
+        apiManager.getUser(id: id) { result in
+            switch result {
+            case .success(let data):
                 completion(data, nil)
+            case .failure(let error):
+                completion(nil, error)
             }
         }
+    }
+    
+    func testPostUser() {
+        let user = NetworkUser(id: "id3", login: User.currentUser.login, name: User.currentUser.name, messenger: User.currentUser.messenger, tastes: User.currentUser.tastes, aboutMe: User.currentUser.aboutMe, officeId: User.currentUser.office.id)
+        apiManager.postNewUser(user: user)
     }
 
 }

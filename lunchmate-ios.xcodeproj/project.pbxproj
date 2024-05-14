@@ -20,6 +20,7 @@
 		2D484DBF2BBC0B7D00C291AB /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DBE2BBC0B7D00C291AB /* CustomTextField.swift */; };
 		2D484DC32BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DC22BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift */; };
 		2D570D7B2BF3B40000E50A03 /* Lunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7A2BF3B40000E50A03 /* Lunch.swift */; };
+		2D570D7E2BF3E1FD00E50A03 /* NetworkUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */; };
 		2D76BECD2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D76BECC2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift */; };
 		2D7C23752B9864CB0095B94D /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23742B9864CB0095B94D /* Dynamic.swift */; };
 		2D7C23782B987EC20095B94D /* MainCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23772B987EC20095B94D /* MainCellViewModel.swift */; };
@@ -103,6 +104,7 @@
 		2D484DBE2BBC0B7D00C291AB /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		2D484DC22BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditingCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		2D570D7A2BF3B40000E50A03 /* Lunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lunch.swift; sourceTree = "<group>"; };
+		2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUser.swift; sourceTree = "<group>"; };
 		2D76BECC2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D7C23742B9864CB0095B94D /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		2D7C23772B987EC20095B94D /* MainCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellViewModel.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 				2DFC57AC2B8DEC98000AEE8D /* Office.swift */,
 				2DE3A1472BCD3450008D79EE /* Timeslot.swift */,
 				2D570D7A2BF3B40000E50A03 /* Lunch.swift */,
+				2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -793,6 +796,7 @@
 				2DFC57C02B8E0694000AEE8D /* NotificationsViewController.swift in Sources */,
 				2D8BC10D2B73B0AB00CA1D07 /* MainViewController.swift in Sources */,
 				2D7C23892B98B8620095B94D /* UISearchBarExtencion.swift in Sources */,
+				2D570D7E2BF3E1FD00E50A03 /* NetworkUser.swift in Sources */,
 				2DFC57AD2B8DEC98000AEE8D /* Office.swift in Sources */,
 				2D7C23752B9864CB0095B94D /* Dynamic.swift in Sources */,
 				2DE3A14D2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift in Sources */,

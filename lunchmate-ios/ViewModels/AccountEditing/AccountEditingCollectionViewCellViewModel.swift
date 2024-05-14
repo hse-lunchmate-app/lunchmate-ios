@@ -25,9 +25,13 @@ class AccountEditingCollectionViewCellViewModel {
     }
     
     func getOffices() {
-        apiManager.getOffices() { [weak self] data in
-            guard let self = self else { return }
-            self.offices.value = data
+        apiManager.getOffices() { [weak self] result in
+            switch result {
+            case .success(let offices):
+                self?.offices.value = offices
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     

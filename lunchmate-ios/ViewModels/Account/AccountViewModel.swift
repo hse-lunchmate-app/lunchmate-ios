@@ -17,21 +17,10 @@ class AccountViewModel {
     
     var descriptions: [AccountInfo] = []
     
-    var user: User
-    
+    var user: Dynamic<User?> = Dynamic(nil)
+    var isLoading = Dynamic(false)
+    var apiManager = APIManager.shared
     var isCanEdit = true
-    
-    // MARK: - Init
-    
-    init() {
-        self.user = User.currentUser
-        descriptions = createDescriptions()
-    }
-    
-    init(user: User) {
-        self.user = user
-        descriptions = createDescriptions()
-    }
     
     // MARK: - Methods
     
@@ -47,20 +36,39 @@ class AccountViewModel {
         return 1
     }
     
-    func createDescriptions() -> [AccountInfo] {
-        let tg = AccountInfo.description("Telegram", user.messenger, "tg")
-        let office = AccountInfo.description("Офис", user.office.name, "map-marker")
-        let food = AccountInfo.description("Вкусовые предпочтения", user.tastes, "food")
-        let about = AccountInfo.description("О себе", user.aboutMe, "about me")
-        return [tg, office, food, about]
+    func createDescriptions(user: User?) {
+        if let user = user {
+            let tg = AccountInfo.description("Telegram", user.messenger, "tg")
+            let office = AccountInfo.description("Офис", user.office.name, "map-marker")
+            let food = AccountInfo.description("Вкусовые предпочтения", user.tastes, "food")
+            let about = AccountInfo.description("О себе", user.aboutMe, "about me")
+            descriptions = [tg, office, food, about]
+        }
+    }
+    
+    func retrieveUser(with id: String, completion: @escaping (_ error: Error?) -> Void) {
+        if isLoading.value == true {
+            return
+        }
+        isLoading.value = true
+        apiManager.getUser(id: id) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.user.value = data
+                completion(nil)
+            case .failure(let error):
+                completion(error)
+            }
+            self?.isLoading.value = false
+        }
     }
     
     func getTgDescription() -> String {
-        return user.messenger
+        return user.value?.messenger ?? ""
     }
     
     func getImage(completion: @escaping (Data?) -> Void) {
-        if let photoURL = user.image {
+        if let photoURL = user.value?.image {
             DispatchQueue.global().async {
                 if let data = try? Data(contentsOf: photoURL) {
                     DispatchQueue.main.async {
@@ -76,7 +84,7 @@ class AccountViewModel {
     }
     
     func updateUser(newUser: User) {
-        user = newUser
-        descriptions = createDescriptions()
+        user.value = newUser
+        createDescriptions(user: newUser)
     }
 }

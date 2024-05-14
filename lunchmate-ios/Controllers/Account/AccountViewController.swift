@@ -19,6 +19,7 @@ class AccountViewController: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateUserInfo), name: Notification.Name("AccountInfoDidChange"), object: nil)
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -38,6 +39,15 @@ class AccountViewController: UIViewController {
         navigationTitle.font = UIFont(name: "SFPro-Semibold", size: 17)
         navigationTitle.sizeToFit()
         return navigationTitle
+    }()
+    
+    private lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.center = view.center
+        indicator.hidesWhenStopped = true
+        indicator.color = .gray
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
     }()
     
     private lazy var collectionView: UICollectionView = {
@@ -64,7 +74,38 @@ class AccountViewController: UIViewController {
         setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if viewModel.user.value == nil {
+            viewModel.retrieveUser(with: "id3") { error in
+                if let error = error {
+                    // Обработка ошибки
+                }
+            }
+        }
+    }
+    
     // MARK: - Methods
+    
+    private func bind() {
+        viewModel.isLoading.bind({ [weak self] isLoading in
+            guard let self = self else {
+                return
+            }
+            DispatchQueue.main.async {
+                if isLoading {
+                    self.activityIndicatorView.startAnimating()
+                } else {
+                    self.activityIndicatorView.stopAnimating()
+                }
+            }
+        })
+        viewModel.user.bind { [weak self] user in
+            DispatchQueue.main.async {
+                self?.viewModel.createDescriptions(user: user)
+                self?.collectionView.reloadData()
+            }
+        }
+    }
     
     private func setupView() {
         view.backgroundColor = UIColor(named: "Base0")
@@ -84,7 +125,7 @@ class AccountViewController: UIViewController {
                 action: #selector(openEditAccountView)
             )
         }
-        [collectionView].forEach {
+        [collectionView, activityIndicatorView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
@@ -93,6 +134,10 @@ class AccountViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicatorView.widthAnchor.constraint(equalToConstant: 50),
+            activityIndicatorView.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
@@ -186,7 +231,7 @@ extension AccountViewController: UICollectionViewDataSource {
                 isImageLoaded = true
             }
             if isImageLoaded {
-                header.configure(name: self.viewModel.user.name, login: self.viewModel.user.login, image: image)
+                header.configure(name: self.viewModel.user.value?.name ?? "", login: self.viewModel.user.value?.login ?? "", image: image)
             }
         }
         return header
