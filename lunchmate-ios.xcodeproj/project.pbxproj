@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0ECAD61027363EF0515B97B2 /* Pods_lunchmate_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2A5948068B4AA73A055C01 /* Pods_lunchmate_ios.framework */; };
+		2D1E236C2BEA8DA200C94D8B /* UIViewExtencion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E236B2BEA8DA200C94D8B /* UIViewExtencion.swift */; };
+		2D1E236E2BEA8EE100C94D8B /* SlotAdditionOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E236D2BEA8EE100C94D8B /* SlotAdditionOverlayViewController.swift */; };
+		2D1E23702BEA8FFF00C94D8B /* SlotAdditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E236F2BEA8FFF00C94D8B /* SlotAdditionViewModel.swift */; };
+		2D1E23722BEF895400C94D8B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D1E23712BEF895400C94D8B /* GoogleService-Info.plist */; };
 		2D23B4E12BA0D19000D59418 /* AccountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D23B4E02BA0D19000D59418 /* AccountCollectionViewCell.swift */; };
 		2D23B4E42BA0E09400D59418 /* AccountHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D23B4E32BA0E09400D59418 /* AccountHeaderCollectionView.swift */; };
 		2D484DB62BB982D800C291AB /* AccountEditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DB52BB982D800C291AB /* AccountEditingViewModel.swift */; };
@@ -19,9 +23,10 @@
 		2D7C23752B9864CB0095B94D /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23742B9864CB0095B94D /* Dynamic.swift */; };
 		2D7C23782B987EC20095B94D /* MainCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23772B987EC20095B94D /* MainCellViewModel.swift */; };
 		2D7C237D2B988B3E0095B94D /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C237C2B988B3E0095B94D /* AccountViewModel.swift */; };
-		2D7C23802B989DAC0095B94D /* SlotAdditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C237F2B989DAC0095B94D /* SlotAdditionViewController.swift */; };
+		2D7C23802B989DAC0095B94D /* SlotAdditionPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C237F2B989DAC0095B94D /* SlotAdditionPresentationController.swift */; };
 		2D7C23822B989F5C0095B94D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23812B989F5C0095B94D /* FilterViewController.swift */; };
 		2D7C23892B98B8620095B94D /* UISearchBarExtencion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23882B98B8620095B94D /* UISearchBarExtencion.swift */; };
+		2D7E9C742BE7D92B00B324EB /* CustomMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7E9C732BE7D92B00B324EB /* CustomMessageView.swift */; };
 		2D8BC1092B73B0AB00CA1D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC1082B73B0AB00CA1D07 /* AppDelegate.swift */; };
 		2D8BC10B2B73B0AB00CA1D07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC10A2B73B0AB00CA1D07 /* SceneDelegate.swift */; };
 		2D8BC10D2B73B0AB00CA1D07 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC10C2B73B0AB00CA1D07 /* MainViewController.swift */; };
@@ -85,6 +90,10 @@
 /* Begin PBXFileReference section */
 		023EBB108182700843D5734F /* Pods-lunchmate-ios-lunchmate-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lunchmate-ios-lunchmate-iosUITests.release.xcconfig"; path = "Target Support Files/Pods-lunchmate-ios-lunchmate-iosUITests/Pods-lunchmate-ios-lunchmate-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		24723832350E1C9FCBE78C3F /* Pods-lunchmate-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lunchmate-ios.debug.xcconfig"; path = "Target Support Files/Pods-lunchmate-ios/Pods-lunchmate-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		2D1E236B2BEA8DA200C94D8B /* UIViewExtencion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtencion.swift; sourceTree = "<group>"; };
+		2D1E236D2BEA8EE100C94D8B /* SlotAdditionOverlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotAdditionOverlayViewController.swift; sourceTree = "<group>"; };
+		2D1E236F2BEA8FFF00C94D8B /* SlotAdditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotAdditionViewModel.swift; sourceTree = "<group>"; };
+		2D1E23712BEF895400C94D8B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2D23B4E02BA0D19000D59418 /* AccountCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D23B4E32BA0E09400D59418 /* AccountHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHeaderCollectionView.swift; sourceTree = "<group>"; };
 		2D484DB52BB982D800C291AB /* AccountEditingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditingViewModel.swift; sourceTree = "<group>"; };
@@ -96,9 +105,10 @@
 		2D7C23742B9864CB0095B94D /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		2D7C23772B987EC20095B94D /* MainCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellViewModel.swift; sourceTree = "<group>"; };
 		2D7C237C2B988B3E0095B94D /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
-		2D7C237F2B989DAC0095B94D /* SlotAdditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotAdditionViewController.swift; sourceTree = "<group>"; };
+		2D7C237F2B989DAC0095B94D /* SlotAdditionPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotAdditionPresentationController.swift; sourceTree = "<group>"; };
 		2D7C23812B989F5C0095B94D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		2D7C23882B98B8620095B94D /* UISearchBarExtencion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBarExtencion.swift; sourceTree = "<group>"; };
+		2D7E9C732BE7D92B00B324EB /* CustomMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageView.swift; sourceTree = "<group>"; };
 		2D8BC1052B73B0AB00CA1D07 /* lunchmate-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lunchmate-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D8BC1082B73B0AB00CA1D07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D8BC10A2B73B0AB00CA1D07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -301,7 +311,8 @@
 		2D7C237E2B989D760095B94D /* SlotAddition */ = {
 			isa = PBXGroup;
 			children = (
-				2D7C237F2B989DAC0095B94D /* SlotAdditionViewController.swift */,
+				2D7C237F2B989DAC0095B94D /* SlotAdditionPresentationController.swift */,
+				2D1E236D2BEA8EE100C94D8B /* SlotAdditionOverlayViewController.swift */,
 			);
 			path = SlotAddition;
 			sourceTree = "<group>";
@@ -318,8 +329,17 @@
 			isa = PBXGroup;
 			children = (
 				2D7C23882B98B8620095B94D /* UISearchBarExtencion.swift */,
+				2D1E236B2BEA8DA200C94D8B /* UIViewExtencion.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2D7E9C752BE7D95600B324EB /* CustomMessageView */ = {
+			isa = PBXGroup;
+			children = (
+				2D7E9C732BE7D92B00B324EB /* CustomMessageView.swift */,
+			);
+			path = CustomMessageView;
 			sourceTree = "<group>";
 		};
 		2D8BC0FC2B73B0AB00CA1D07 = {
@@ -356,6 +376,7 @@
 				2DFC57AE2B8DEDAE000AEE8D /* Models */,
 				2DFC57C52B8E5043000AEE8D /* Fonts */,
 				2D8BC1112B73B0AD00CA1D07 /* Assets.xcassets */,
+				2D1E23712BEF895400C94D8B /* GoogleService-Info.plist */,
 				2D8BC1162B73B0AD00CA1D07 /* Info.plist */,
 			);
 			path = "lunchmate-ios";
@@ -420,6 +441,7 @@
 		2DFC57B52B8E0516000AEE8D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2D7E9C752BE7D95600B324EB /* CustomMessageView */,
 				2DE3A1492BCD5C04008D79EE /* Schedule */,
 				2D484DC12BBD5FE800C291AB /* CustomTextField */,
 				2D484DB72BBABE6D00C291AB /* AccountEditing */,
@@ -438,6 +460,7 @@
 				2D23B4E72BA0E5B100D59418 /* Account */,
 				2D23B4E62BA0E5A000D59418 /* Main */,
 				2D7C23732B9864720095B94D /* Bindings */,
+				2D1E236F2BEA8FFF00C94D8B /* SlotAdditionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -606,6 +629,7 @@
 				2DFC57D52B8F3FC0000AEE8D /* Roboto-Italic.ttf in Resources */,
 				2DFC57D22B8F3FBA000AEE8D /* Roboto-Regular.ttf in Resources */,
 				2D8BC1122B73B0AD00CA1D07 /* Assets.xcassets in Resources */,
+				2D1E23722BEF895400C94D8B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,12 +769,14 @@
 				2DFC57BA2B8E0619000AEE8D /* TabBarController.swift in Sources */,
 				2DE3A1482BCD3450008D79EE /* Timeslot.swift in Sources */,
 				2DE3A14B2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift in Sources */,
+				2D1E23702BEA8FFF00C94D8B /* SlotAdditionViewModel.swift in Sources */,
 				2DFC57A92B8DEBEB000AEE8D /* User.swift in Sources */,
+				2D1E236E2BEA8EE100C94D8B /* SlotAdditionOverlayViewController.swift in Sources */,
 				2DFC57AB2B8DEC8B000AEE8D /* City.swift in Sources */,
 				2D484DB62BB982D800C291AB /* AccountEditingViewModel.swift in Sources */,
 				2D484DB92BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift in Sources */,
 				2D7C23782B987EC20095B94D /* MainCellViewModel.swift in Sources */,
-				2D7C23802B989DAC0095B94D /* SlotAdditionViewController.swift in Sources */,
+				2D7C23802B989DAC0095B94D /* SlotAdditionPresentationController.swift in Sources */,
 				2D23B4E12BA0D19000D59418 /* AccountCollectionViewCell.swift in Sources */,
 				2DFC57C02B8E0694000AEE8D /* NotificationsViewController.swift in Sources */,
 				2D8BC10D2B73B0AB00CA1D07 /* MainViewController.swift in Sources */,
@@ -761,6 +787,7 @@
 				2D484DBB2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift in Sources */,
 				2D8BC1092B73B0AB00CA1D07 /* AppDelegate.swift in Sources */,
 				2DFC57CC2B8F209D000AEE8D /* MainCollectionViewCell.swift in Sources */,
+				2D1E236C2BEA8DA200C94D8B /* UIViewExtencion.swift in Sources */,
 				2D76BECD2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift in Sources */,
 				2DFC57BC2B8E065A000AEE8D /* AccountViewController.swift in Sources */,
 				2D8BC10B2B73B0AB00CA1D07 /* SceneDelegate.swift in Sources */,
@@ -769,6 +796,7 @@
 				2D484DC32BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift in Sources */,
 				2D23B4E42BA0E09400D59418 /* AccountHeaderCollectionView.swift in Sources */,
 				2DFC57BE2B8E0681000AEE8D /* ScheduleViewController.swift in Sources */,
+				2D7E9C742BE7D92B00B324EB /* CustomMessageView.swift in Sources */,
 				2D7C237D2B988B3E0095B94D /* AccountViewModel.swift in Sources */,
 				2DFC57B22B8DF9DE000AEE8D /* APIManager.swift in Sources */,
 				2DFC57C72B8E71E5000AEE8D /* AccountEditingViewController.swift in Sources */,

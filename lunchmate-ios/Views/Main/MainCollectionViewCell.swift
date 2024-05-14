@@ -21,6 +21,7 @@ final class MainCollectionViewCell: UICollectionViewCell {
         label.font = UIFont(name: "Roboto-Medium", size: 24)
         label.textColor = .black
         label.lineBreakMode = .byWordWrapping
+        label.sizeToFit()
         return label
     }()
     
@@ -70,11 +71,12 @@ final class MainCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         nameLabel.text = nil
         tastePreferencesLabel.attributedText = nil
+        tastePreferencesLabel.textColor = .black
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         tastePreferencesLabel.preferredMaxLayoutWidth = layoutAttributes.size.width - contentView.layoutMargins.left - contentView.layoutMargins.left - 88
-        nameLabel.preferredMaxLayoutWidth = layoutAttributes.size.width - contentView.layoutMargins.left - contentView.layoutMargins.left - 88
+        nameLabel.preferredMaxLayoutWidth = layoutAttributes.size.width - contentView.layoutMargins.left - contentView.layoutMargins.left - 100
         layoutAttributes.bounds.size.height = systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         return layoutAttributes
     }
@@ -84,7 +86,11 @@ final class MainCollectionViewCell: UICollectionViewCell {
     func configure(person: MainCellViewModel) {
         nameLabel.text = person.name
         let attributedText = NSMutableAttributedString()
-        let textString = NSAttributedString(string: person.tastes)
+        var textString = NSAttributedString(string: person.tastes)
+        if person.tastes == "" {
+            textString = NSAttributedString(string: "Пользователь не указал свои вкусовые предпочтения")
+            tastePreferencesLabel.textColor = .lightGray
+        }
         let imageAttachment = NSTextAttachment()
         let image = UIImage(systemName: "fork.knife")?.withTintColor(UIColor(named: "Yellow") ?? .yellow)
         imageAttachment.image = image

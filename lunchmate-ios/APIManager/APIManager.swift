@@ -31,17 +31,41 @@ final class APIManager {
         task.resume()
     }
 
-    func getUsers(id: Int, completion: @escaping (_ data: [User]) -> Void) {
-        guard let url = URL(string: baseURL + "/users/office/" + String(id)) else { return }
+    func getUsers(id: Int, completion: @escaping (_ data: [User], _ error: Error?) -> Void) {
+        guard let url = URL(string: baseURL + "/users?officeId=" + String(id)) else { return }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data , response, error in
+            if let error = error {
+                completion([], error)
+                return
+            }
             guard response != nil else { return }
             guard let data else {return}
-            if let usersData = try? JSONDecoder().decode([User].self, from: data) {
-                completion(usersData)
+            do {
+                let usersData = try JSONDecoder().decode([User].self, from: data)
+                completion(usersData, nil)
+            } catch {
+                completion([], error)
             }
-            else {
-                print("Fail")
+        }
+        task.resume()
+    }
+    
+    func getUser(id: String, completion: @escaping (_ data: User?, _ error: Error?) -> Void) {
+        guard let url = URL(string: baseURL + "/users/" + id) else { return }
+        let request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request) { data , response, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard response != nil else { return }
+            guard let data else {return}
+            do {
+                let userData = try JSONDecoder().decode(User.self, from: data)
+                completion(userData, nil)
+            } catch {
+                completion(nil, error)
             }
         }
         task.resume()

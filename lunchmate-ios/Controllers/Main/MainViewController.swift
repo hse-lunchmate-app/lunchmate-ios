@@ -181,11 +181,18 @@ class MainViewController: UIViewController {
     }
     
     private func openModalView(id: String) {
-        guard let user = viewModel.retriveUser(with: id) else { return }
-        let accountViewModel = AccountViewModel(user: user)
-        accountViewModel.changeIsCanEdit()
-        let accountViewController = AccountViewController(viewModel: accountViewModel)
-        navigationController?.pushViewController(accountViewController, animated: true)
+        viewModel.retrieveUser(with: id) { [weak self] user, error in
+            if let error = error {
+                // Обработка ошибки
+            } else if let user = user {
+                DispatchQueue.main.async {
+                    let accountViewModel = AccountViewModel(user: user)
+                    accountViewModel.changeIsCanEdit()
+                    let accountViewController = AccountViewController(viewModel: accountViewModel)
+                    self?.navigationController?.pushViewController(accountViewController, animated: true)
+                }
+            }
+        }
     }
 }
 

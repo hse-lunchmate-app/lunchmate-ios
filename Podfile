@@ -7,6 +7,8 @@ target 'lunchmate-ios' do
 
   pod 'DropDown'
   pod 'DateScrollPicker' 
+  pod 'FirebaseCore'
+  pod 'FirebaseMessaging'
 
   # Pods for lunchmate-ios
 

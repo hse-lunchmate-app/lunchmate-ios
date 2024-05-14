@@ -11,6 +11,8 @@ class ScheduleViewModel {
     
     var changeWeek = 0
     
+    var permanentSlots: [Timeslot?] = Array(repeating: nil, count: 7)
+    
     let monthCases: [String: String] = [
         "января": "Январь",
         "февраля": "Февраль",
@@ -26,25 +28,27 @@ class ScheduleViewModel {
         "декабря": "Декабрь"
     ]
     
+    func getAllPermanentSlots() {
+        permanentSlots = Array(repeating: nil, count: 7)
+        for i in Timeslot.timeTable {
+            if i.permanent == true {
+                permanentSlots[i.weekDay - 1] = i
+            }
+        }
+    }
+    
     func updateChangeWeek(right: Bool) -> Bool {
         if right {
-            if ((changeWeek + 7) / 7 == 4) {
-                changeWeek += 7
-                return false
-            }
-            changeWeek += 7
-            return true
+            changeWeek += ((changeWeek) / 7 == 4) ? 0 : 7
+            return !((changeWeek) / 7 == 4)
         } else {
-            if changeWeek - 7 == 0 {
-                changeWeek -= 7
-                return false
-            }
-            changeWeek -= 7
-            return true
+            changeWeek -= (changeWeek == 0) ? 0 : 7
+            return !(changeWeek == 0)
         }
     }
     
     var selectedIndexPath: IndexPath?
+    var selectedTimeslot: Timeslot?
     
     func getDifferenceOfCurrentDayOfWeek() -> Int {
         var calendar = Calendar.current
@@ -88,9 +92,14 @@ class ScheduleViewModel {
         let date = dates[index]
         var listOfData: [Timeslot] = []
         for i in Timeslot.timeTable {
-            if dateFormatter.string(from: date) == i.date {
-                listOfData.append(i)
+            if let lunchDate = i.date {
+                if dateFormatter.string(from: date) == lunchDate {
+                    listOfData.append(i)
+                }
             }
+        }
+        if let slot = permanentSlots[index] {
+            listOfData.insert(slot, at: 0)
         }
         return listOfData
     }

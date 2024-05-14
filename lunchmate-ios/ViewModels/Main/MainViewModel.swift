@@ -26,9 +26,14 @@ class MainViewModel {
             return
         }
         isLoading.value = true
-        apiManager.getUsers(id: User.currentUser.office.id) { [weak self] data in
+        apiManager.getUsers(id: User.currentUser.office.id) { [weak self] data, error in
+            if let error = error {
+                self?.users = [User.currentUser]
+            }
+            else {
+                self?.users = data
+            }
             self?.isLoading.value = false
-            self?.users = data
             self?.users.removeAll(where: { $0.office.id != User.currentUser.office.id })
             self?.filteredData.value = self?.users.compactMap({MainCellViewModel(user: $0)}) ?? []
         }
@@ -53,8 +58,14 @@ class MainViewModel {
         return 1
     }
     
-    func retriveUser(with id: String) -> User? {
-        guard let user = users.first (where: {$0.id == id}) else { return nil }
-        return user
+    func retrieveUser(with id: String, completion: @escaping (_ user: User?, _ error: Error?) -> Void) {
+        apiManager.getUser(id: id) { data, error in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                completion(data, nil)
+            }
+        }
     }
+
 }

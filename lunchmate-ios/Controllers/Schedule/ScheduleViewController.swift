@@ -67,6 +67,13 @@ class ScheduleViewController: UIViewController {
         setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getAllPermanentSlots()
+        dataPickerCollectionView.reloadData()
+        slotsCollectionView.reloadData()
+    }
+    
     // MARK: - Methods
     
     func setupView() {
@@ -83,7 +90,7 @@ class ScheduleViewController: UIViewController {
             ),
             style: .plain,
             target: self,
-            action: #selector(openSlotSelection)
+            action: #selector(handleRightBarButtonTap)
         )
         [dataPickerCollectionView, slotsCollectionView].forEach {
             view.addSubview($0)
@@ -101,17 +108,41 @@ class ScheduleViewController: UIViewController {
         ])
     }
     
-    @objc func openSlotSelection() {
-        let slotAdditionController = SlotAdditionViewController()
+    @objc func handleRightBarButtonTap() {
+        openSlotSelection(isAddition: true, isSwitchEnable: true)
+    }
+    
+    func openSlotSelection(isAddition: Bool, isSwitchEnable: Bool) {
+        let slotAdditionViewModel = SlotAdditionViewModel()
+        let slotAdditionController = SlotAdditionOverlayViewController(viewModel: slotAdditionViewModel)
+        slotAdditionController.modalPresentationStyle = .custom
+        slotAdditionController.transitioningDelegate = self
+        slotAdditionController.delegate = self
+        if let timeslot = viewModel.selectedTimeslot {
+            slotAdditionViewModel.timeslot = timeslot
+        }
         if let index = viewModel.selectedIndexPath?.row {
             let date = viewModel.getDatesOfCurrentWeek()[index]
-            
+            slotAdditionViewModel.setDate(newDate: date)
+            slotAdditionViewModel.isAddition = isAddition
+            if viewModel.permanentSlots[index] != nil && isAddition {
+                slotAdditionViewModel.isSwitchEnable = false
+            } else {
+                slotAdditionViewModel.isSwitchEnable = isSwitchEnable
+            }
         }
         present(slotAdditionController, animated: true, completion: nil)
+        viewModel.selectedTimeslot = nil
     }
 }
 
 extension ScheduleViewController: UICollectionViewDelegate { }
+
+extension ScheduleViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        SlotAdditionPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
 
 extension ScheduleViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -185,7 +216,7 @@ extension ScheduleViewController: UICollectionViewDataSource {
         }
         else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SlotsCollectionViewCell.identifier, for: indexPath) as? SlotsCollectionViewCell else {return UICollectionViewCell() }
-            let data = viewModel.getInfoAboutMeetingsOfSelectedDay(selectedDay: nil)[indexPath.row]
+            let data = viewModel.getInfoAboutMeetingsOfSelectedDay(selectedDay: nil).sorted(by: { $0.startTime < $1.startTime })[indexPath.row]
             cell.configure(timeslot: data)
             return cell
         }
@@ -232,7 +263,13 @@ extension ScheduleViewController: UICollectionViewDataSource {
             }
         }
         else {
-            openSlotSelection()
+            let slots = viewModel.getInfoAboutMeetingsOfSelectedDay(selectedDay: viewModel.selectedIndexPath).sorted(by: { $0.startTime < $1.startTime })
+            viewModel.selectedTimeslot = slots[indexPath.row]
+            if viewModel.selectedTimeslot?.permanent == true || viewModel.permanentSlots[(viewModel.selectedTimeslot?.weekDay ?? 1) - 1] == nil {
+                openSlotSelection(isAddition: false, isSwitchEnable: true)
+            } else {
+                openSlotSelection(isAddition: false, isSwitchEnable: false)
+            }
         }
     }
 }
@@ -255,4 +292,20 @@ extension ScheduleViewController: DataPickerHeaderCollectionViewDelegate {
     }
 }
 
-
+extension ScheduleViewController: SlotAdditionOverlayViewControllerDelegate {
+    func addNewSlot(timeslot: Timeslot) {
+        Timeslot.timeTable.removeAll(where: { $0.id == timeslot.id })
+        Timeslot.timeTable.append(timeslot)
+        viewModel.getAllPermanentSlots()
+        slotsCollectionView.reloadData()
+        dataPickerCollectionView.reloadData()
+    }
+    
+    func deleteTimeslot(id: Int?) {
+        Timeslot.timeTable.removeAll(where: { $0.id == id })
+        viewModel.getAllPermanentSlots()
+        slotsCollectionView.reloadData()
+        dataPickerCollectionView.reloadData()
+    }
+    
+}
