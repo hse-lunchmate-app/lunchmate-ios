@@ -226,7 +226,17 @@ extension ScheduleViewController: UICollectionViewDataSource {
         else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SlotsCollectionViewCell.identifier, for: indexPath) as? SlotsCollectionViewCell else {return UICollectionViewCell() }
             let data = viewModel.getInfoAboutMeetingsOfSelectedDay(selectedDay: nil).sorted(by: { $0.startTime < $1.startTime })[indexPath.row]
-            cell.configure(timeslot: data)
+            let startTimeDate = viewModel.timeFormatter.date(from: data.startTime)
+            let endTimeDate = viewModel.timeFormatter.date(from: data.endTime)
+            viewModel.timeFormatter.dateFormat = "HH:mm"
+            if let start = startTimeDate {
+                let startTime = viewModel.timeFormatter.string(from: start)
+                if let end = endTimeDate {
+                    let endTime = viewModel.timeFormatter.string(from: end)
+                    viewModel.timeFormatter.dateFormat = "HH:mm:ss"
+                    cell.configure(timeslot: data, start: startTime, end: endTime)
+                }
+            }
             return cell
         }
     }

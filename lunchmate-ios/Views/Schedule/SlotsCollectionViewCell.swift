@@ -41,8 +41,8 @@ class SlotsCollectionViewCell: UICollectionViewCell {
         repeatImageView.isHidden = true
     }
     
-    func configure(timeslot: Timeslot) {
-        timeLabel.text = "\(timeslot.startTime) - \(timeslot.endTime)"
+    func configure(timeslot: Timeslot, start: String, end: String) {
+        timeLabel.text = "\(start) - \(end)"
 //        if let name = timeslot.collegue?.name {
 //            let attributedText = NSMutableAttributedString()
 //            let textString = NSAttributedString(string: name)

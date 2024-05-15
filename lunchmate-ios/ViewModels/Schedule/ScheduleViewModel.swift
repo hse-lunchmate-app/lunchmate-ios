@@ -28,6 +28,13 @@ class ScheduleViewModel {
         "декабря": "Декабрь"
     ]
     
+    var timeFormatter: DateFormatter = {
+        var dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateFormat = "HH:mm:ss"
+        return dateFormatter
+    }()
+    
     func getAllPermanentSlots() {
         permanentSlots = Array(repeating: nil, count: 7)
         for i in timeTable.value {
