@@ -21,6 +21,7 @@
 		2D484DC32BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DC22BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift */; };
 		2D570D7B2BF3B40000E50A03 /* Lunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7A2BF3B40000E50A03 /* Lunch.swift */; };
 		2D570D7E2BF3E1FD00E50A03 /* NetworkUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */; };
+		2D570D802BF4D14800E50A03 /* NetworkTimeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */; };
 		2D76BECD2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D76BECC2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift */; };
 		2D7C23752B9864CB0095B94D /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23742B9864CB0095B94D /* Dynamic.swift */; };
 		2D7C23782B987EC20095B94D /* MainCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23772B987EC20095B94D /* MainCellViewModel.swift */; };
@@ -105,6 +106,7 @@
 		2D484DC22BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditingCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		2D570D7A2BF3B40000E50A03 /* Lunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lunch.swift; sourceTree = "<group>"; };
 		2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUser.swift; sourceTree = "<group>"; };
+		2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTimeslot.swift; sourceTree = "<group>"; };
 		2D76BECC2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D7C23742B9864CB0095B94D /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		2D7C23772B987EC20095B94D /* MainCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellViewModel.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				2DE3A1472BCD3450008D79EE /* Timeslot.swift */,
 				2D570D7A2BF3B40000E50A03 /* Lunch.swift */,
 				2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */,
+				2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				2D1E236E2BEA8EE100C94D8B /* SlotAdditionOverlayViewController.swift in Sources */,
 				2DFC57AB2B8DEC8B000AEE8D /* City.swift in Sources */,
 				2D484DB62BB982D800C291AB /* AccountEditingViewModel.swift in Sources */,
+				2D570D802BF4D14800E50A03 /* NetworkTimeslot.swift in Sources */,
 				2D484DB92BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift in Sources */,
 				2D7C23782B987EC20095B94D /* MainCellViewModel.swift in Sources */,
 				2D7C23802B989DAC0095B94D /* SlotAdditionPresentationController.swift in Sources */,

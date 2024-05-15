@@ -14,6 +14,7 @@ class SlotAdditionViewModel {
     var end = Dynamic(Date())
     var isSwitchEnable = true
     var isAddition = true
+    var apiManager = APIManager.shared
     
     var timeslot: Timeslot? = nil {
         willSet(timeslot) {
@@ -32,7 +33,7 @@ class SlotAdditionViewModel {
     var timeFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "HH:mm:ss"
         return dateFormatter
     }()
     
@@ -48,45 +49,12 @@ class SlotAdditionViewModel {
         date = newDate
     }
     
-    func calculateWeekDay() -> Int {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(secondsFromGMT: 3 * 3600)!
-        let weekday = calendar.component(.weekday, from: date)
-        return (weekday + 5) % 7 + 1
-    }
-    
-    func calculateId() -> Int {
-        var nextID = 0
-        for i in Timeslot.timeTable {
-            if i.id > nextID {
-                nextID = i.id
-            }
-        }
-        return nextID + 1
-    }
-    
-    func makeNewTimeslot(isSwitchOn: Bool, startTime: Date, endTime: Date, isCancel: Bool) -> Timeslot {
-        if isCancel {
-            if let slot = timeslot {
-                return Timeslot(id: slot.id, weekDay: slot.weekDay, date: slot.date, startTime: slot.startTime, endTime: slot.endTime, permanent: slot.permanent, collegue: nil)
-            }
-        }
-        var permanent = false
+    func makeNetworkTimeslot(isSwitchOn: Bool, startTime: Date, endTime: Date) -> NetworkTimeslot {
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        var date: String? = dateFormatter.string(from: self.date)
-        if isSwitchOn {
-            date = nil
-            permanent = true
-        }
+        let date: String? = dateFormatter.string(from: self.date)
         let startTime = timeFormatter.string(from: startTime)
         let endTime = timeFormatter.string(from: endTime)
-        if let slot = timeslot {
-            return Timeslot(id: slot.id, weekDay: slot.weekDay, date: date, startTime: startTime, endTime: endTime, permanent: permanent, collegue: slot.collegue)
-        } else {
-            let weekDay = calculateWeekDay()
-            let id = calculateId()
-            return Timeslot(id: id, weekDay: weekDay, date: date, startTime: startTime, endTime: endTime, permanent: permanent, collegue: nil)
-        }
+        return NetworkTimeslot(userId: "id3", date: date, startTime: startTime, endTime: endTime, permanent: isSwitchOn)
     }
     
 }

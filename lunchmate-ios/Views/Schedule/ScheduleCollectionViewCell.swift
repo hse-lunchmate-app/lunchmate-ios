@@ -97,7 +97,7 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
         weekLabel.textColor = UIColor(named: "Blue")
         dayLabel.textColor = UIColor(named: "Blue")
         forkAndKnifeImageView.tintColor = UIColor(named: "Blue")
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(named: "Base0")
         self.layer.borderWidth = 1
     }
     

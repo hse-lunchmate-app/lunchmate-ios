@@ -110,4 +110,126 @@ final class APIManager {
         }
         task.resume()
     }
+    
+    func getTimeTable(id: String, completion: @escaping (Result<[Timeslot], Error>) -> Void) {
+        guard let url = URL(string: baseURL + "/timetable/\(id)") else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            return
+        }
+        let request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request) { data , response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(NSError(domain: "No data received", code: 0, userInfo: nil)))
+                return
+            }
+            do {
+                let timeTable = try JSONDecoder().decode([Timeslot].self, from: data)
+                completion(.success(timeTable))
+            } catch {
+                completion(.failure(NSError(domain: "Cannot convert to time table", code: 0, userInfo: nil)))
+            }
+        }
+        task.resume()
+    }
+    
+    func postNewSlot(slot: NetworkTimeslot, completion: @escaping (Error?) -> Void) {
+        guard let url = URL(string: baseURL + "/timetable/slot") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        do {
+            let jsonData = try JSONEncoder().encode(slot)
+            request.httpBody = jsonData
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        } catch {
+            print("Error encoding NetworkUser: \(error)")
+            completion(error)
+            return
+        }
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error sending POST request: \(error)")
+                completion(error)
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                print("Server responded with an error: \(String(describing: response))")
+                completion(error)
+                return
+            }
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print("POST request successful, response: \(json)")
+                    completion(nil)
+                } catch {
+                    print("Error parsing JSON response: \(error)")
+                    completion(error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func deleteSlot(id: Int, completion: @escaping (Error?) -> Void) {
+        guard let url = URL(string: baseURL + "/timetable/slot/\(id)") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error sending POST request: \(error)")
+                completion(error)
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                print("Server responded with an error: \(String(describing: response))")
+                completion(error)
+                return
+            }
+            print("DELETE request successful")
+            completion(nil)
+        }
+        task.resume()
+    }
+    
+    func patchSlot(id: Int, updatedSlot: NetworkTimeslot, completion: @escaping (Error?) -> Void) {
+        guard let url = URL(string: baseURL + "/timetable/slot/\(id)") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        do {
+            let jsonData = try JSONEncoder().encode(updatedSlot)
+            request.httpBody = jsonData
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        } catch {
+            print("Error encoding NetworkUser: \(error)")
+            completion(error)
+            return
+        }
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error sending POST request: \(error)")
+                completion(error)
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                print("Server responded with an error: \(String(describing: response))")
+                completion(error)
+                return
+            }
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print("PATCH request successful, response: \(json)")
+                    completion(nil)
+                } catch {
+                    print("Error parsing JSON response: \(error)")
+                    completion(error)
+                }
+            }
+        }
+        task.resume()
+    }
 }

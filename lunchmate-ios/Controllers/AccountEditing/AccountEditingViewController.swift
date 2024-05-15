@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 protocol AccountEditingViewControllerDelegate: AnyObject {
     func setNewPhoto(photo: UIImage)
@@ -138,7 +139,25 @@ extension AccountEditingViewController: AccountEditingHeaderCollectionViewDelega
     func openMenu() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let action1 = UIAlertAction(title: "Выбрать новое фото", style: .default) { (action) in
-            self.choosePhotoFromLibrary()
+            PHPhotoLibrary.requestAuthorization { status in
+                switch status {
+                case .authorized:
+                    DispatchQueue.main.async {
+                        self.choosePhotoFromLibrary()
+                    }
+                case .denied, .restricted:
+                    // Разрешение отклонено или ограничено, обработка случая отсутствия доступа к галерее
+                    break
+                case .notDetermined:
+                    // Пользователь еще не принял решение, можно попросить разрешение еще раз
+                    break
+                case .limited:
+                    break
+                @unknown default:
+                    // Другие случаи, обработка по умолчанию
+                    break
+                }
+            }
         }
         alertController.addAction(action1)
         if viewModel.isImageUrlAvilible() {

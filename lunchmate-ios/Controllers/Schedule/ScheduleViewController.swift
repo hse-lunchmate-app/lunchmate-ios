@@ -65,16 +65,25 @@ class ScheduleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.getAllPermanentSlots()
-        dataPickerCollectionView.reloadData()
-        slotsCollectionView.reloadData()
+        viewModel.getTimeTable()
     }
     
     // MARK: - Methods
+    
+    func bind() {
+        viewModel.timeTable.bind { [weak self] timetable in
+            DispatchQueue.main.async {
+                self?.viewModel.getAllPermanentSlots()
+                self?.dataPickerCollectionView.reloadData()
+                self?.slotsCollectionView.reloadData()
+            }
+        }
+    }
     
     func setupView() {
         view.backgroundColor = UIColor(named: "Base0")
@@ -293,19 +302,7 @@ extension ScheduleViewController: DataPickerHeaderCollectionViewDelegate {
 }
 
 extension ScheduleViewController: SlotAdditionOverlayViewControllerDelegate {
-    func addNewSlot(timeslot: Timeslot) {
-        Timeslot.timeTable.removeAll(where: { $0.id == timeslot.id })
-        Timeslot.timeTable.append(timeslot)
-        viewModel.getAllPermanentSlots()
-        slotsCollectionView.reloadData()
-        dataPickerCollectionView.reloadData()
+    func reloadTimeTable() {
+        viewModel.getTimeTable()
     }
-    
-    func deleteTimeslot(id: Int?) {
-        Timeslot.timeTable.removeAll(where: { $0.id == id })
-        viewModel.getAllPermanentSlots()
-        slotsCollectionView.reloadData()
-        dataPickerCollectionView.reloadData()
-    }
-    
 }

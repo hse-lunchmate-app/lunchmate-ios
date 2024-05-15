@@ -10,9 +10,9 @@ import Foundation
 class ScheduleViewModel {
     
     var changeWeek = 0
-    
     var permanentSlots: [Timeslot?] = Array(repeating: nil, count: 7)
-    
+    var apiManager = APIManager.shared
+    var timeTable = Dynamic([Timeslot]())
     let monthCases: [String: String] = [
         "января": "Январь",
         "февраля": "Февраль",
@@ -30,9 +30,20 @@ class ScheduleViewModel {
     
     func getAllPermanentSlots() {
         permanentSlots = Array(repeating: nil, count: 7)
-        for i in Timeslot.timeTable {
+        for i in timeTable.value {
             if i.permanent == true {
                 permanentSlots[i.weekDay - 1] = i
+            }
+        }
+    }
+    
+    func getTimeTable() {
+        apiManager.getTimeTable(id: "id3") { [weak self] result in
+            switch result {
+            case .success(let timetable):
+                self?.timeTable.value = timetable
+            case .failure(let error):
+                print(error)
             }
         }
     }
@@ -91,7 +102,7 @@ class ScheduleViewModel {
         dateFormatter.locale = Locale(identifier: "ru_RU")
         let date = dates[index]
         var listOfData: [Timeslot] = []
-        for i in Timeslot.timeTable {
+        for i in timeTable.value {
             if let lunchDate = i.date {
                 if dateFormatter.string(from: date) == lunchDate {
                     listOfData.append(i)
