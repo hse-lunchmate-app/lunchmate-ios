@@ -20,7 +20,7 @@
 		2D484DBF2BBC0B7D00C291AB /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DBE2BBC0B7D00C291AB /* CustomTextField.swift */; };
 		2D484DC32BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DC22BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift */; };
 		2D570D7B2BF3B40000E50A03 /* Lunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7A2BF3B40000E50A03 /* Lunch.swift */; };
-		2D570D7E2BF3E1FD00E50A03 /* NetworkUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */; };
+		2D570D7E2BF3E1FD00E50A03 /* NetworkUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7D2BF3E1FD00E50A03 /* NetworkUsers.swift */; };
 		2D570D802BF4D14800E50A03 /* NetworkTimeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */; };
 		2D570D832BF549A500E50A03 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D822BF549A500E50A03 /* Notification.swift */; };
 		2D570D852BF54B5F00E50A03 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D842BF54B5F00E50A03 /* NotificationsViewModel.swift */; };
@@ -108,7 +108,7 @@
 		2D484DBE2BBC0B7D00C291AB /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		2D484DC22BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditingCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		2D570D7A2BF3B40000E50A03 /* Lunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lunch.swift; sourceTree = "<group>"; };
-		2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUser.swift; sourceTree = "<group>"; };
+		2D570D7D2BF3E1FD00E50A03 /* NetworkUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUsers.swift; sourceTree = "<group>"; };
 		2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTimeslot.swift; sourceTree = "<group>"; };
 		2D570D822BF549A500E50A03 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		2D570D842BF54B5F00E50A03 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 		2D570D812BF4EA9900E50A03 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */,
+				2D570D7D2BF3E1FD00E50A03 /* NetworkUsers.swift */,
 				2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */,
 			);
 			path = Networking;
@@ -834,7 +834,7 @@
 				2DFC57C02B8E0694000AEE8D /* NotificationsViewController.swift in Sources */,
 				2D8BC10D2B73B0AB00CA1D07 /* MainViewController.swift in Sources */,
 				2D7C23892B98B8620095B94D /* UISearchBarExtencion.swift in Sources */,
-				2D570D7E2BF3E1FD00E50A03 /* NetworkUser.swift in Sources */,
+				2D570D7E2BF3E1FD00E50A03 /* NetworkUsers.swift in Sources */,
 				2DFC57AD2B8DEC98000AEE8D /* Office.swift in Sources */,
 				2D7C23752B9864CB0095B94D /* Dynamic.swift in Sources */,
 				2DE3A14D2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift in Sources */,

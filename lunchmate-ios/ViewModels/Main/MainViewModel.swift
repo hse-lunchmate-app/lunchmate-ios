@@ -21,12 +21,24 @@ class MainViewModel {
     
     // MARK: - Methods
     
-    func getUsers() {
+    
+    func getUser() {
+        apiManager.getUser(id: "id3") { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.getUsers(user: data)
+            case .failure(let error):
+                break
+            }
+        }
+    }
+    
+    func getUsers(user: User) {
         if isLoading.value == true {
             return
         }
         isLoading.value = true
-        apiManager.getUsers(id: User.currentUser.office.id) { [weak self] result in
+        apiManager.getUsers(id: user.office.id) { [weak self] result in
             switch result {
             case .success(let data):
                 self?.users = data
@@ -34,8 +46,8 @@ class MainViewModel {
                 self?.users = []
             }
             self?.isLoading.value = false
-            self?.users.removeAll(where: { $0.office.id != User.currentUser.office.id })
-            self?.users.removeAll(where: { $0.id == "id3" })
+            self?.users.removeAll(where: { $0.office.id != user.office.id })
+            self?.users.removeAll(where: { $0.id == user.id })
             self?.filteredData.value = self?.users.compactMap({MainCellViewModel(user: $0)}) ?? []
         }
     }

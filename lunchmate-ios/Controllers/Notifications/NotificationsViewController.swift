@@ -143,7 +143,6 @@ extension NotificationsViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: referenceWidth, height: referenceHeight)
         }
     
-    
 }
 
 extension NotificationsViewController: NotificationsCollectionViewCellDelegate {

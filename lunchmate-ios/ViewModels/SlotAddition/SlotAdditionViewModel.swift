@@ -15,7 +15,9 @@ class SlotAdditionViewModel {
     var isSwitchEnable = true
     var isAddition = true
     var apiManager = APIManager.shared
-    
+    var isReload = Dynamic(false)
+
+    var lunch: Lunch?
     var timeslot: Timeslot? = nil {
         willSet(timeslot) {
             start.value = timeFormatter.date(from: timeslot?.startTime ?? "13:00") ?? Date()
@@ -47,6 +49,56 @@ class SlotAdditionViewModel {
     
     func setDate(newDate: Date) {
         date = newDate
+    }
+    
+    func getCollegueName() -> String? {
+        if lunch?.master.id != "id3" {
+            return lunch?.master.name
+        } else {
+            return lunch?.invitee.name
+        }
+    }
+    
+    func revokeLunch() {
+        if let lunch = lunch {
+            apiManager.revokeLunch(lunchId: lunch.id) { [weak self] error in
+                if error == nil {
+                    self?.isReload.value = true
+                }
+            }
+        }
+        isReload.value = false
+    }
+    
+    func deleteSlot() {
+        if let id = timeslot?.id {
+            apiManager.deleteSlot(id: id) { [weak self] error in
+                if error == nil {
+                    self?.isReload.value = true
+                }
+            }
+        }
+        isReload.value = false
+    }
+    
+    func postTimeSlot(timeslot: NetworkTimeslot) {
+        apiManager.postNewSlot(slot: timeslot) { [weak self] error in
+            if error == nil {
+                self?.isReload.value = true
+            }
+        }
+        isReload.value = false
+    }
+    
+    func patchTimeSlot(timeslot: NetworkTimeslot) {
+        if let id = self.timeslot?.id {
+            apiManager.patchSlot(id: id, updatedSlot: timeslot) { [weak self] error in
+                if error == nil {
+                    self?.isReload.value = true
+                }
+            }
+        }
+        isReload.value = false
     }
     
     func makeNetworkTimeslot(isSwitchOn: Bool, startTime: Date, endTime: Date) -> NetworkTimeslot {

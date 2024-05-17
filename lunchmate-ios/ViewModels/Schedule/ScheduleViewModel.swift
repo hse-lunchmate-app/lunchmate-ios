@@ -13,6 +13,7 @@ class ScheduleViewModel {
     var permanentSlots: [Timeslot?] = Array(repeating: nil, count: 7)
     var apiManager = APIManager.shared
     var timeTable = Dynamic([Timeslot]())
+    var lunches = Dynamic([Lunch]())
     let monthCases: [String: String] = [
         "января": "Январь",
         "февраля": "Февраль",
@@ -52,6 +53,34 @@ class ScheduleViewModel {
             case .failure(let error):
                 print(error)
             }
+        }
+    }
+    
+    func getAcceptedLunches() {
+        apiManager.getAcceptedLunches(id: "id3") { [weak self] result in
+            switch result {
+            case .success(let lunches):
+                self?.lunches.value = lunches
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func isAcceptedLunch(slot: Timeslot) -> Lunch? {
+        for lunch in lunches.value {
+            if lunch.timeslot.id == slot.id {
+                return lunch
+            }
+        }
+        return nil
+    }
+    
+    func getCollegueName(lunch: Lunch?) -> String? {
+        if lunch?.master.id != "id3" {
+            return lunch?.master.name
+        } else {
+            return lunch?.invitee.name
         }
     }
     

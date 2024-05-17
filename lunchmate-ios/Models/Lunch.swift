@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Lunch {
+struct Lunch: Codable {
     let id: String
-    let master: User
-    let invitee: User
+    let master: SimpleUser
+    let invitee: SimpleUser
     let timeslot: Timeslot
     let accepted: Bool
     let lunchDate: String

@@ -71,6 +71,7 @@ class ScheduleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.getTimeTable()
+        viewModel.getAcceptedLunches()
     }
     
     // MARK: - Methods
@@ -79,6 +80,12 @@ class ScheduleViewController: UIViewController {
         viewModel.timeTable.bind { [weak self] timetable in
             DispatchQueue.main.async {
                 self?.viewModel.getAllPermanentSlots()
+                self?.dataPickerCollectionView.reloadData()
+                self?.slotsCollectionView.reloadData()
+            }
+        }
+        viewModel.lunches.bind { [weak self] timetable in
+            DispatchQueue.main.async {
                 self?.dataPickerCollectionView.reloadData()
                 self?.slotsCollectionView.reloadData()
             }
@@ -129,6 +136,9 @@ class ScheduleViewController: UIViewController {
         slotAdditionController.delegate = self
         if let timeslot = viewModel.selectedTimeslot {
             slotAdditionViewModel.timeslot = timeslot
+            if let lunch = viewModel.isAcceptedLunch(slot: timeslot) {
+                slotAdditionViewModel.lunch = lunch
+            }
         }
         if let index = viewModel.selectedIndexPath?.row {
             let date = viewModel.getDatesOfCurrentWeek()[index]
@@ -234,7 +244,7 @@ extension ScheduleViewController: UICollectionViewDataSource {
                 if let end = endTimeDate {
                     let endTime = viewModel.timeFormatter.string(from: end)
                     viewModel.timeFormatter.dateFormat = "HH:mm:ss"
-                    cell.configure(timeslot: data, start: startTime, end: endTime)
+                    cell.configure(timeslot: data, start: startTime, end: endTime, collegueName: viewModel.getCollegueName(lunch: viewModel.isAcceptedLunch(slot: data)))
                 }
             }
             return cell
@@ -314,5 +324,6 @@ extension ScheduleViewController: DataPickerHeaderCollectionViewDelegate {
 extension ScheduleViewController: SlotAdditionOverlayViewControllerDelegate {
     func reloadTimeTable() {
         viewModel.getTimeTable()
+        viewModel.getAcceptedLunches()
     }
 }

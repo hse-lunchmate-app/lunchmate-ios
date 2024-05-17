@@ -200,7 +200,7 @@ final class NotificationsCollectionViewCell: UICollectionViewCell, UIGestureReco
         }
         switch minutes % 10 {
         case 1:
-            return "минута"
+            return "минутy"
         case 2, 3, 4:
             return "минуты"
         default:

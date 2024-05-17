@@ -166,40 +166,15 @@ class SlotAdditionOverlayViewController: UIViewController {
     // MARK: - Methods
     
     @objc private func deleteSlot() {
-        if let id = viewModel.timeslot?.id {
-            viewModel.apiManager.deleteSlot(id: id) { [weak self] error in
-                if error == nil {
-                    DispatchQueue.main.async {
-                        self?.delegate?.reloadTimeTable()
-                        self?.dismiss(animated: true, completion: nil)
-                    }
-                }
-            }
-        }
+        viewModel.deleteSlot()
     }
     
     func postTimeslot(timeslot: NetworkTimeslot) {
-        viewModel.apiManager.postNewSlot(slot: timeslot) { [weak self] error in
-            if error == nil {
-                DispatchQueue.main.async {
-                    self?.delegate?.reloadTimeTable()
-                    self?.dismiss(animated: true, completion: nil)
-                }
-            }
-        }
+        viewModel.postTimeSlot(timeslot: timeslot)
     }
     
     func patchTimeslot(timeslot: NetworkTimeslot) {
-        if let id = viewModel.timeslot?.id {
-            viewModel.apiManager.patchSlot(id: id, updatedSlot: timeslot) { [weak self] error in
-                if error == nil {
-                    DispatchQueue.main.async {
-                        self?.delegate?.reloadTimeTable()
-                        self?.dismiss(animated: true, completion: nil)
-                    }
-                }
-            }
-        }
+        viewModel.patchTimeSlot(timeslot: timeslot)
     }
     
     @objc private func saveSlot() {
@@ -218,14 +193,7 @@ class SlotAdditionOverlayViewController: UIViewController {
     }
     
     @objc private func cancelMeeting() {
-        var isSwitchOn = true
-        if repeatEveryWeekSwitch.isHidden {
-            isSwitchOn = false
-        } else {
-            isSwitchOn = repeatEveryWeekSwitch.isOn
-        }
-        let timeslot = viewModel.makeNetworkTimeslot(isSwitchOn: isSwitchOn, startTime: startTime.date, endTime: endTime.date)
-        self.dismiss(animated: true, completion: nil)
+        viewModel.revokeLunch()
     }
     
     private func bindViewModel() {
@@ -237,6 +205,14 @@ class SlotAdditionOverlayViewController: UIViewController {
         })
         viewModel.end.bind({ [weak self] end in
             self?.endTime.setDate(end, animated: true)
+        })
+        viewModel.isReload.bind({ [weak self] isReload in
+            if isReload == true {
+                DispatchQueue.main.async {
+                    self?.delegate?.reloadTimeTable()
+                    self?.dismiss(animated: true, completion: nil)
+                }
+            }
         })
     }
     
@@ -273,36 +249,36 @@ class SlotAdditionOverlayViewController: UIViewController {
             repeatImageView.heightAnchor.constraint(equalToConstant: 24),
             repeatImageView.widthAnchor.constraint(equalToConstant: 24),
         ])
-//        if viewModel.timeslot?.collegue != nil {
-//            if viewModel.timeslot?.permanent == true {
-//                repeatImageView.isHidden = false
-//            }
-//            startTime.isUserInteractionEnabled = false
-//            endTime.isUserInteractionEnabled = false
-//            [collegueNameLabel, cancelButton].forEach {
-//                $0.translatesAutoresizingMaskIntoConstraints = false
-//                view.addSubview($0)
-//            }
-//            let attributedText = NSMutableAttributedString()
-//            let textString = NSAttributedString(string: viewModel.timeslot?.collegue?.name ?? "")
-//            let imageAttachment = NSTextAttachment()
-//            imageAttachment.image = rightChevronImageView
-//            let imageString = NSAttributedString(attachment: imageAttachment)
-//            attributedText.append(imageString)
-//            attributedText.append(NSAttributedString("  "))
-//            attributedText.append(textString)
-//            collegueNameLabel.attributedText = attributedText
-//            NSLayoutConstraint.activate([
-//                collegueNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-//                collegueNameLabel.topAnchor.constraint(equalTo: startTime.bottomAnchor, constant: 28),
-//                collegueNameLabel.heightAnchor.constraint(equalToConstant: 24),
-//                cancelButton.topAnchor.constraint(equalTo: collegueNameLabel.bottomAnchor, constant: 28),
-//                cancelButton.heightAnchor.constraint(equalToConstant: 36),
-//                cancelButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-//                cancelButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-//            ])
-//        }
-//        else {
+        if viewModel.lunch != nil {
+            if viewModel.timeslot?.permanent == true {
+                repeatImageView.isHidden = false
+            }
+            startTime.isUserInteractionEnabled = false
+            endTime.isUserInteractionEnabled = false
+            [collegueNameLabel, cancelButton].forEach {
+                $0.translatesAutoresizingMaskIntoConstraints = false
+                view.addSubview($0)
+            }
+            let attributedText = NSMutableAttributedString()
+            let textString = NSAttributedString(string: viewModel.getCollegueName() ?? "")
+            let imageAttachment = NSTextAttachment()
+            imageAttachment.image = rightChevronImageView
+            let imageString = NSAttributedString(attachment: imageAttachment)
+            attributedText.append(imageString)
+            attributedText.append(NSAttributedString("  "))
+            attributedText.append(textString)
+            collegueNameLabel.attributedText = attributedText
+            NSLayoutConstraint.activate([
+                collegueNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                collegueNameLabel.topAnchor.constraint(equalTo: startTime.bottomAnchor, constant: 28),
+                collegueNameLabel.heightAnchor.constraint(equalToConstant: 24),
+                cancelButton.topAnchor.constraint(equalTo: collegueNameLabel.bottomAnchor, constant: 28),
+                cancelButton.heightAnchor.constraint(equalToConstant: 36),
+                cancelButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                cancelButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            ])
+        }
+        else {
             if viewModel.timeslot?.permanent == true {
                 repeatEveryWeekSwitch.isOn = true
             }
@@ -367,7 +343,7 @@ class SlotAdditionOverlayViewController: UIViewController {
                         saveButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
                     ])
                 }
-//            }
+            }
         }
     }
     

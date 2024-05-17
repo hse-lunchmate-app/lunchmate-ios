@@ -142,16 +142,22 @@ class AccountViewController: UIViewController {
     }
     
     @objc func openEditAccountView() {
-        let viewModel = AccountEditingViewModel()
-        let controller = AccountEditingViewController(viewModel: viewModel)
-        navigationController?.pushViewController(controller, animated: true)
+        if let user = viewModel.user.value {
+            let viewModel = AccountEditingViewModel(user: user)
+            let controller = AccountEditingViewController(viewModel: viewModel)
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     @objc func updateUserInfo(notification: Notification) {
         if let updatedUser = notification.object as? User {
             DispatchQueue.main.async {
                 self.viewModel.updateUser(newUser: updatedUser)
-                self.collectionView.reloadData()
+                self.viewModel.retrieveUser(with: "id3") { [weak self] error in
+                    if let error = error {
+                        // Обработка ошибки
+                    }
+                }
             }
         }
     }

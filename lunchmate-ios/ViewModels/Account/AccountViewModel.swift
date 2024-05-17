@@ -84,7 +84,6 @@ class AccountViewModel {
     }
     
     func updateUser(newUser: User) {
-        user.value = newUser
-        createDescriptions(user: newUser)
+        user.value?.image = newUser.image
     }
 }

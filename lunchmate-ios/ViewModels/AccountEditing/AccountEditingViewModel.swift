@@ -34,7 +34,12 @@ class AccountEditingViewModel {
         case password = "Пароль"
     }
     
-    var user: User = User.currentUser
+    var user: User
+    var apiManager = APIManager.shared
+    
+    init(user: User) {
+        self.user = user
+    }
     
     // MARK: - Methods
     
@@ -64,8 +69,12 @@ class AccountEditingViewModel {
     }
     
     func changeAccountInfo() {
-        User.currentUser = user
-        NotificationCenter.default.post(name: Notification.Name("AccountInfoDidChange"), object: user)
+        let newUser = NetworkUserForPatch(login: user.login, name: user.name, messenger: user.messenger, tastes: user.tastes, aboutMe: user.aboutMe, officeId: user.office.id)
+        apiManager.patchUser(id: "id3", updatedUser: newUser) { [weak self] error in
+            if error == nil {
+                NotificationCenter.default.post(name: Notification.Name("AccountInfoDidChange"), object: self?.user)
+            }
+        }
     }
     
     func setNewImageURL(url: URL?) {

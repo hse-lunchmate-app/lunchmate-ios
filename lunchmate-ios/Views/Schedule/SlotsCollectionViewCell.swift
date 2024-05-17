@@ -41,22 +41,22 @@ class SlotsCollectionViewCell: UICollectionViewCell {
         repeatImageView.isHidden = true
     }
     
-    func configure(timeslot: Timeslot, start: String, end: String) {
+    func configure(timeslot: Timeslot, start: String, end: String, collegueName: String?) {
         timeLabel.text = "\(start) - \(end)"
-//        if let name = timeslot.collegue?.name {
-//            let attributedText = NSMutableAttributedString()
-//            let textString = NSAttributedString(string: name)
-//            let imageAttachment = NSTextAttachment()
-//            let image = UIImage(systemName: "person.2.fill")?.withTintColor(UIColor(named: "Blue") ?? .blue)
-//            imageAttachment.image = image
-//            let imageString = NSAttributedString(attachment: imageAttachment)
-//            attributedText.append(imageString)
-//            attributedText.append(NSAttributedString(" "))
-//            attributedText.append(textString)
-//            let imageOffset: CGFloat = 1.4
-//            attributedText.addAttribute(NSAttributedString.Key.baselineOffset, value: imageOffset, range: NSRange(location: 0, length: imageString.length))
-//            collegueLabel.attributedText = attributedText
-//        }
+        if let name = collegueName {
+            let attributedText = NSMutableAttributedString()
+            let textString = NSAttributedString(string: name)
+            let imageAttachment = NSTextAttachment()
+            let image = UIImage(systemName: "person.2.fill")?.withTintColor(UIColor(named: "Blue") ?? .blue)
+            imageAttachment.image = image
+            let imageString = NSAttributedString(attachment: imageAttachment)
+            attributedText.append(imageString)
+            attributedText.append(NSAttributedString(" "))
+            attributedText.append(textString)
+            let imageOffset: CGFloat = 1.4
+            attributedText.addAttribute(NSAttributedString.Key.baselineOffset, value: imageOffset, range: NSRange(location: 0, length: imageString.length))
+            collegueLabel.attributedText = attributedText
+        }
         if timeslot.permanent {
             repeatImageView.isHidden = false
         }
