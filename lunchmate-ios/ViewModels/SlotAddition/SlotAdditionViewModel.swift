@@ -56,5 +56,5 @@ class SlotAdditionViewModel {
         let endTime = timeFormatter.string(from: endTime)
         return NetworkTimeslot(userId: "id3", date: date, startTime: startTime, endTime: endTime, permanent: isSwitchOn)
     }
-    
+
 }

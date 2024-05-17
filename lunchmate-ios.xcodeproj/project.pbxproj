@@ -22,6 +22,9 @@
 		2D570D7B2BF3B40000E50A03 /* Lunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7A2BF3B40000E50A03 /* Lunch.swift */; };
 		2D570D7E2BF3E1FD00E50A03 /* NetworkUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */; };
 		2D570D802BF4D14800E50A03 /* NetworkTimeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */; };
+		2D570D832BF549A500E50A03 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D822BF549A500E50A03 /* Notification.swift */; };
+		2D570D852BF54B5F00E50A03 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D842BF54B5F00E50A03 /* NotificationsViewModel.swift */; };
+		2D570D872BF54F0000E50A03 /* NotificationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D862BF54F0000E50A03 /* NotificationsCollectionViewCell.swift */; };
 		2D76BECD2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D76BECC2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift */; };
 		2D7C23752B9864CB0095B94D /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23742B9864CB0095B94D /* Dynamic.swift */; };
 		2D7C23782B987EC20095B94D /* MainCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23772B987EC20095B94D /* MainCellViewModel.swift */; };
@@ -107,6 +110,9 @@
 		2D570D7A2BF3B40000E50A03 /* Lunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lunch.swift; sourceTree = "<group>"; };
 		2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUser.swift; sourceTree = "<group>"; };
 		2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTimeslot.swift; sourceTree = "<group>"; };
+		2D570D822BF549A500E50A03 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		2D570D842BF54B5F00E50A03 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		2D570D862BF54F0000E50A03 /* NotificationsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D76BECC2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D7C23742B9864CB0095B94D /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		2D7C23772B987EC20095B94D /* MainCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellViewModel.swift; sourceTree = "<group>"; };
@@ -241,6 +247,31 @@
 				2D1E236F2BEA8FFF00C94D8B /* SlotAdditionViewModel.swift */,
 			);
 			path = SlotAddition;
+			sourceTree = "<group>";
+		};
+		2D570D812BF4EA9900E50A03 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */,
+				2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		2D570D882BF769F900E50A03 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				2D570D842BF54B5F00E50A03 /* NotificationsViewModel.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		2D570D892BF76A1500E50A03 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				2D570D862BF54F0000E50A03 /* NotificationsCollectionViewCell.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		2D7C236E2B9863630095B94D /* Storyboards */ = {
@@ -444,13 +475,13 @@
 		2DFC57AE2B8DEDAE000AEE8D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2D570D812BF4EA9900E50A03 /* Networking */,
 				2DFC57A82B8DEBEB000AEE8D /* User.swift */,
 				2DFC57AA2B8DEC8B000AEE8D /* City.swift */,
 				2DFC57AC2B8DEC98000AEE8D /* Office.swift */,
 				2DE3A1472BCD3450008D79EE /* Timeslot.swift */,
 				2D570D7A2BF3B40000E50A03 /* Lunch.swift */,
-				2D570D7D2BF3E1FD00E50A03 /* NetworkUser.swift */,
-				2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */,
+				2D570D822BF549A500E50A03 /* Notification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -458,6 +489,7 @@
 		2DFC57B52B8E0516000AEE8D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2D570D892BF76A1500E50A03 /* Notifications */,
 				2D7E9C752BE7D95600B324EB /* CustomMessageView */,
 				2DE3A1492BCD5C04008D79EE /* Schedule */,
 				2D484DC12BBD5FE800C291AB /* CustomTextField */,
@@ -472,6 +504,7 @@
 		2DFC57B62B8E0551000AEE8D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2D570D882BF769F900E50A03 /* Notifications */,
 				2D570D7C2BF3C7A900E50A03 /* SlotAddition */,
 				2DE3A1502BCDC63B008D79EE /* Schedule */,
 				2D484DC02BBD5FC100C291AB /* AccountEditing */,
@@ -787,6 +820,7 @@
 				2DE3A1482BCD3450008D79EE /* Timeslot.swift in Sources */,
 				2DE3A14B2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift in Sources */,
 				2D1E23702BEA8FFF00C94D8B /* SlotAdditionViewModel.swift in Sources */,
+				2D570D872BF54F0000E50A03 /* NotificationsCollectionViewCell.swift in Sources */,
 				2D570D7B2BF3B40000E50A03 /* Lunch.swift in Sources */,
 				2DFC57A92B8DEBEB000AEE8D /* User.swift in Sources */,
 				2D1E236E2BEA8EE100C94D8B /* SlotAdditionOverlayViewController.swift in Sources */,
@@ -812,12 +846,14 @@
 				2DFC57BC2B8E065A000AEE8D /* AccountViewController.swift in Sources */,
 				2D8BC10B2B73B0AB00CA1D07 /* SceneDelegate.swift in Sources */,
 				2D7C23822B989F5C0095B94D /* FilterViewController.swift in Sources */,
+				2D570D852BF54B5F00E50A03 /* NotificationsViewModel.swift in Sources */,
 				2DFC57B42B8E04D9000AEE8D /* MainViewModel.swift in Sources */,
 				2D484DC32BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift in Sources */,
 				2D23B4E42BA0E09400D59418 /* AccountHeaderCollectionView.swift in Sources */,
 				2DFC57BE2B8E0681000AEE8D /* ScheduleViewController.swift in Sources */,
 				2D7E9C742BE7D92B00B324EB /* CustomMessageView.swift in Sources */,
 				2D7C237D2B988B3E0095B94D /* AccountViewModel.swift in Sources */,
+				2D570D832BF549A500E50A03 /* Notification.swift in Sources */,
 				2DFC57B22B8DF9DE000AEE8D /* APIManager.swift in Sources */,
 				2DFC57C72B8E71E5000AEE8D /* AccountEditingViewController.swift in Sources */,
 				2DE3A14F2BCDB7C6008D79EE /* ScheduleViewModel.swift in Sources */,
