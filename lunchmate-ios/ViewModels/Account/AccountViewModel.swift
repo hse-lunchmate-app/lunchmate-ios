@@ -15,25 +15,32 @@ class AccountViewModel {
         case description(String, String, String)
     }
     
-    var descriptions: [AccountInfo] = []
+    enum Sections: CaseIterable {
+        case info
+        case shedule
+    }
     
+    var descriptions: [AccountInfo] = []
     var user: Dynamic<User?> = Dynamic(nil)
     var isLoading = Dynamic(false)
     var apiManager = APIManager.shared
     var isCanEdit = true
     
-    // MARK: - Methods
-    
     func changeIsCanEdit() {
         isCanEdit = !isCanEdit
     }
     
-    func numberOfRows(in section: Int) -> Int {
-        return descriptions.count
+    func numberOfRows(in section: Sections) -> Int {
+        switch section {
+        case .info:
+            return descriptions.count
+        case .shedule:
+            return 1
+        }
     }
     
     func numberOfSections() -> Int {
-        return 1
+        return Sections.allCases.count
     }
     
     func createDescriptions(user: User?) {

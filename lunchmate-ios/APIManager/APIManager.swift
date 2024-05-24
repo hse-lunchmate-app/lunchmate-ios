@@ -111,8 +111,15 @@ final class APIManager {
         task.resume()
     }
     
-    func getTimeTable(id: String, completion: @escaping (Result<[Timeslot], Error>) -> Void) {
-        guard let url = URL(string: baseURL + "/timetable/\(id)?free=true") else {
+    func getTimeTable(id: String, date: String = "", free: Bool = false, completion: @escaping (Result<[Timeslot], Error>) -> Void) {
+        var stringURL = baseURL + "/timetable/\(id)"
+        if date != "" {
+            stringURL += "?date=\(date)"
+        }
+        if free == true {
+            stringURL += "&free=true"
+        }
+        guard let url = URL(string: stringURL) else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
             return
         }
@@ -272,7 +279,32 @@ final class APIManager {
     }
     
     func getAcceptedLunches(id: String, completion: @escaping (Result<[Lunch], Error>) -> Void) {
-        guard let url = URL(string: baseURL + "/lunches/accepted/\(id)") else {
+        guard let url = URL(string: baseURL + "/lunches/\(id)?accepted=true") else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            return
+        }
+        let request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request) { data , response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(NSError(domain: "No data received", code: 0, userInfo: nil)))
+                return
+            }
+            do {
+                let lunches = try JSONDecoder().decode([Lunch].self, from: data)
+                completion(.success(lunches))
+            } catch {
+                completion(.failure(NSError(domain: "Cannot convert to lunches", code: 0, userInfo: nil)))
+            }
+        }
+        task.resume()
+    }
+    
+    func getAllLunches(id: String, completion: @escaping (Result<[Lunch], Error>) -> Void) {
+        guard let url = URL(string: baseURL + "/lunches/\(id)") else {
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
             return
         }
@@ -313,6 +345,47 @@ final class APIManager {
             }
             print("DELETE request successful")
             completion(nil)
+        }
+        task.resume()
+    }
+    
+    func postLunchInvite(lunch: NetworkLunchForPatch, completion: @escaping (Error?) -> Void) {
+        guard let url = URL(string: baseURL + "/lunches/invite") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        do {
+            let jsonData = try JSONEncoder().encode(lunch)
+            request.httpBody = jsonData
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        } catch {
+            print("Error encoding NetworkUser: \(error)")
+            completion(error)
+            return
+        }
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error sending POST request: \(error)")
+                completion(error)
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                print("Server responded with an error: \(String(describing: response))")
+                let response = response as? HTTPURLResponse
+                if response?.statusCode == 403 {
+                    completion(NSError(domain: "Нельзя пригласить коллегу на прошедший временной слот!", code: response!.statusCode, userInfo: nil))
+                }
+                return
+            }
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print("POST request successful, response: \(json)")
+                    completion(nil)
+                } catch {
+                    print("Error parsing JSON response: \(error)")
+                    completion(error)
+                }
+            }
         }
         task.resume()
     }

@@ -9,6 +9,8 @@ import Foundation
 
 class NotificationsViewModel {
     
+    
+    
     func getNotificationsCount() -> Int {
         return Notifications.notifications.count
     }

@@ -41,10 +41,15 @@
 		2D8BC1202B73B0AD00CA1D07 /* lunchmate_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC11F2B73B0AD00CA1D07 /* lunchmate_iosTests.swift */; };
 		2D8BC12A2B73B0AD00CA1D07 /* lunchmate_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC1292B73B0AD00CA1D07 /* lunchmate_iosUITests.swift */; };
 		2D8BC12C2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC12B2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift */; };
+		2DCDCD132C01072700C78AB4 /* NetworkLunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD122C01072700C78AB4 /* NetworkLunch.swift */; };
 		2DE3A1482BCD3450008D79EE /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A1472BCD3450008D79EE /* Timeslot.swift */; };
 		2DE3A14B2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A14A2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift */; };
 		2DE3A14D2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A14C2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift */; };
 		2DE3A14F2BCDB7C6008D79EE /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A14E2BCDB7C6008D79EE /* ScheduleViewModel.swift */; };
+		2DF7B1232C00AA9C00BC9190 /* CollegueSheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF7B1222C00AA9C00BC9190 /* CollegueSheduleCollectionViewCell.swift */; };
+		2DF7B1252C00ABBA00BC9190 /* CollegueSheduleHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF7B1242C00ABBA00BC9190 /* CollegueSheduleHeaderCollectionView.swift */; };
+		2DF7B1272C00D19200BC9190 /* AccountScheduleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF7B1262C00D19200BC9190 /* AccountScheduleCellViewModel.swift */; };
+		2DF7B1292C00DF3C00BC9190 /* AccountSheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF7B1282C00DF3C00BC9190 /* AccountSheduleCollectionViewCell.swift */; };
 		2DFC57A92B8DEBEB000AEE8D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC57A82B8DEBEB000AEE8D /* User.swift */; };
 		2DFC57AB2B8DEC8B000AEE8D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC57AA2B8DEC8B000AEE8D /* City.swift */; };
 		2DFC57AD2B8DEC98000AEE8D /* Office.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFC57AC2B8DEC98000AEE8D /* Office.swift */; };
@@ -133,10 +138,15 @@
 		2D8BC1252B73B0AD00CA1D07 /* lunchmate-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "lunchmate-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D8BC1292B73B0AD00CA1D07 /* lunchmate_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lunchmate_iosUITests.swift; sourceTree = "<group>"; };
 		2D8BC12B2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lunchmate_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2DCDCD122C01072700C78AB4 /* NetworkLunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLunch.swift; sourceTree = "<group>"; };
 		2DE3A1472BCD3450008D79EE /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		2DE3A14A2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPickerHeaderCollectionView.swift; sourceTree = "<group>"; };
 		2DE3A14C2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DE3A14E2BCDB7C6008D79EE /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
+		2DF7B1222C00AA9C00BC9190 /* CollegueSheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegueSheduleCollectionViewCell.swift; sourceTree = "<group>"; };
+		2DF7B1242C00ABBA00BC9190 /* CollegueSheduleHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollegueSheduleHeaderCollectionView.swift; sourceTree = "<group>"; };
+		2DF7B1262C00D19200BC9190 /* AccountScheduleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountScheduleCellViewModel.swift; sourceTree = "<group>"; };
+		2DF7B1282C00DF3C00BC9190 /* AccountSheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheduleCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DFC57A82B8DEBEB000AEE8D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2DFC57AA2B8DEC8B000AEE8D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		2DFC57AC2B8DEC98000AEE8D /* Office.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Office.swift; sourceTree = "<group>"; };
@@ -194,6 +204,9 @@
 			children = (
 				2D23B4E02BA0D19000D59418 /* AccountCollectionViewCell.swift */,
 				2D23B4E32BA0E09400D59418 /* AccountHeaderCollectionView.swift */,
+				2DF7B1222C00AA9C00BC9190 /* CollegueSheduleCollectionViewCell.swift */,
+				2DF7B1242C00ABBA00BC9190 /* CollegueSheduleHeaderCollectionView.swift */,
+				2DF7B1282C00DF3C00BC9190 /* AccountSheduleCollectionViewCell.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -210,6 +223,7 @@
 		2D23B4E72BA0E5B100D59418 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				2DF7B1262C00D19200BC9190 /* AccountScheduleCellViewModel.swift */,
 				2D7C237C2B988B3E0095B94D /* AccountViewModel.swift */,
 			);
 			path = Account;
@@ -254,6 +268,7 @@
 			children = (
 				2D570D7D2BF3E1FD00E50A03 /* NetworkUsers.swift */,
 				2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */,
+				2DCDCD122C01072700C78AB4 /* NetworkLunch.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -833,6 +848,7 @@
 				2D23B4E12BA0D19000D59418 /* AccountCollectionViewCell.swift in Sources */,
 				2DFC57C02B8E0694000AEE8D /* NotificationsViewController.swift in Sources */,
 				2D8BC10D2B73B0AB00CA1D07 /* MainViewController.swift in Sources */,
+				2DF7B1272C00D19200BC9190 /* AccountScheduleCellViewModel.swift in Sources */,
 				2D7C23892B98B8620095B94D /* UISearchBarExtencion.swift in Sources */,
 				2D570D7E2BF3E1FD00E50A03 /* NetworkUsers.swift in Sources */,
 				2DFC57AD2B8DEC98000AEE8D /* Office.swift in Sources */,
@@ -843,11 +859,15 @@
 				2DFC57CC2B8F209D000AEE8D /* MainCollectionViewCell.swift in Sources */,
 				2D1E236C2BEA8DA200C94D8B /* UIViewExtencion.swift in Sources */,
 				2D76BECD2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift in Sources */,
+				2DF7B1292C00DF3C00BC9190 /* AccountSheduleCollectionViewCell.swift in Sources */,
 				2DFC57BC2B8E065A000AEE8D /* AccountViewController.swift in Sources */,
 				2D8BC10B2B73B0AB00CA1D07 /* SceneDelegate.swift in Sources */,
 				2D7C23822B989F5C0095B94D /* FilterViewController.swift in Sources */,
 				2D570D852BF54B5F00E50A03 /* NotificationsViewModel.swift in Sources */,
+				2DCDCD132C01072700C78AB4 /* NetworkLunch.swift in Sources */,
+				2DF7B1232C00AA9C00BC9190 /* CollegueSheduleCollectionViewCell.swift in Sources */,
 				2DFC57B42B8E04D9000AEE8D /* MainViewModel.swift in Sources */,
+				2DF7B1252C00ABBA00BC9190 /* CollegueSheduleHeaderCollectionView.swift in Sources */,
 				2D484DC32BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift in Sources */,
 				2D23B4E42BA0E09400D59418 /* AccountHeaderCollectionView.swift in Sources */,
 				2DFC57BE2B8E0681000AEE8D /* ScheduleViewController.swift in Sources */,

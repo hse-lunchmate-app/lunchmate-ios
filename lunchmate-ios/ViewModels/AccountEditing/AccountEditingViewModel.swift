@@ -31,7 +31,6 @@ class AccountEditingViewModel {
     
     enum AccountData: String, CaseIterable {
         case login = "Логин"
-        case password = "Пароль"
     }
     
     var user: User
@@ -61,8 +60,6 @@ class AccountEditingViewModel {
             user.messenger = description.trimmingCharacters(in: .whitespaces)
         case "Логин":
             user.login = description
-        case "Пароль":
-            user.password = description
         default:
             break
         }

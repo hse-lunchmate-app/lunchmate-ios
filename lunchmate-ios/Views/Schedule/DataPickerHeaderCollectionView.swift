@@ -53,16 +53,7 @@ class DataPickerHeaderCollectionView: UICollectionReusableView {
         label.textAlignment = .center
         return label
     }()
-    
-    private let stack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.distribution = .fill
-        stack.spacing = 0
-        return stack
-    }()
-    
+
     func configure(month: String) {
         monthLabel.text = month
         [leftButton, monthLabel, rightButton].forEach {

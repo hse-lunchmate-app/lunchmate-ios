@@ -88,7 +88,6 @@ final class AccountEditingCollectionViewCell: UICollectionViewCell {
         titleLabel.text = nil
         descriptionTextField.text = nil
         descriptionTextField.leftView = nil
-        descriptionTextField.isSecureTextEntry = false
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
@@ -160,10 +159,6 @@ final class AccountEditingCollectionViewCell: UICollectionViewCell {
             dropDownButton.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -2),
             dropDownButton.widthAnchor.constraint(equalToConstant: 24),
         ])
-        
-        if viewModel.title == "Пароль" {
-            descriptionTextField.isSecureTextEntry = true
-        }
         
         if viewModel.title != "Офис" {
             dropDownButton.removeFromSuperview()

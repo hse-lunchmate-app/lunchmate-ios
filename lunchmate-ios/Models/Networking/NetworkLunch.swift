@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct NetworkLunchForPatch: Codable {
+    let masterId: String
+    let inviteeId: String
+    let timeslotId: Int
+    let lunchDate: String
+}

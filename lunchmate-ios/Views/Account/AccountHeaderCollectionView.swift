@@ -50,6 +50,7 @@ class AccountHeaderCollectionView: UICollectionReusableView {
         super.prepareForReuse()
         nameLabel.text = nil
         loginLabel.text = nil
+        imageView.image = nil
     }
     
     // MARK: - Methods

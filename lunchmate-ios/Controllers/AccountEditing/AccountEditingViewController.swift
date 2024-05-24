@@ -193,7 +193,7 @@ extension AccountEditingViewController: UICollectionViewDataSource {
         case .contactInformation:
             return 1
         case .accountData:
-            return 2
+            return 1
         }
     }
 
@@ -263,13 +263,6 @@ extension AccountEditingViewController: UICollectionViewDataSource {
             let viewModel = AccountEditingCollectionViewCellViewModel(
                 title: index.rawValue,
                 description: viewModel.user.login
-            )
-            cell.delegate = self
-            cell.configure(viewModel: viewModel)
-        case .password:
-            let viewModel = AccountEditingCollectionViewCellViewModel(
-                title: index.rawValue,
-                description: viewModel.user.password ?? ""
             )
             cell.delegate = self
             cell.configure(viewModel: viewModel)

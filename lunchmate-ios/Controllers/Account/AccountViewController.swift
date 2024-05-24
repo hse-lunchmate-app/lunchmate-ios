@@ -50,21 +50,22 @@ class AccountViewController: UIViewController {
         return indicator
     }()
     
-    private lazy var collectionView: UICollectionView = {
+    private lazy var profileCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(AccountCollectionViewCell.self, forCellWithReuseIdentifier: AccountCollectionViewCell.identifier)
-        collectionView.register(AccountHeaderCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AccountHeaderCollectionView.identifier)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.backgroundColor = UIColor(named: "Base0")
-        collectionView.contentInsetAdjustmentBehavior = .always
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
-        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionInsetReference = .fromLayoutMargins
-        return collectionView
+        let profileCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        profileCollectionView.register(AccountCollectionViewCell.self, forCellWithReuseIdentifier: AccountCollectionViewCell.identifier)
+        profileCollectionView.register(AccountSheduleCollectionViewCell.self, forCellWithReuseIdentifier: AccountSheduleCollectionViewCell.identifier)
+        profileCollectionView.register(AccountHeaderCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AccountHeaderCollectionView.identifier)
+        profileCollectionView.delegate = self
+        profileCollectionView.dataSource = self
+        profileCollectionView.showsVerticalScrollIndicator = false
+        profileCollectionView.backgroundColor = UIColor(named: "Base0")
+        profileCollectionView.contentInsetAdjustmentBehavior = .always
+        profileCollectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        (profileCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        (profileCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionInsetReference = .fromLayoutMargins
+        return profileCollectionView
     }()
     
     // MARK: - Lifecycle
@@ -102,7 +103,7 @@ class AccountViewController: UIViewController {
         viewModel.user.bind { [weak self] user in
             DispatchQueue.main.async {
                 self?.viewModel.createDescriptions(user: user)
-                self?.collectionView.reloadData()
+                self?.profileCollectionView.reloadData()
             }
         }
     }
@@ -112,6 +113,20 @@ class AccountViewController: UIViewController {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
         navigationItem.titleView = navigationTitle
+        [profileCollectionView, activityIndicatorView].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview($0)
+        }
+        NSLayoutConstraint.activate([
+            profileCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            profileCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicatorView.widthAnchor.constraint(equalToConstant: 50),
+            activityIndicatorView.heightAnchor.constraint(equalToConstant: 50),
+            profileCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
         if viewModel.isCanEdit {
             navigationItem.rightBarButtonItem = UIBarButtonItem(
                 image: UIImage(
@@ -125,20 +140,6 @@ class AccountViewController: UIViewController {
                 action: #selector(openEditAccountView)
             )
         }
-        [collectionView, activityIndicatorView].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview($0)
-        }
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            activityIndicatorView.widthAnchor.constraint(equalToConstant: 50),
-            activityIndicatorView.heightAnchor.constraint(equalToConstant: 50)
-        ])
     }
     
     @objc func openEditAccountView() {
@@ -171,21 +172,34 @@ extension AccountViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.numberOfRows(in: section)
+        let sectionType = AccountViewModel.Sections.allCases[section]
+        return viewModel.numberOfRows(in: sectionType)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AccountCollectionViewCell.identifier, for: indexPath) as? AccountCollectionViewCell else { return UICollectionViewCell() }
-        let descriptions = viewModel.descriptions[indexPath.row]
-        switch descriptions {
-        case .description(let title, let description, let imageTitle):
-            cell.configure(
-                title: title,
-                description: description,
-                imageTitle: imageTitle
-            )
+        let sectionType = AccountViewModel.Sections.allCases[indexPath.section]
+        switch sectionType {
+        case .info:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AccountCollectionViewCell.identifier, for: indexPath) as? AccountCollectionViewCell else { return UICollectionViewCell() }
+            let descriptions = viewModel.descriptions[indexPath.row]
+            switch descriptions {
+            case .description(let title, let description, let imageTitle):
+                cell.configure(
+                    title: title,
+                    description: description,
+                    imageTitle: imageTitle
+                )
+            }
+            return cell
+        case .shedule:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AccountSheduleCollectionViewCell.identifier, for: indexPath) as? AccountSheduleCollectionViewCell else { return UICollectionViewCell() }
+            cell.configure()
+            cell.sheduleDelegate = self
+            if let id = viewModel.user.value?.id {
+                cell.viewModel.changeUserId(id: id)
+            }
+            return cell
         }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -226,25 +240,38 @@ extension AccountViewController: UICollectionViewDataSource {
 
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AccountHeaderCollectionView.identifier, for: indexPath) as? AccountHeaderCollectionView else { return UICollectionReusableView() }
-        var image: UIImage? = UIImage(named: "Mock photo")
-        var isImageLoaded = false
-        self.viewModel.getImage { data in
-            if let imageData = data {
-                image = UIImage(data: imageData)
-                isImageLoaded = true
-            } else {
-                isImageLoaded = true
+        let sectionType = AccountViewModel.Sections.allCases[indexPath.section]
+        switch sectionType {
+        case .info:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AccountHeaderCollectionView.identifier, for: indexPath) as? AccountHeaderCollectionView else { return UICollectionReusableView() }
+            var image: UIImage? = UIImage(named: "Mock photo")
+            var isImageLoaded = false
+            self.viewModel.getImage { data in
+                if let imageData = data {
+                    image = UIImage(data: imageData)
+                    isImageLoaded = true
+                } else {
+                    isImageLoaded = true
+                }
+                if isImageLoaded {
+                    header.configure(name: self.viewModel.user.value?.name ?? "", login: self.viewModel.user.value?.login ?? "", image: image)
+                }
             }
-            if isImageLoaded {
-                header.configure(name: self.viewModel.user.value?.name ?? "", login: self.viewModel.user.value?.login ?? "", image: image)
-            }
+            return header
+        case .shedule:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AccountHeaderCollectionView.identifier, for: indexPath) as? AccountHeaderCollectionView else { return UICollectionReusableView() }
+            return header
         }
-        return header
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        CGSize(width: view.frame.size.width, height: 176)
+        let sectionType = AccountViewModel.Sections.allCases[section]
+        switch sectionType {
+        case .info:
+            return CGSize(width: view.frame.size.width, height: 176)
+        case .shedule:
+            return CGSize(width: view.frame.size.width, height: 0)
+        }
     }
 }
 
@@ -253,13 +280,44 @@ extension AccountViewController: UICollectionViewDataSource {
 extension AccountViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
-        let referenceHeight: CGFloat = 100
-        let referenceWidth = collectionView.safeAreaLayoutGuide.layoutFrame.width
+        let sectionType = AccountViewModel.Sections.allCases[indexPath.section]
+        switch sectionType {
+        case .info:
+            let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
+            let referenceHeight: CGFloat = 100
+            let referenceWidth = collectionView.safeAreaLayoutGuide.layoutFrame.width
             - sectionInset.left
             - sectionInset.right
             - collectionView.contentInset.left
             - collectionView.contentInset.right
-        return CGSize(width: referenceWidth, height: referenceHeight)
+            return CGSize(width: referenceWidth, height: referenceHeight)
+        case .shedule:
+            if !viewModel.isCanEdit {
+                let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
+                let referenceWidth = collectionView.safeAreaLayoutGuide.layoutFrame.width
+                - sectionInset.left
+                - sectionInset.right
+                - collectionView.contentInset.left
+                - collectionView.contentInset.right
+                return CGSize(width: referenceWidth, height: 166)
+            }
+            else {
+                return CGSize(width: 0, height: 0)
+            }
+        }
+    }
+}
+
+extension AccountViewController: AccountSheduleCollectionViewCellDelegate {
+    func showAlert(error: NSError?) {
+        if error?.code == 403 {
+            let alert = UIAlertController(title: "Ошибка", message: "Нельзя пригласить коллегу на прошедший временной слот!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Успех", message: "Приглашение успешно отправлено", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
