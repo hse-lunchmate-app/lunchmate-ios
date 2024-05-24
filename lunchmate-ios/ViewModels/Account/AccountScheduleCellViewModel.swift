@@ -112,6 +112,8 @@ class AccountScheduleCellViewModel {
         apiManager.postLunchInvite(lunch: lunch) { err in
             if let err = err as? NSError {
                 completion(err)
+            } else {
+                completion(nil)
             }
         }
     }

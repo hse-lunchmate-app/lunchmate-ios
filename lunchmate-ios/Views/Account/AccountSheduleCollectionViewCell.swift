@@ -131,7 +131,11 @@ extension AccountSheduleCollectionViewCell: CollegueSheduleCollectionViewCellDel
         if let indexPath = collegueSheduleCollectionView.indexPath(for: cell) {
             viewModel.postNewLunchInvite(timeslot: viewModel.timeslots.value[indexPath.row]) { [weak self] error in
                 DispatchQueue.main.async {
-                    self?.sheduleDelegate?.showAlert(error: error as NSError?)
+                    if let error = error as? NSError {
+                        self?.sheduleDelegate?.showAlert(error: error)
+                    } else {
+                        self?.sheduleDelegate?.showAlert(error: nil)
+                    }
                 }
             }
         }

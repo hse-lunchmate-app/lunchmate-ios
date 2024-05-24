@@ -24,6 +24,14 @@ class NotificationsViewController: UIViewController {
         return navigationTitle
     }()
     
+    private lazy var segmentedControl: UISegmentedControl = {
+        let items = ["Приглашения", "История"]
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
+        return segmentedControl
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -32,7 +40,6 @@ class NotificationsViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor(named: "Base0")
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16)
@@ -53,10 +60,17 @@ class NotificationsViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = UIColor(named: "Base0")
         navigationItem.titleView = navigationTitle
+        [collectionView, segmentedControl].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview($0)
+        }
         view.addSubview(collectionView)
         setRightBarButton()
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            collectionView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
@@ -87,6 +101,10 @@ class NotificationsViewController: UIViewController {
         updateBadge()
         setRightBarButton()
         collectionView.reloadData()
+    }
+    
+    @objc func segmentedControlValueChanged() {
+        print("Selected segment index: \(segmentedControl.selectedSegmentIndex)")
     }
 }
 
