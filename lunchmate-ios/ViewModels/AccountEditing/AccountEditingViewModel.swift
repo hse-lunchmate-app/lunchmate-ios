@@ -34,6 +34,7 @@ class AccountEditingViewModel {
     }
     
     var user: User
+    var userInfo: [String:Any] = [:]
     var apiManager = APIManager.shared
     
     init(user: User) {
@@ -47,27 +48,38 @@ class AccountEditingViewModel {
         let description = (description == "" ? " " : description) ?? " "
         switch title {
         case "Имя":
-            user.name = description
+            if user.name != description {
+                userInfo["name"] = description
+            }
         case "Офис":
             if let office = retriveOffice(with: description) {
-                user.office = office
+                if user.office.id != office.id {
+                    userInfo["officeId"] = office.id
+                }
             }
         case "Вкусовые предпочтения":
-            user.tastes = description
+            if user.tastes != description {
+                userInfo["tastes"] = description
+            }
         case "О себе":
-            user.aboutMe = description
+            if user.aboutMe != description {
+                userInfo["aboutMe"] = description
+            }
         case "Telegram":
-            user.messenger = description.trimmingCharacters(in: .whitespaces)
+            if user.messenger != description {
+                userInfo["messenger"] = description.trimmingCharacters(in: .whitespaces)
+            }
         case "Логин":
-            user.login = description
+            if user.login != description {
+                userInfo["login"] = description
+            }
         default:
             break
         }
     }
     
     func changeAccountInfo() {
-        let newUser = NetworkUserForPatch(login: user.login, name: user.name, messenger: user.messenger, tastes: user.tastes, aboutMe: user.aboutMe, officeId: user.office.id)
-        apiManager.patchUser(id: "id3", updatedUser: newUser) { [weak self] error in
+        apiManager.patchUser(id: "id3", updatedUser: userInfo) { [weak self] error in
             if error == nil {
                 NotificationCenter.default.post(name: Notification.Name("AccountInfoDidChange"), object: self?.user)
             }

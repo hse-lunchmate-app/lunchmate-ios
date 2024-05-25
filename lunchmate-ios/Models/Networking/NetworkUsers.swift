@@ -17,15 +17,6 @@ struct NetworkUser: Codable {
     let officeId: Int
 }
 
-struct NetworkUserForPatch: Codable {
-    let login: String
-    let name: String
-    let messenger: String
-    let tastes: String
-    let aboutMe: String
-    let officeId: Int
-}
-
 struct SimpleUser: Codable {
     let id: String
     let login: String

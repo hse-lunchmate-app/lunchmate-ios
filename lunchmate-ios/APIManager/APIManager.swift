@@ -239,12 +239,12 @@ final class APIManager {
         task.resume()
     }
     
-    func patchUser(id: String, updatedUser: NetworkUserForPatch, completion: @escaping (Error?) -> Void) {
+    func patchUser(id: String, updatedUser: [String:Any], completion: @escaping (Error?) -> Void) {
         guard let url = URL(string: baseURL + "/users/\(id)") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
         do {
-            let jsonData = try JSONEncoder().encode(updatedUser)
+            let jsonData = try JSONSerialization.data(withJSONObject: updatedUser, options: [])
             request.httpBody = jsonData
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         } catch {
