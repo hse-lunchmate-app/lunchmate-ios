@@ -134,14 +134,14 @@ class ScheduleViewController: UIViewController {
         slotAdditionController.modalPresentationStyle = .custom
         slotAdditionController.transitioningDelegate = self
         slotAdditionController.delegate = self
-        if let timeslot = viewModel.selectedTimeslot {
-            slotAdditionViewModel.timeslot = timeslot
-            if let lunch = viewModel.isAcceptedLunch(slot: timeslot) {
-                slotAdditionViewModel.lunch = lunch
-            }
-        }
         if let index = viewModel.selectedIndexPath?.row {
             let date = viewModel.getDatesOfCurrentWeek()[index]
+            if let timeslot = viewModel.selectedTimeslot {
+                slotAdditionViewModel.timeslot = timeslot
+                if let lunch = viewModel.isAcceptedLunch(slot: timeslot, date: date) {
+                    slotAdditionViewModel.lunch = lunch
+                }
+            }
             slotAdditionViewModel.setDate(newDate: date)
             slotAdditionViewModel.isAddition = isAddition
             if viewModel.permanentSlots[index] != nil && isAddition {
@@ -244,10 +244,13 @@ extension ScheduleViewController: UICollectionViewDataSource {
                 if let end = endTimeDate {
                     let endTime = viewModel.timeFormatter.string(from: end)
                     viewModel.timeFormatter.dateFormat = "HH:mm:ss"
-                    cell.configure(timeslot: data, start: startTime, end: endTime, collegueName: viewModel.getCollegueName(lunch: viewModel.isAcceptedLunch(slot: data)))
+                    if let index = viewModel.selectedIndexPath?.row {
+                        cell.configure(timeslot: data, start: startTime, end: endTime, collegueName: viewModel.getCollegueName(lunch: viewModel.isAcceptedLunch(slot: data, date: viewModel.getDatesOfCurrentWeek()[index])))
+                    }
                 }
             }
             return cell
+            
         }
     }
     

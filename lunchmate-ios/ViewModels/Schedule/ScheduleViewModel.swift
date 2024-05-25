@@ -67,9 +67,13 @@ class ScheduleViewModel {
         }
     }
     
-    func isAcceptedLunch(slot: Timeslot) -> Lunch? {
+    func isAcceptedLunch(slot: Timeslot, date: Date) -> Lunch? {
+        timeFormatter.dateFormat = "yyyy-MM-dd"
+        let date = timeFormatter.string(from: date)
+        timeFormatter.dateFormat = "HH:mm:ss"
         for lunch in lunches.value {
-            if lunch.timeslot.id == slot.id {
+            //print(lunch.timeslot, slot, lunch.lunchDate, date)
+            if lunch.timeslot.id == slot.id && lunch.accepted == true && lunch.lunchDate == date {
                 return lunch
             }
         }
