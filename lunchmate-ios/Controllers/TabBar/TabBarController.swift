@@ -9,7 +9,7 @@ import UIKit
 
 protocol TabBarDelegate: AnyObject {
     func updateBadge()
-    func getBadge() -> String
+    func getBadge() -> Int
 }
 
 final class TabBarController: UITabBarController {
@@ -123,7 +123,13 @@ final class TabBarController: UITabBarController {
                 tabBarDelegate = controllers[i].topViewController as? TabBarDelegate
                 let badge = tabBarDelegate?.getBadge()
                 configurateBadge(tabBarAppearance: tabBarAppearance)
-                controllers[i].tabBarItem.badgeValue = badge
+                if let badge = badge {
+                    if badge != 0 {
+                        controllers[i].tabBarItem.badgeValue = String(badge)
+                    } else {
+                        controllers[i].tabBarItem.badgeValue = nil
+                    }
+                }
             }
         }
         

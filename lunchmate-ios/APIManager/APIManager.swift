@@ -75,7 +75,6 @@ final class APIManager {
         }
         task.resume()
     }
-
     
     func postNewUser(user: NetworkUser) {
         guard let url = URL(string: baseURL + "/users") else { return }
@@ -386,6 +385,48 @@ final class APIManager {
                     completion(error)
                 }
             }
+        }
+        task.resume()
+    }
+    
+    func declineLunch(lunchId: String, completion: @escaping (Error?) -> Void) {
+        guard let url = URL(string: baseURL + "/lunches/\(lunchId)/decline") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error sending DELETE request: \(error)")
+                completion(error)
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                print("Server responded with an error: \(String(describing: response))")
+                completion(error)
+                return
+            }
+            print("DELETE request successful")
+            completion(nil)
+        }
+        task.resume()
+    }
+    
+    func acceptLunch(lunchId: String, completion: @escaping (Error?) -> Void) {
+        guard let url = URL(string: baseURL + "/lunches/\(lunchId)/accept") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error sending POST request: \(error)")
+                completion(error)
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                print("Server responded with an error: \(String(describing: response))")
+                completion(error)
+                return
+            }
+            print("POST request successful")
+            completion(nil)
         }
         task.resume()
     }

@@ -22,7 +22,6 @@
 		2D570D7B2BF3B40000E50A03 /* Lunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7A2BF3B40000E50A03 /* Lunch.swift */; };
 		2D570D7E2BF3E1FD00E50A03 /* NetworkUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7D2BF3E1FD00E50A03 /* NetworkUsers.swift */; };
 		2D570D802BF4D14800E50A03 /* NetworkTimeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */; };
-		2D570D832BF549A500E50A03 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D822BF549A500E50A03 /* Notification.swift */; };
 		2D570D852BF54B5F00E50A03 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D842BF54B5F00E50A03 /* NotificationsViewModel.swift */; };
 		2D570D872BF54F0000E50A03 /* NotificationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D862BF54F0000E50A03 /* NotificationsCollectionViewCell.swift */; };
 		2D76BECD2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D76BECC2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift */; };
@@ -42,6 +41,7 @@
 		2D8BC12A2B73B0AD00CA1D07 /* lunchmate_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC1292B73B0AD00CA1D07 /* lunchmate_iosUITests.swift */; };
 		2D8BC12C2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC12B2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift */; };
 		2DCDCD132C01072700C78AB4 /* NetworkLunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD122C01072700C78AB4 /* NetworkLunch.swift */; };
+		2DCDCD152C01EEFB00C78AB4 /* NotificationsCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD142C01EEFB00C78AB4 /* NotificationsCollectionViewCellViewModel.swift */; };
 		2DE3A1482BCD3450008D79EE /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A1472BCD3450008D79EE /* Timeslot.swift */; };
 		2DE3A14B2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A14A2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift */; };
 		2DE3A14D2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A14C2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift */; };
@@ -115,7 +115,6 @@
 		2D570D7A2BF3B40000E50A03 /* Lunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lunch.swift; sourceTree = "<group>"; };
 		2D570D7D2BF3E1FD00E50A03 /* NetworkUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUsers.swift; sourceTree = "<group>"; };
 		2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTimeslot.swift; sourceTree = "<group>"; };
-		2D570D822BF549A500E50A03 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		2D570D842BF54B5F00E50A03 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		2D570D862BF54F0000E50A03 /* NotificationsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D76BECC2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -139,6 +138,7 @@
 		2D8BC1292B73B0AD00CA1D07 /* lunchmate_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lunchmate_iosUITests.swift; sourceTree = "<group>"; };
 		2D8BC12B2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lunchmate_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2DCDCD122C01072700C78AB4 /* NetworkLunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLunch.swift; sourceTree = "<group>"; };
+		2DCDCD142C01EEFB00C78AB4 /* NotificationsCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		2DE3A1472BCD3450008D79EE /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		2DE3A14A2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPickerHeaderCollectionView.swift; sourceTree = "<group>"; };
 		2DE3A14C2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -277,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				2D570D842BF54B5F00E50A03 /* NotificationsViewModel.swift */,
+				2DCDCD142C01EEFB00C78AB4 /* NotificationsCollectionViewCellViewModel.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -496,7 +497,6 @@
 				2DFC57AC2B8DEC98000AEE8D /* Office.swift */,
 				2DE3A1472BCD3450008D79EE /* Timeslot.swift */,
 				2D570D7A2BF3B40000E50A03 /* Lunch.swift */,
-				2D570D822BF549A500E50A03 /* Notification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -864,6 +864,7 @@
 				2D8BC10B2B73B0AB00CA1D07 /* SceneDelegate.swift in Sources */,
 				2D7C23822B989F5C0095B94D /* FilterViewController.swift in Sources */,
 				2D570D852BF54B5F00E50A03 /* NotificationsViewModel.swift in Sources */,
+				2DCDCD152C01EEFB00C78AB4 /* NotificationsCollectionViewCellViewModel.swift in Sources */,
 				2DCDCD132C01072700C78AB4 /* NetworkLunch.swift in Sources */,
 				2DF7B1232C00AA9C00BC9190 /* CollegueSheduleCollectionViewCell.swift in Sources */,
 				2DFC57B42B8E04D9000AEE8D /* MainViewModel.swift in Sources */,
@@ -873,7 +874,6 @@
 				2DFC57BE2B8E0681000AEE8D /* ScheduleViewController.swift in Sources */,
 				2D7E9C742BE7D92B00B324EB /* CustomMessageView.swift in Sources */,
 				2D7C237D2B988B3E0095B94D /* AccountViewModel.swift in Sources */,
-				2D570D832BF549A500E50A03 /* Notification.swift in Sources */,
 				2DFC57B22B8DF9DE000AEE8D /* APIManager.swift in Sources */,
 				2DFC57C72B8E71E5000AEE8D /* AccountEditingViewController.swift in Sources */,
 				2DE3A14F2BCDB7C6008D79EE /* ScheduleViewModel.swift in Sources */,

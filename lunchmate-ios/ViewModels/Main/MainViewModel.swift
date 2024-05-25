@@ -81,10 +81,5 @@ class MainViewModel {
             }
         }
     }
-    
-    func testPostUser() {
-        let user = NetworkUser(id: "id3", login: User.currentUser.login, name: User.currentUser.name, messenger: User.currentUser.messenger, tastes: User.currentUser.tastes, aboutMe: User.currentUser.aboutMe, officeId: User.currentUser.office.id)
-        apiManager.postNewUser(user: user)
-    }
 
 }

@@ -52,7 +52,12 @@ class NotificationsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.getLunches()
     }
     
     // MARK: - Methods
@@ -65,7 +70,6 @@ class NotificationsViewController: UIViewController {
             view.addSubview($0)
         }
         view.addSubview(collectionView)
-        setRightBarButton()
         NSLayoutConstraint.activate([
             segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
@@ -77,34 +81,17 @@ class NotificationsViewController: UIViewController {
         ])
     }
     
-    func setRightBarButton() {
-        if viewModel.getNotificationsCount() != 0 {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(
-                image: UIImage(
-                    systemName: "trash.circle",
-                    withConfiguration: UIImage.SymbolConfiguration(
-                        pointSize: 16
-                    )
-                ),
-                style: .plain,
-                target: self,
-                action: #selector(deleteAllNotifications)
-            )
-            navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "Base90")
-        } else {
-            navigationItem.rightBarButtonItem = nil
+    func bind() {
+        viewModel.lunches.bind { [weak self] value in
+            DispatchQueue.main.async {
+                self?.updateBadge()
+                self?.collectionView.reloadData()
+            }
         }
     }
     
-    @objc func deleteAllNotifications() {
-        Notifications.notifications.removeAll()
-        updateBadge()
-        setRightBarButton()
-        collectionView.reloadData()
-    }
-    
     @objc func segmentedControlValueChanged() {
-        print("Selected segment index: \(segmentedControl.selectedSegmentIndex)")
+        collectionView.reloadData()
     }
 }
 
@@ -112,7 +99,7 @@ class NotificationsViewController: UIViewController {
 
 extension NotificationsViewController: TabBarDelegate {
     func updateBadge() {
-        let notificationCount = viewModel.getNotificationsCount()
+        let notificationCount = viewModel.getNotificationsCountForBadge()
         if notificationCount == 0 {
             tabBarController?.tabBar.items?[2].badgeValue = nil
         }
@@ -126,22 +113,21 @@ extension NotificationsViewController: TabBarDelegate {
         }
     }
     
-    func getBadge() -> String {
-        let notificationCount = viewModel.getNotificationsCount()
-        return String(notificationCount)
+    func getBadge() -> Int {
+        let notificationCount = viewModel.getNotificationsCountForBadge()
+        return notificationCount
     }
     
 }
 
 extension NotificationsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.getNotificationsCount()
+        viewModel.getNotificationsCount(index: segmentedControl.selectedSegmentIndex)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationsCollectionViewCell.identifier, for: indexPath) as? NotificationsCollectionViewCell else { return UICollectionViewCell() }
-        cell.configure(notification: Notifications.notifications[indexPath.row])
-        cell.isUserInteractionEnabled = true
+        cell.configure(lunch: viewModel.lunchesForCollectionView[indexPath.row], selectedIndex: segmentedControl.selectedSegmentIndex)
         cell.delegate = self
         return cell
     }
@@ -164,13 +150,14 @@ extension NotificationsViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension NotificationsViewController: NotificationsCollectionViewCellDelegate {
-    func delete(inCell cell: UICollectionViewCell) {
-        guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        Notifications.notifications.remove(at: indexPath.item)
-        collectionView.performBatchUpdates({
-            self.collectionView.deleteItems(at: [indexPath])
-            updateBadge()
-            setRightBarButton()
-        })
+    func reloadCollectionView(decline: Bool) {
+        viewModel.getLunches()
+        var message = "Приглашение успешно отклонено"
+        if decline == false {
+            message = "Приглашение успешно принято"
+        }
+        let alert = UIAlertController(title: "Успех", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

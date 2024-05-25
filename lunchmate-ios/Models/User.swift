@@ -18,6 +18,3 @@ struct User: Codable {
     var image: URL?
 }
 
-extension User {
-    static var currentUser = User(id: "8", login: "ivan12345", name: "Иван Петров", messenger: "ivan-pro100klass", tastes: "Котлетка с пюрешкой", aboutMe: "Я обычный Иван", office: Office.offices[0], image: nil)
-}
