@@ -86,8 +86,8 @@ final class MainCollectionViewCell: UICollectionViewCell {
     func configure(person: MainCellViewModel) {
         nameLabel.text = person.name
         let attributedText = NSMutableAttributedString()
-        var textString = NSAttributedString(string: person.tastes)
-        if person.tastes == "" {
+        var textString = NSAttributedString(string: person.tastes ?? "")
+        if person.tastes == "" || person.tastes == nil {
             textString = NSAttributedString(string: "Пользователь не указал свои вкусовые предпочтения")
             tastePreferencesLabel.textColor = .lightGray
         }

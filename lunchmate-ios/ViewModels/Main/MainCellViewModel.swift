@@ -13,7 +13,7 @@ class MainCellViewModel {
     
     var id: String
     var name: String
-    var tastes: String
+    var tastes: String?
     
     // MARK: - Init
     

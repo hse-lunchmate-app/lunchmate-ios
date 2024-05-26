@@ -87,7 +87,7 @@ final class NotificationsCollectionViewCell: UICollectionViewCell, UIGestureReco
     lazy var declineButton: UIButton = {
         let button = UIButton()
         button.setTitle("Отклонить", for: .normal)
-        button.setTitleColor(UIColor(named: "Yellow80"), for: .normal)
+        button.setTitleColor(UIColor(named: "Yellow"), for: .normal)
         button.backgroundColor = UIColor(named: "LightYellow")
         button.layer.cornerRadius = 8
         button.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 14)

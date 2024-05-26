@@ -22,7 +22,7 @@ class SlotsCollectionViewCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
         label.font = UIFont(name: "Roboto-Regular", size: 20)
-        label.textColor = UIColor(named: "Blue")
+        label.textColor = UIColor(named: "Blue50")
         return label
     }()
     
@@ -47,7 +47,7 @@ class SlotsCollectionViewCell: UICollectionViewCell {
             let attributedText = NSMutableAttributedString()
             let textString = NSAttributedString(string: name)
             let imageAttachment = NSTextAttachment()
-            let image = UIImage(systemName: "person.2.fill")?.withTintColor(UIColor(named: "Blue") ?? .blue)
+            let image = UIImage(systemName: "person.2.fill")?.withTintColor(UIColor(named: "Blue50") ?? .blue)
             imageAttachment.image = image
             let imageString = NSAttributedString(attachment: imageAttachment)
             attributedText.append(imageString)

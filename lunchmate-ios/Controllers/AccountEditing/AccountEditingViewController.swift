@@ -229,14 +229,14 @@ extension AccountEditingViewController: UICollectionViewDataSource {
         case .tastes:
             let viewModel = AccountEditingCollectionViewCellViewModel(
                 title: index.rawValue,
-                description: viewModel.user.tastes
+                description: viewModel.user.tastes ?? ""
             )
             cell.delegate = self
             cell.configure(viewModel: viewModel)
         case .about:
             let viewModel = AccountEditingCollectionViewCellViewModel(
                 title: index.rawValue,
-                description: viewModel.user.aboutMe
+                description: viewModel.user.aboutMe ?? ""
             )
             cell.delegate = self
             cell.configure(viewModel: viewModel)
@@ -249,7 +249,7 @@ extension AccountEditingViewController: UICollectionViewDataSource {
         case .tg:
             let viewModel = AccountEditingCollectionViewCellViewModel(
                 title: index.rawValue,
-                description: viewModel.user.messenger
+                description: viewModel.user.messenger ?? ""
             )
             cell.delegate = self
             cell.configure(viewModel: viewModel)

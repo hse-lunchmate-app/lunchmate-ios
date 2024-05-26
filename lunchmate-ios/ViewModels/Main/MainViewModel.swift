@@ -18,6 +18,8 @@ class MainViewModel {
     var users: [User] = []
     var filteredData = Dynamic([MainCellViewModel]())
     var isLoading: Dynamic<Bool> = Dynamic(false)
+    var filterOfficeId: Int?
+    var user: User?
     
     // MARK: - Methods
     
@@ -26,29 +28,38 @@ class MainViewModel {
         apiManager.getUser(id: "id3") { [weak self] result in
             switch result {
             case .success(let data):
-                self?.getUsers(user: data)
+                self?.user = data
+                self?.getUsers()
             case .failure(let error):
                 break
             }
         }
     }
     
-    func getUsers(user: User) {
+    func getUsers() {
         if isLoading.value == true {
             return
         }
         isLoading.value = true
-        apiManager.getUsers(id: user.office.id) { [weak self] result in
-            switch result {
-            case .success(let data):
-                self?.users = data
-            case .failure(let error):
-                self?.users = []
+        var id = user?.office.id
+        if let filterOfficeId = filterOfficeId {
+            id = filterOfficeId
+        } else {
+            self.filterOfficeId = user?.office.id
+        }
+        if let id = id {
+            apiManager.getUsers(id: id) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.users = data
+                case .failure(let error):
+                    self?.users = []
+                    print(error)
+                }
+                self?.isLoading.value = false
+                self?.users.removeAll(where: { $0.id == self?.user?.id })
+                self?.filteredData.value = self?.users.compactMap({MainCellViewModel(user: $0)}) ?? []
             }
-            self?.isLoading.value = false
-            self?.users.removeAll(where: { $0.office.id != user.office.id })
-            self?.users.removeAll(where: { $0.id == user.id })
-            self?.filteredData.value = self?.users.compactMap({MainCellViewModel(user: $0)}) ?? []
         }
     }
     

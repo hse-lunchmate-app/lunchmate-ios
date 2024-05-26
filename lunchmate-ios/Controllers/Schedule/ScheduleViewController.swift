@@ -166,7 +166,9 @@ extension ScheduleViewController: UIViewControllerTransitioningDelegate {
 extension ScheduleViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView == dataPickerCollectionView {
-            return 5
+            let totalCellWidth: CGFloat = 7 * 50
+            let totalSpacingWidth = collectionView.frame.width - totalCellWidth - 16
+            return totalSpacingWidth / 6
         }
         else {
             return 0
@@ -201,7 +203,7 @@ extension ScheduleViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == dataPickerCollectionView {
-            return CGSize(width: collectionView.frame.size.width / 7, height: 112)
+            return CGSize(width: 50, height: 112)
         }
         else {
             return CGSize(width: collectionView.frame.size.width - 32, height: 94)

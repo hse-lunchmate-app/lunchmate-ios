@@ -14,7 +14,7 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
         label.font = UIFont(name: "Roboto-Medium", size: 16)
-        label.textColor = UIColor(named: "Blue")
+        label.textColor = UIColor(named: "Blue50")
         return label
     }()
     
@@ -22,12 +22,12 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
         label.font = UIFont(name: "Roboto-Regular", size: 16)
-        label.textColor = UIColor(named: "Blue")
+        label.textColor = UIColor(named: "Blue50")
         return label
     }()
     
     private var forkAndKnifeImageView: UIImageView = {
-        let image = UIImage(systemName: "fork.knife")?.withTintColor(UIColor(named: "Blue") ?? .blue) ?? UIImage()
+        let image = UIImage(systemName: "fork.knife")?.withTintColor(UIColor(named: "Blue50") ?? .blue) ?? UIImage()
         let imageView = UIImageView(image: image)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -53,10 +53,10 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         weekLabel.text = nil
         dayLabel.text = nil
-        weekLabel.textColor = UIColor(named: "Blue")
-        dayLabel.textColor = UIColor(named: "Blue")
-        forkAndKnifeImageView.tintColor = UIColor(named: "Blue")
-        forkAndKnifeImageView.image = UIImage(systemName: "fork.knife")?.withTintColor(UIColor(named: "Blue") ?? .blue) ?? UIImage()
+        weekLabel.textColor = UIColor(named: "Blue50")
+        dayLabel.textColor = UIColor(named: "Blue50")
+        forkAndKnifeImageView.tintColor = UIColor(named: "Blue50")
+        forkAndKnifeImageView.image = UIImage(systemName: "fork.knife")?.withTintColor(UIColor(named: "Blue50") ?? .blue) ?? UIImage()
         self.backgroundColor = nil
         self.isUserInteractionEnabled = true
         self.isSelected = false
@@ -94,9 +94,9 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
     }
     
     func changeUsualCell() {
-        weekLabel.textColor = UIColor(named: "Blue")
-        dayLabel.textColor = UIColor(named: "Blue")
-        forkAndKnifeImageView.tintColor = UIColor(named: "Blue")
+        weekLabel.textColor = UIColor(named: "Blue50")
+        dayLabel.textColor = UIColor(named: "Blue50")
+        forkAndKnifeImageView.tintColor = UIColor(named: "Blue50")
         self.backgroundColor = UIColor(named: "Base0")
         self.layer.borderWidth = 1
     }
@@ -119,7 +119,7 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
         }
         self.addSubview(stack)
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor(named: "Blue")?.cgColor
+        self.layer.borderColor = UIColor(named: "Blue50")?.cgColor
         self.layer.cornerRadius = 23
         
         if self.isSelected {

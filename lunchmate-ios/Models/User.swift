@@ -11,9 +11,9 @@ struct User: Codable {
     let id: String
     var login: String
     var name: String
-    var messenger: String
-    var tastes: String
-    var aboutMe: String
+    var messenger: String?
+    var tastes: String?
+    var aboutMe: String?
     var office: Office
     var image: URL?
 }

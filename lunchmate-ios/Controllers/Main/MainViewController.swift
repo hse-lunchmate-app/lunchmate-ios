@@ -105,20 +105,9 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         bindViewModel()
         setupView()
-        //viewModel.testPostUser()
-        //printFonts()
     }
     
     // MARK: - Methods
-    
-    private func printFonts() {
-        for family in UIFont.familyNames {
-            print("Шрифт семейства: \(family)")
-            for name in UIFont.fontNames(forFamilyName: family) {
-                print("   \(name)")
-            }
-        }
-    }
     
     private func setupView() {
         view.backgroundColor = UIColor(named: "Base0")
@@ -177,8 +166,12 @@ class MainViewController: UIViewController {
     }
     
     @objc private func openFilter() {
-        let filterController = FilterViewController()
-        navigationController?.pushViewController(filterController, animated: true)
+        if let id = viewModel.filterOfficeId {
+            let filterViewModel = FilterViewModel(userOfficeId: id)
+            let filterController = FilterViewController(viewModel: filterViewModel)
+            filterController.delegate = self
+            present(filterController, animated: true, completion: nil)
+        }
     }
     
     private func openModalView(id: String) {
@@ -243,3 +236,18 @@ extension MainViewController: UISearchResultsUpdating {
         viewModel.filterUsers(text: searchController.searchBar.text)
     }
 }
+
+extension MainViewController: FilterViewControllerDelegate {
+    func updateData(filterOfficeId: Int) {
+        if filterOfficeId != viewModel.user?.office.id {
+            navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "Yellow")
+        } else {
+            navigationItem.rightBarButtonItem?.tintColor = .gray
+        }
+        if filterOfficeId != viewModel.filterOfficeId {
+            viewModel.filterOfficeId = filterOfficeId
+            viewModel.getUsers()
+        }
+    }
+}
+

@@ -45,10 +45,10 @@ class AccountViewModel {
     
     func createDescriptions(user: User?) {
         if let user = user {
-            let tg = AccountInfo.description("Telegram", user.messenger, "tg")
+            let tg = AccountInfo.description("Telegram", user.messenger ?? "Не указан", "tg")
             let office = AccountInfo.description("Офис", user.office.name, "map-marker")
-            let food = AccountInfo.description("Вкусовые предпочтения", user.tastes, "food")
-            let about = AccountInfo.description("О себе", user.aboutMe, "about me")
+            let food = AccountInfo.description("Вкусовые предпочтения", user.tastes ?? "Без предпочтений", "food")
+            let about = AccountInfo.description("О себе", user.aboutMe ?? "Без описания", "about me")
             descriptions = [tg, office, food, about]
         }
     }

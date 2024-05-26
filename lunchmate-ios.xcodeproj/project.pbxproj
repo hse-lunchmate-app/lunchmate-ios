@@ -24,6 +24,7 @@
 		2D570D802BF4D14800E50A03 /* NetworkTimeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */; };
 		2D570D852BF54B5F00E50A03 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D842BF54B5F00E50A03 /* NotificationsViewModel.swift */; };
 		2D570D872BF54F0000E50A03 /* NotificationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D570D862BF54F0000E50A03 /* NotificationsCollectionViewCell.swift */; };
+		2D6984AA2C03ABEB009C6B8B /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6984A92C03ABEB009C6B8B /* FilterViewModel.swift */; };
 		2D76BECD2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D76BECC2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift */; };
 		2D7C23752B9864CB0095B94D /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23742B9864CB0095B94D /* Dynamic.swift */; };
 		2D7C23782B987EC20095B94D /* MainCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23772B987EC20095B94D /* MainCellViewModel.swift */; };
@@ -42,6 +43,11 @@
 		2D8BC12C2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC12B2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift */; };
 		2DCDCD132C01072700C78AB4 /* NetworkLunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD122C01072700C78AB4 /* NetworkLunch.swift */; };
 		2DCDCD152C01EEFB00C78AB4 /* NotificationsCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD142C01EEFB00C78AB4 /* NotificationsCollectionViewCellViewModel.swift */; };
+		2DCDCD1A2C03560300C78AB4 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD192C03560300C78AB4 /* FilterCollectionViewCell.swift */; };
+		2DCDCD1C2C03706E00C78AB4 /* CustomViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD1B2C03706E00C78AB4 /* CustomViewFlowLayout.swift */; };
+		2DCDCD1F2C03952400C78AB4 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD1E2C03952400C78AB4 /* DynamicHeightCollectionView.swift */; };
+		2DCDCD232C0396FD00C78AB4 /* FilterCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD222C0396FD00C78AB4 /* FilterCollectionViewHeader.swift */; };
+		2DCDCD252C039EB800C78AB4 /* FilterCollectionViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD242C039EB800C78AB4 /* FilterCollectionViewFooter.swift */; };
 		2DE3A1482BCD3450008D79EE /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A1472BCD3450008D79EE /* Timeslot.swift */; };
 		2DE3A14B2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A14A2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift */; };
 		2DE3A14D2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A14C2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift */; };
@@ -117,6 +123,7 @@
 		2D570D7F2BF4D14800E50A03 /* NetworkTimeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTimeslot.swift; sourceTree = "<group>"; };
 		2D570D842BF54B5F00E50A03 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		2D570D862BF54F0000E50A03 /* NotificationsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionViewCell.swift; sourceTree = "<group>"; };
+		2D6984A92C03ABEB009C6B8B /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		2D76BECC2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D7C23742B9864CB0095B94D /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		2D7C23772B987EC20095B94D /* MainCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellViewModel.swift; sourceTree = "<group>"; };
@@ -139,6 +146,11 @@
 		2D8BC12B2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lunchmate_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2DCDCD122C01072700C78AB4 /* NetworkLunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLunch.swift; sourceTree = "<group>"; };
 		2DCDCD142C01EEFB00C78AB4 /* NotificationsCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		2DCDCD192C03560300C78AB4 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		2DCDCD1B2C03706E00C78AB4 /* CustomViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewFlowLayout.swift; sourceTree = "<group>"; };
+		2DCDCD1E2C03952400C78AB4 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
+		2DCDCD222C0396FD00C78AB4 /* FilterCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewHeader.swift; sourceTree = "<group>"; };
+		2DCDCD242C039EB800C78AB4 /* FilterCollectionViewFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewFooter.swift; sourceTree = "<group>"; };
 		2DE3A1472BCD3450008D79EE /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		2DE3A14A2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPickerHeaderCollectionView.swift; sourceTree = "<group>"; };
 		2DE3A14C2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -288,6 +300,22 @@
 				2D570D862BF54F0000E50A03 /* NotificationsCollectionViewCell.swift */,
 			);
 			path = Notifications;
+			sourceTree = "<group>";
+		};
+		2D6984A82C03ABD2009C6B8B /* CustomViewFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				2DCDCD1B2C03706E00C78AB4 /* CustomViewFlowLayout.swift */,
+			);
+			path = CustomViewFlowLayout;
+			sourceTree = "<group>";
+		};
+		2D6984AB2C03ACD6009C6B8B /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				2D6984A92C03ABEB009C6B8B /* FilterViewModel.swift */,
+			);
+			path = Filter;
 			sourceTree = "<group>";
 		};
 		2D7C236E2B9863630095B94D /* Storyboards */ = {
@@ -460,6 +488,24 @@
 			path = "lunchmate-iosUITests";
 			sourceTree = "<group>";
 		};
+		2DCDCD182C0355C700C78AB4 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				2DCDCD192C03560300C78AB4 /* FilterCollectionViewCell.swift */,
+				2DCDCD242C039EB800C78AB4 /* FilterCollectionViewFooter.swift */,
+				2DCDCD222C0396FD00C78AB4 /* FilterCollectionViewHeader.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		2DCDCD1D2C03951700C78AB4 /* DynamicHeightCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				2DCDCD1E2C03952400C78AB4 /* DynamicHeightCollectionView.swift */,
+			);
+			path = DynamicHeightCollectionView;
+			sourceTree = "<group>";
+		};
 		2DE3A1492BCD5C04008D79EE /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +550,9 @@
 		2DFC57B52B8E0516000AEE8D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2D6984A82C03ABD2009C6B8B /* CustomViewFlowLayout */,
+				2DCDCD1D2C03951700C78AB4 /* DynamicHeightCollectionView */,
+				2DCDCD182C0355C700C78AB4 /* Filter */,
 				2D570D892BF76A1500E50A03 /* Notifications */,
 				2D7E9C752BE7D95600B324EB /* CustomMessageView */,
 				2DE3A1492BCD5C04008D79EE /* Schedule */,
@@ -519,6 +568,7 @@
 		2DFC57B62B8E0551000AEE8D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2D6984AB2C03ACD6009C6B8B /* Filter */,
 				2D570D882BF769F900E50A03 /* Notifications */,
 				2D570D7C2BF3C7A900E50A03 /* SlotAddition */,
 				2DE3A1502BCDC63B008D79EE /* Schedule */,
@@ -844,18 +894,23 @@
 				2D570D802BF4D14800E50A03 /* NetworkTimeslot.swift in Sources */,
 				2D484DB92BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift in Sources */,
 				2D7C23782B987EC20095B94D /* MainCellViewModel.swift in Sources */,
+				2DCDCD232C0396FD00C78AB4 /* FilterCollectionViewHeader.swift in Sources */,
 				2D7C23802B989DAC0095B94D /* SlotAdditionPresentationController.swift in Sources */,
+				2DCDCD1F2C03952400C78AB4 /* DynamicHeightCollectionView.swift in Sources */,
 				2D23B4E12BA0D19000D59418 /* AccountCollectionViewCell.swift in Sources */,
+				2DCDCD252C039EB800C78AB4 /* FilterCollectionViewFooter.swift in Sources */,
 				2DFC57C02B8E0694000AEE8D /* NotificationsViewController.swift in Sources */,
 				2D8BC10D2B73B0AB00CA1D07 /* MainViewController.swift in Sources */,
 				2DF7B1272C00D19200BC9190 /* AccountScheduleCellViewModel.swift in Sources */,
 				2D7C23892B98B8620095B94D /* UISearchBarExtencion.swift in Sources */,
 				2D570D7E2BF3E1FD00E50A03 /* NetworkUsers.swift in Sources */,
 				2DFC57AD2B8DEC98000AEE8D /* Office.swift in Sources */,
+				2DCDCD1A2C03560300C78AB4 /* FilterCollectionViewCell.swift in Sources */,
 				2D7C23752B9864CB0095B94D /* Dynamic.swift in Sources */,
 				2DE3A14D2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift in Sources */,
 				2D484DBB2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift in Sources */,
 				2D8BC1092B73B0AB00CA1D07 /* AppDelegate.swift in Sources */,
+				2DCDCD1C2C03706E00C78AB4 /* CustomViewFlowLayout.swift in Sources */,
 				2DFC57CC2B8F209D000AEE8D /* MainCollectionViewCell.swift in Sources */,
 				2D1E236C2BEA8DA200C94D8B /* UIViewExtencion.swift in Sources */,
 				2D76BECD2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift in Sources */,
@@ -872,6 +927,7 @@
 				2D484DC32BBD7F4600C291AB /* AccountEditingCollectionViewCellViewModel.swift in Sources */,
 				2D23B4E42BA0E09400D59418 /* AccountHeaderCollectionView.swift in Sources */,
 				2DFC57BE2B8E0681000AEE8D /* ScheduleViewController.swift in Sources */,
+				2D6984AA2C03ABEB009C6B8B /* FilterViewModel.swift in Sources */,
 				2D7E9C742BE7D92B00B324EB /* CustomMessageView.swift in Sources */,
 				2D7C237D2B988B3E0095B94D /* AccountViewModel.swift in Sources */,
 				2DFC57B22B8DF9DE000AEE8D /* APIManager.swift in Sources */,

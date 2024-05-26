@@ -203,7 +203,7 @@ extension AccountViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 0 && !viewModel.isCanEdit {
+        if indexPath.row == 0 && !viewModel.isCanEdit && viewModel.user.value?.messenger != nil {
             UIPasteboard.general.string = viewModel.getTgDescription()
             
             let dimView = UIView(frame: UIScreen.main.bounds)

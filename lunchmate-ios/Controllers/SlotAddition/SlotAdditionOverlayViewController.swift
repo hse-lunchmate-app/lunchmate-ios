@@ -76,7 +76,7 @@ class SlotAdditionOverlayViewController: UIViewController {
     }()
     
     let rightChevronImageView: UIImage? = {
-        let image = UIImage(systemName: "chevron.right")?.withTintColor(UIColor(named: "Blue") ?? .blue)
+        let image = UIImage(systemName: "chevron.right")?.withTintColor(UIColor(named: "Blue50") ?? .blue)
         return image
     }()
     
@@ -122,7 +122,7 @@ class SlotAdditionOverlayViewController: UIViewController {
     let repeatEveryWeekSwitch: UISwitch = {
         let repeatEveryWeekSwitch = UISwitch()
         repeatEveryWeekSwitch.onTintColor = UIColor(named: "Blue10")
-        repeatEveryWeekSwitch.thumbTintColor = UIColor(named: "Blue")
+        repeatEveryWeekSwitch.thumbTintColor = UIColor(named: "Blue50")
         return repeatEveryWeekSwitch
     }()
     
