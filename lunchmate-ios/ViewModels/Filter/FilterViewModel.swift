@@ -10,20 +10,15 @@ import Foundation
 
 class FilterViewModel {
     
+    // MARK: - Properties
+    
     enum FilterType: String, CaseIterable {
         case office = "Офис"
     }
     
-    var offices = Dynamic([Office]())
-    
     let apiManager = APIManager.shared
-
+    var offices = Dynamic([Office]())
     var userOfficeId: Int
-    
-    init(userOfficeId: Int) {
-        self.userOfficeId = userOfficeId
-    }
-    
     lazy var selectedIndexPath: [IndexPath] = {
         var array: [IndexPath] = []
         for i in 0..<FilterType.allCases.count {
@@ -31,6 +26,14 @@ class FilterViewModel {
         }
         return array
     }()
+    
+    // MARK: - Init
+    
+    init(userOfficeId: Int) {
+        self.userOfficeId = userOfficeId
+    }
+    
+    // MARK: - Methods
     
     func getOffices() {
         apiManager.getOffices{ [weak self] result in

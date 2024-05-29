@@ -24,6 +24,8 @@ class AccountEditingCollectionViewCellViewModel {
         self.description = description
     }
     
+    // MARK: - Methods
+    
     func getOffices() {
         apiManager.getOffices() { [weak self] result in
             switch result {
@@ -34,8 +36,6 @@ class AccountEditingCollectionViewCellViewModel {
             }
         }
     }
-    
-    // MARK: - Methods
     
     func getOfficesNames() -> [String] {
         var officesNames: [String] = []

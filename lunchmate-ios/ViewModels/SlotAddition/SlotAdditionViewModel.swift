@@ -9,43 +9,33 @@ import Foundation
 
 class SlotAdditionViewModel {
     
+    // MARK: - Properties
+    
     var stringDate = Dynamic("")
     var start = Dynamic(Date())
     var end = Dynamic(Date())
+    var isReload = Dynamic(false)
     var isSwitchEnable = true
     var isAddition = true
     var apiManager = APIManager.shared
-    var isReload = Dynamic(false)
-
     var lunch: Lunch?
     var timeslot: Timeslot? = nil {
         willSet(timeslot) {
-            start.value = timeFormatter.date(from: timeslot?.startTime ?? "13:00") ?? Date()
-            end.value = timeFormatter.date(from: timeslot?.endTime ?? "14:00") ?? Date()
+            let dateFormatter = DateFormatter.makeFormatter(dateFormat: "HH:mm:ss")
+            start.value = dateFormatter.date(from: timeslot?.startTime ?? "13:00") ?? Date()
+            end.value = dateFormatter.date(from: timeslot?.endTime ?? "14:00") ?? Date()
         }
     }
-    
-    var dateFormatter: DateFormatter = {
-        var dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = "EEEE, d MMM yyyy 'г.'"
-        return dateFormatter
-    }()
-    
-    var timeFormatter: DateFormatter = {
-        var dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = "HH:mm:ss"
-        return dateFormatter
-    }()
-    
     var date: Date = Date() {
         willSet(newDate) {
+            let dateFormatter = DateFormatter.makeFormatter(dateFormat: "EEEE, d MMM yyyy 'г.'")
             let str = dateFormatter.string(from: newDate)
             let firstLetterCapitalized = str.prefix(1).capitalized + str.dropFirst()
             stringDate.value = firstLetterCapitalized
         }
     }
+    
+    // MARK: - Methods
     
     func setDate(newDate: Date) {
         date = newDate
@@ -102,10 +92,11 @@ class SlotAdditionViewModel {
     }
     
     func makeNetworkTimeslot(isSwitchOn: Bool, startTime: Date, endTime: Date) -> NetworkTimeslot {
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateFormatter = DateFormatter.makeFormatter(dateFormat: "yyyy-MM-dd")
         let date: String? = dateFormatter.string(from: self.date)
-        let startTime = timeFormatter.string(from: startTime)
-        let endTime = timeFormatter.string(from: endTime)
+        dateFormatter.dateFormat = "HH:mm:ss"
+        let startTime = dateFormatter.string(from: startTime)
+        let endTime = dateFormatter.string(from: endTime)
         return NetworkTimeslot(userId: "id3", date: date, startTime: startTime, endTime: endTime, permanent: isSwitchOn)
     }
 

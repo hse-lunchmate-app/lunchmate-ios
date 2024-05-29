@@ -9,32 +9,26 @@ import Foundation
 
 class NotificationsCollectionViewCellViewModel {
     
-    var lunch: Lunch? = nil
+    // MARK: - Properties
     
     let apiManager = APIManager.shared
+    var lunch: Lunch? = nil
     
-    let dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.locale = Locale(identifier: "ru_RU")
-        df.dateFormat = "yyyy-MM-dd"
-        df.timeZone = TimeZone(secondsFromGMT: 3 * 3600)!
-        return df
-    }()
+    // MARK: - Methods
     
     func makeStringDay(lunchDate: String) -> String {
+        let dateFormatter = DateFormatter.makeFormatter(dateFormat: "yyyy-MM-dd")
         let date = dateFormatter.date(from: lunchDate)
         dateFormatter.dateFormat = "d MMM"
         let newDate = dateFormatter.string(from: date!)
-        dateFormatter.dateFormat = "yyyy-MM-dd"
         return newDate
     }
     
     func makeTime(time: String) -> String {
-        dateFormatter.dateFormat = "HH:mm:ss"
+        let dateFormatter = DateFormatter.makeFormatter(dateFormat: "HH:mm:ss")
         let date = dateFormatter.date(from: time)
         dateFormatter.dateFormat = "HH:mm"
         let newTime = dateFormatter.string(from: date!)
-        dateFormatter.dateFormat = "yyyy-MM-dd"
         return newTime
     }
     

@@ -80,8 +80,9 @@ extension AccountSheduleCollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollegueSheduleCollectionViewCell.identifier, for: indexPath) as? CollegueSheduleCollectionViewCell else { return UICollectionViewCell() }
         let timeslot = viewModel.timeslots.value[indexPath.row]
-        let time = viewModel.makeDateStrings(start: timeslot.startTime, end: timeslot.endTime)
-        cell.configure(start: time.0, end: time.1)
+        let start = viewModel.makeDateString(from: timeslot.startTime)
+        let end = viewModel.makeDateString(from: timeslot.endTime)
+        cell.configure(start: start, end: end)
         cell.delegate = self
         return cell
     }

@@ -26,6 +26,8 @@ class AccountViewModel {
     var apiManager = APIManager.shared
     var isCanEdit = true
     
+    // MARK: - Methods
+    
     func changeIsCanEdit() {
         isCanEdit = !isCanEdit
     }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0ECAD61027363EF0515B97B2 /* Pods_lunchmate_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2A5948068B4AA73A055C01 /* Pods_lunchmate_ios.framework */; };
-		2D1E236C2BEA8DA200C94D8B /* UIViewExtencion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E236B2BEA8DA200C94D8B /* UIViewExtencion.swift */; };
+		2D1E236C2BEA8DA200C94D8B /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E236B2BEA8DA200C94D8B /* UIViewExtension.swift */; };
 		2D1E236E2BEA8EE100C94D8B /* SlotAdditionOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E236D2BEA8EE100C94D8B /* SlotAdditionOverlayViewController.swift */; };
 		2D1E23702BEA8FFF00C94D8B /* SlotAdditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E236F2BEA8FFF00C94D8B /* SlotAdditionViewModel.swift */; };
 		2D1E23722BEF895400C94D8B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D1E23712BEF895400C94D8B /* GoogleService-Info.plist */; };
@@ -31,7 +31,7 @@
 		2D7C237D2B988B3E0095B94D /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C237C2B988B3E0095B94D /* AccountViewModel.swift */; };
 		2D7C23802B989DAC0095B94D /* SlotAdditionPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C237F2B989DAC0095B94D /* SlotAdditionPresentationController.swift */; };
 		2D7C23822B989F5C0095B94D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23812B989F5C0095B94D /* FilterViewController.swift */; };
-		2D7C23892B98B8620095B94D /* UISearchBarExtencion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23882B98B8620095B94D /* UISearchBarExtencion.swift */; };
+		2D7C23892B98B8620095B94D /* UISearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23882B98B8620095B94D /* UISearchBarExtension.swift */; };
 		2D7E9C742BE7D92B00B324EB /* CustomMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7E9C732BE7D92B00B324EB /* CustomMessageView.swift */; };
 		2D8BC1092B73B0AB00CA1D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC1082B73B0AB00CA1D07 /* AppDelegate.swift */; };
 		2D8BC10B2B73B0AB00CA1D07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC10A2B73B0AB00CA1D07 /* SceneDelegate.swift */; };
@@ -48,6 +48,7 @@
 		2DCDCD1F2C03952400C78AB4 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD1E2C03952400C78AB4 /* DynamicHeightCollectionView.swift */; };
 		2DCDCD232C0396FD00C78AB4 /* FilterCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD222C0396FD00C78AB4 /* FilterCollectionViewHeader.swift */; };
 		2DCDCD252C039EB800C78AB4 /* FilterCollectionViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD242C039EB800C78AB4 /* FilterCollectionViewFooter.swift */; };
+		2DDBB4A12C075345000EC745 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDBB4A02C075345000EC745 /* DateFormatterExtension.swift */; };
 		2DE3A1482BCD3450008D79EE /* Timeslot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A1472BCD3450008D79EE /* Timeslot.swift */; };
 		2DE3A14B2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A14A2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift */; };
 		2DE3A14D2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3A14C2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift */; };
@@ -107,7 +108,7 @@
 /* Begin PBXFileReference section */
 		023EBB108182700843D5734F /* Pods-lunchmate-ios-lunchmate-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lunchmate-ios-lunchmate-iosUITests.release.xcconfig"; path = "Target Support Files/Pods-lunchmate-ios-lunchmate-iosUITests/Pods-lunchmate-ios-lunchmate-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		24723832350E1C9FCBE78C3F /* Pods-lunchmate-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lunchmate-ios.debug.xcconfig"; path = "Target Support Files/Pods-lunchmate-ios/Pods-lunchmate-ios.debug.xcconfig"; sourceTree = "<group>"; };
-		2D1E236B2BEA8DA200C94D8B /* UIViewExtencion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtencion.swift; sourceTree = "<group>"; };
+		2D1E236B2BEA8DA200C94D8B /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		2D1E236D2BEA8EE100C94D8B /* SlotAdditionOverlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotAdditionOverlayViewController.swift; sourceTree = "<group>"; };
 		2D1E236F2BEA8FFF00C94D8B /* SlotAdditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotAdditionViewModel.swift; sourceTree = "<group>"; };
 		2D1E23712BEF895400C94D8B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -130,7 +131,7 @@
 		2D7C237C2B988B3E0095B94D /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		2D7C237F2B989DAC0095B94D /* SlotAdditionPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotAdditionPresentationController.swift; sourceTree = "<group>"; };
 		2D7C23812B989F5C0095B94D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
-		2D7C23882B98B8620095B94D /* UISearchBarExtencion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBarExtencion.swift; sourceTree = "<group>"; };
+		2D7C23882B98B8620095B94D /* UISearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBarExtension.swift; sourceTree = "<group>"; };
 		2D7E9C732BE7D92B00B324EB /* CustomMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageView.swift; sourceTree = "<group>"; };
 		2D8BC1052B73B0AB00CA1D07 /* lunchmate-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lunchmate-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D8BC1082B73B0AB00CA1D07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +152,7 @@
 		2DCDCD1E2C03952400C78AB4 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
 		2DCDCD222C0396FD00C78AB4 /* FilterCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewHeader.swift; sourceTree = "<group>"; };
 		2DCDCD242C039EB800C78AB4 /* FilterCollectionViewFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewFooter.swift; sourceTree = "<group>"; };
+		2DDBB4A02C075345000EC745 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
 		2DE3A1472BCD3450008D79EE /* Timeslot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeslot.swift; sourceTree = "<group>"; };
 		2DE3A14A2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPickerHeaderCollectionView.swift; sourceTree = "<group>"; };
 		2DE3A14C2BCD7D57008D79EE /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -417,8 +419,9 @@
 		2D7C23872B98B83E0095B94D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2D7C23882B98B8620095B94D /* UISearchBarExtencion.swift */,
-				2D1E236B2BEA8DA200C94D8B /* UIViewExtencion.swift */,
+				2D7C23882B98B8620095B94D /* UISearchBarExtension.swift */,
+				2D1E236B2BEA8DA200C94D8B /* UIViewExtension.swift */,
+				2DDBB4A02C075345000EC745 /* DateFormatterExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 			files = (
 				2D484DBF2BBC0B7D00C291AB /* CustomTextField.swift in Sources */,
 				2DFC57BA2B8E0619000AEE8D /* TabBarController.swift in Sources */,
+				2DDBB4A12C075345000EC745 /* DateFormatterExtension.swift in Sources */,
 				2DE3A1482BCD3450008D79EE /* Timeslot.swift in Sources */,
 				2DE3A14B2BCD5C2A008D79EE /* DataPickerHeaderCollectionView.swift in Sources */,
 				2D1E23702BEA8FFF00C94D8B /* SlotAdditionViewModel.swift in Sources */,
@@ -902,7 +906,7 @@
 				2DFC57C02B8E0694000AEE8D /* NotificationsViewController.swift in Sources */,
 				2D8BC10D2B73B0AB00CA1D07 /* MainViewController.swift in Sources */,
 				2DF7B1272C00D19200BC9190 /* AccountScheduleCellViewModel.swift in Sources */,
-				2D7C23892B98B8620095B94D /* UISearchBarExtencion.swift in Sources */,
+				2D7C23892B98B8620095B94D /* UISearchBarExtension.swift in Sources */,
 				2D570D7E2BF3E1FD00E50A03 /* NetworkUsers.swift in Sources */,
 				2DFC57AD2B8DEC98000AEE8D /* Office.swift in Sources */,
 				2DCDCD1A2C03560300C78AB4 /* FilterCollectionViewCell.swift in Sources */,
@@ -912,7 +916,7 @@
 				2D8BC1092B73B0AB00CA1D07 /* AppDelegate.swift in Sources */,
 				2DCDCD1C2C03706E00C78AB4 /* CustomViewFlowLayout.swift in Sources */,
 				2DFC57CC2B8F209D000AEE8D /* MainCollectionViewCell.swift in Sources */,
-				2D1E236C2BEA8DA200C94D8B /* UIViewExtencion.swift in Sources */,
+				2D1E236C2BEA8DA200C94D8B /* UIViewExtension.swift in Sources */,
 				2D76BECD2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift in Sources */,
 				2DF7B1292C00DF3C00BC9190 /* AccountSheduleCollectionViewCell.swift in Sources */,
 				2DFC57BC2B8E065A000AEE8D /* AccountViewController.swift in Sources */,

@@ -8,6 +8,9 @@
 import Foundation
 
 class AccountScheduleCellViewModel {
+    
+    // MARK: - Properties
+    
     var apiManager = APIManager.shared
     var userId = ""
     var newDateText = Dynamic("")
@@ -15,26 +18,13 @@ class AccountScheduleCellViewModel {
     var currentDate: Date? = nil {
         willSet(timeslot) {
             if let date = timeslot {
+                let dateFormatter = DateFormatter.makeFormatter(dateFormat: "EEEE, d.MM")
                 let str = dateFormatter.string(from: date)
                 let firstLetterCapitalized = str.prefix(1).capitalized + str.dropFirst()
                 newDateText.value = firstLetterCapitalized
             }
         }
     }
-    
-    var dateFormatter: DateFormatter = {
-        var dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = "EEEE, d.MM"
-        return dateFormatter
-    }()
-    
-    var timeFormatter: DateFormatter = {
-        var dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = "HH:mm:ss"
-        return dateFormatter
-    }()
     
     // MARK: - Methods
     
@@ -75,21 +65,16 @@ class AccountScheduleCellViewModel {
         userId = id
     }
     
-    func makeDateStrings(start: String, end: String) -> (String, String) {
-        let startDate = timeFormatter.date(from: start)
-        let endDate = timeFormatter.date(from: end)
-        timeFormatter.dateFormat = "HH:mm"
-        let newStart = timeFormatter.string(from: startDate!)
-        let newEnd = timeFormatter.string(from: endDate!)
-        timeFormatter.dateFormat = "HH:mm:ss"
-        return (newStart, newEnd)
+    func makeDateString(from str: String) -> String {
+        let dateFormatter = DateFormatter.makeFormatter(dateFormat: "HH:mm:ss")
+        let date = dateFormatter.date(from: str)
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: date!)
     }
     
     func getStringDate() -> String {
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.string(from: currentDate!)
-        dateFormatter.dateFormat = "EEEE, d.MM"
-        return date
+        let dateFormatter = DateFormatter.makeFormatter(dateFormat: "yyyy-MM-dd")
+        return dateFormatter.string(from: currentDate!)
     }
     
     func getUserSchedule() {

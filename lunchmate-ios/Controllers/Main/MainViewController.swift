@@ -14,6 +14,12 @@ class MainViewController: UIViewController {
     private var users: [MainCellViewModel] = []
     private var viewModel = MainViewModel()
     
+    // MARK: - Init
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("AccountInfoDidChange"), object: nil)
+    }
+    
     // MARK: - Subviews
     
     private let navigationTitle: UILabel = {
@@ -103,6 +109,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFilter), name: Notification.Name("AccountInfoDidChange"), object: nil)
         bindViewModel()
         setupView()
     }
@@ -186,6 +193,14 @@ class MainViewController: UIViewController {
                     accountViewModel.user.value = user
                     self?.navigationController?.pushViewController(accountViewController, animated: true)
                 }
+            }
+        }
+    }
+    
+    @objc func updateFilter() {
+        DispatchQueue.main.async { [weak self] in
+            if self?.navigationItem.rightBarButtonItem?.tintColor == .gray {
+                self?.viewModel.filterOfficeId = nil
             }
         }
     }

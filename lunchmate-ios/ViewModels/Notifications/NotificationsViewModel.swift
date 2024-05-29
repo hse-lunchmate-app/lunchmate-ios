@@ -9,16 +9,13 @@ import Foundation
 
 class NotificationsViewModel {
     
+    // MARK: - Properties
+    
     let lunches = Dynamic([Lunch]())
-    var lunchesForCollectionView: [Lunch] = []
     let apiManager = APIManager.shared
-    let dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.locale = Locale(identifier: "ru_RU")
-        df.dateFormat = "yyyy-MM-dd"
-        df.timeZone = TimeZone(secondsFromGMT: 3 * 3600)!
-        return df
-    }()
+    var lunchesForCollectionView: [Lunch] = []
+    
+    // MARK: - Methods
     
     func getLunches() {
         apiManager.getAllLunches(id: "id3") { [weak self] result in
@@ -32,6 +29,7 @@ class NotificationsViewModel {
     }
     
     func getNotificationsCount(index: Int) -> Int {
+        let dateFormatter = DateFormatter.makeFormatter(dateFormat: "yyyy-MM-dd")
         if index == 0 {
             lunchesForCollectionView = lunches.value.filter({ $0.accepted == false && $0.invitee.id == "id3" })
             lunchesForCollectionView.sort(by: {dateFormatter.date(from: $0.lunchDate)! > dateFormatter.date(from: $1.lunchDate)!})

@@ -170,6 +170,9 @@ final class AccountEditingCollectionViewCell: UICollectionViewCell {
     }
     
     func getTitleAndDescription() -> (String?, String?) {
+        if titleLabel.text == "Офис" {
+            return (titleLabel.text, officesDropDown.selectedItem)
+        }
         return (titleLabel.text, descriptionTextField.text)
     }
     

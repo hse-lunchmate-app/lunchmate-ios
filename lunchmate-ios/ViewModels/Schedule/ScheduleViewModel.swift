@@ -29,13 +29,6 @@ class ScheduleViewModel {
         "декабря": "Декабрь"
     ]
     
-    var timeFormatter: DateFormatter = {
-        var dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = "HH:mm:ss"
-        return dateFormatter
-    }()
-    
     func getAllPermanentSlots() {
         permanentSlots = Array(repeating: nil, count: 7)
         for i in timeTable.value {
@@ -68,11 +61,9 @@ class ScheduleViewModel {
     }
     
     func isAcceptedLunch(slot: Timeslot, date: Date) -> Lunch? {
-        timeFormatter.dateFormat = "yyyy-MM-dd"
-        let date = timeFormatter.string(from: date)
-        timeFormatter.dateFormat = "HH:mm:ss"
+        let dateFormatter = DateFormatter.makeFormatter(dateFormat: "yyyy-MM-dd")
+        let date = dateFormatter.string(from: date)
         for lunch in lunches.value {
-            //print(lunch.timeslot, slot, lunch.lunchDate, date)
             if lunch.timeslot.id == slot.id && lunch.accepted == true && lunch.lunchDate == date {
                 return lunch
             }
@@ -115,10 +106,7 @@ class ScheduleViewModel {
     
     func getMonths(dates: [Date]) -> [String] {
         var months: Set<String> = []
-        let dayFormatter = DateFormatter()
-        dayFormatter.timeZone = TimeZone(secondsFromGMT: 3*60*60)
-        dayFormatter.locale = Locale(identifier: "ru_RU")
-        dayFormatter.dateFormat = "MMMM"
+        let dayFormatter = DateFormatter.makeFormatter(dateFormat: "MMMM")
         
         for date in dates {
             let monthString = dayFormatter.string(from: date)
@@ -136,10 +124,7 @@ class ScheduleViewModel {
             index = selectedDay.row
         }
         let dates = getDatesOfCurrentWeek()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 3*60*60)
-        dateFormatter.locale = Locale(identifier: "ru_RU")
+        let dateFormatter = DateFormatter.makeFormatter(dateFormat: "yyyy-MM-dd")
         let date = dates[index]
         var listOfData: [Timeslot] = []
         for i in timeTable.value {
@@ -169,5 +154,15 @@ class ScheduleViewModel {
             }
         }
         return weekDays
+    }
+    
+    func makeTime(from str: String) -> String? {
+        let dateFormatter = DateFormatter.makeFormatter(dateFormat: "HH:mm:ss")
+        let date = dateFormatter.date(from: str)
+        dateFormatter.dateFormat = "HH:mm"
+        if let date = date {
+            return dateFormatter.string(from: date)
+        }
+        return nil
     }
 }

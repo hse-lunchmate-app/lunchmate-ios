@@ -1,5 +1,5 @@
 //
-//  UIViewExtencion.swift
+//  UIViewExtension.swift
 //  lunchmate-ios
 //
 //  Created by Maria Slepneva on 07.05.2024.

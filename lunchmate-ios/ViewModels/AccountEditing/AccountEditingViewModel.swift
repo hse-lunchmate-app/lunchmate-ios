@@ -52,11 +52,7 @@ class AccountEditingViewModel {
                 userInfo["name"] = description
             }
         case "Офис":
-            if let office = retriveOffice(with: description) {
-                if user.office.id != office.id {
-                    userInfo["officeId"] = office.id
-                }
-            }
+            break
         case "Вкусовые предпочтения":
             if user.tastes != description {
                 userInfo["tastes"] = description
@@ -66,7 +62,7 @@ class AccountEditingViewModel {
                 userInfo["aboutMe"] = description
             }
         case "Telegram":
-            if user.messenger != description {
+            if user.messenger != description.trimmingCharacters(in: .whitespaces) {
                 userInfo["messenger"] = description.trimmingCharacters(in: .whitespaces)
             }
         case "Логин":
@@ -110,8 +106,15 @@ class AccountEditingViewModel {
         }
     }
     
-    func retriveOffice(with name: String) -> Office? {
-        guard let office = Office.offices.first (where: {$0.name == name}) else { return nil }
-        return office
+    func retriveOffice(with name: String, completion: @escaping (Office?) -> Void) {
+        apiManager.getOffices() { result in
+            switch result {
+            case .success(let offices):
+                completion(offices.first(where: {$0.name == name}))
+            case .failure(let error):
+                completion(nil)
+            }
+        }
     }
+
 }

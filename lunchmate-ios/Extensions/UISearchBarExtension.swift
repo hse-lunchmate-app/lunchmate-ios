@@ -1,5 +1,5 @@
 //
-//  UISearchBarExtencion.swift
+//  UISearchBarExtension.swift
 //  lunchmate-ios
 //
 //  Created by Maria Slepneva on 06.03.2024.

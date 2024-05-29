@@ -97,16 +97,30 @@ class AccountEditingViewController: UIViewController {
     
     @objc private func saveChanges() {
         setNewData()
-        viewModel.changeAccountInfo()
         navigationController?.popViewController(animated: true)
     }
     
     private func setNewData() {
+        var officeName: String?
         for section in 0..<collectionView.numberOfSections {
             for item in 0..<collectionView.numberOfItems(inSection: section) {
                 if let cell = collectionView.cellForItem(at: IndexPath(item: item, section: section)) as? AccountEditingCollectionViewCell {
                     let data = cell.getTitleAndDescription()
-                    viewModel.setNewInfo(title: data.0, description: data.1)
+                    if data.0 == "Офис" {
+                        officeName = data.1
+                    } else {
+                        viewModel.setNewInfo(title: data.0, description: data.1)
+                    }
+                }
+            }
+        }
+        if let officeName = officeName {
+            viewModel.retriveOffice(with: officeName) { [weak self] office in
+                if let office = office {
+                    if self?.viewModel.user.office.id != office.id {
+                        self?.viewModel.userInfo["officeId"] = office.id
+                        self?.viewModel.changeAccountInfo()
+                    }
                 }
             }
         }

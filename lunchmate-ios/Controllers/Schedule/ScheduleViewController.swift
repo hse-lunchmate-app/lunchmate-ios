@@ -191,7 +191,7 @@ extension ScheduleViewController: UICollectionViewDataSource {
         }
         else {
             let amount = viewModel.getInfoAboutMeetingsOfSelectedDay(selectedDay: nil).count
-            if amount > 2 {
+            if amount > 1 {
                 navigationItem.rightBarButtonItem?.isEnabled = false
             }
             else {
@@ -238,16 +238,12 @@ extension ScheduleViewController: UICollectionViewDataSource {
         else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SlotsCollectionViewCell.identifier, for: indexPath) as? SlotsCollectionViewCell else {return UICollectionViewCell() }
             let data = viewModel.getInfoAboutMeetingsOfSelectedDay(selectedDay: nil).sorted(by: { $0.startTime < $1.startTime })[indexPath.row]
-            let startTimeDate = viewModel.timeFormatter.date(from: data.startTime)
-            let endTimeDate = viewModel.timeFormatter.date(from: data.endTime)
-            viewModel.timeFormatter.dateFormat = "HH:mm"
+            let startTimeDate = viewModel.makeTime(from: data.startTime)
+            let endTimeDate = viewModel.makeTime(from: data.endTime)
             if let start = startTimeDate {
-                let startTime = viewModel.timeFormatter.string(from: start)
                 if let end = endTimeDate {
-                    let endTime = viewModel.timeFormatter.string(from: end)
-                    viewModel.timeFormatter.dateFormat = "HH:mm:ss"
                     if let index = viewModel.selectedIndexPath?.row {
-                        cell.configure(timeslot: data, start: startTime, end: endTime, collegueName: viewModel.getCollegueName(lunch: viewModel.isAcceptedLunch(slot: data, date: viewModel.getDatesOfCurrentWeek()[index])))
+                        cell.configure(timeslot: data, start: start, end: end, collegueName: viewModel.getCollegueName(lunch: viewModel.isAcceptedLunch(slot: data, date: viewModel.getDatesOfCurrentWeek()[index])))
                     }
                 }
             }

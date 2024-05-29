@@ -9,12 +9,9 @@ import Foundation
 
 class MainViewModel {
     
-    // MARK: - Constants
+    // MARK: - Properties
     
     private let apiManager = APIManager.shared
-    
-    // MARK: - Variables
-    
     var users: [User] = []
     var filteredData = Dynamic([MainCellViewModel]())
     var isLoading: Dynamic<Bool> = Dynamic(false)
@@ -22,7 +19,6 @@ class MainViewModel {
     var user: User?
     
     // MARK: - Methods
-    
     
     func getUser() {
         apiManager.getUser(id: "id3") { [weak self] result in
