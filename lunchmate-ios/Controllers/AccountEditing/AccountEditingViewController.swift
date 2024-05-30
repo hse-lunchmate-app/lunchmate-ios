@@ -119,8 +119,8 @@ class AccountEditingViewController: UIViewController {
                 if let office = office {
                     if self?.viewModel.user.office.id != office.id {
                         self?.viewModel.userInfo["officeId"] = office.id
-                        self?.viewModel.changeAccountInfo()
                     }
+                    self?.viewModel.changeAccountInfo()
                 }
             }
         }

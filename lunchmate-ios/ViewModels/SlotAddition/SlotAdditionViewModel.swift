@@ -42,7 +42,7 @@ class SlotAdditionViewModel {
     }
     
     func getCollegueName() -> String? {
-        if lunch?.master.id != "id3" {
+        if lunch?.master.id != "id1" {
             return lunch?.master.name
         } else {
             return lunch?.invitee.name
@@ -97,7 +97,7 @@ class SlotAdditionViewModel {
         dateFormatter.dateFormat = "HH:mm:ss"
         let startTime = dateFormatter.string(from: startTime)
         let endTime = dateFormatter.string(from: endTime)
-        return NetworkTimeslot(userId: "id3", date: date, startTime: startTime, endTime: endTime, permanent: isSwitchOn)
+        return NetworkTimeslot(userId: "id1", date: date, startTime: startTime, endTime: endTime, permanent: isSwitchOn)
     }
 
 }

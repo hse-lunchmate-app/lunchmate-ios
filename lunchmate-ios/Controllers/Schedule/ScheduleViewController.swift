@@ -266,7 +266,7 @@ extension ScheduleViewController: UICollectionViewDataSource {
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DataPickerHeaderCollectionView.identifier, for: indexPath) as? DataPickerHeaderCollectionView else { return UICollectionReusableView() }
             header.delegate = self
             self.delegate = header
-            let months = viewModel.getMonths(dates: viewModel.getDatesOfCurrentWeek()).sorted(by: <)
+            let months = viewModel.getMonths(dates: viewModel.getDatesOfCurrentWeek())
             var title = months[0]
             if months.count == 2 {
                 title += " - \(months[1])"

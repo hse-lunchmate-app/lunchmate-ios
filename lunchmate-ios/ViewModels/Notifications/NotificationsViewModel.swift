@@ -18,7 +18,7 @@ class NotificationsViewModel {
     // MARK: - Methods
     
     func getLunches() {
-        apiManager.getAllLunches(id: "id3") { [weak self] result in
+        apiManager.getAllLunches(id: "id1") { [weak self] result in
             switch result {
             case .success(let lunches):
                 self?.lunches.value = lunches
@@ -31,7 +31,7 @@ class NotificationsViewModel {
     func getNotificationsCount(index: Int) -> Int {
         let dateFormatter = DateFormatter.makeFormatter(dateFormat: "yyyy-MM-dd")
         if index == 0 {
-            lunchesForCollectionView = lunches.value.filter({ $0.accepted == false && $0.invitee.id == "id3" })
+            lunchesForCollectionView = lunches.value.filter({ $0.accepted == false && $0.invitee.id == "id1" })
             lunchesForCollectionView.sort(by: {dateFormatter.date(from: $0.lunchDate)! > dateFormatter.date(from: $1.lunchDate)!})
         } else {
             lunchesForCollectionView = lunches.value.filter({ $0.accepted == true })
@@ -41,7 +41,7 @@ class NotificationsViewModel {
     }
     
     func getNotificationsCountForBadge() -> Int {
-        return lunches.value.filter({ $0.accepted == false && $0.invitee.id == "id3" }).count
+        return lunches.value.filter({ $0.accepted == false && $0.invitee.id == "id1" }).count
     }
     
 }

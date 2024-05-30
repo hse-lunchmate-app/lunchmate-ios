@@ -93,7 +93,7 @@ class AccountScheduleCellViewModel {
     
     func postNewLunchInvite(timeslot: Timeslot, completion: @escaping (Error?) -> Void) {
         let date = getStringDate()
-        let lunch = NetworkLunchForPatch(masterId: "id3", inviteeId: userId, timeslotId: timeslot.id, lunchDate: date)
+        let lunch = NetworkLunchForPatch(masterId: "id1", inviteeId: userId, timeslotId: timeslot.id, lunchDate: date)
         apiManager.postLunchInvite(lunch: lunch) { err in
             if let err = err as? NSError {
                 completion(err)

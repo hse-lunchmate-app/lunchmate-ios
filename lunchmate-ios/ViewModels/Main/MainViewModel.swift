@@ -21,7 +21,7 @@ class MainViewModel {
     // MARK: - Methods
     
     func getUser() {
-        apiManager.getUser(id: "id3") { [weak self] result in
+        apiManager.getUser(id: "id1") { [weak self] result in
             switch result {
             case .success(let data):
                 self?.user = data

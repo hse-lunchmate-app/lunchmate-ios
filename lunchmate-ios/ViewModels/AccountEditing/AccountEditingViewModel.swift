@@ -75,7 +75,7 @@ class AccountEditingViewModel {
     }
     
     func changeAccountInfo() {
-        apiManager.patchUser(id: "id3", updatedUser: userInfo) { [weak self] error in
+        apiManager.patchUser(id: "id1", updatedUser: userInfo) { [weak self] error in
             if error == nil {
                 NotificationCenter.default.post(name: Notification.Name("AccountInfoDidChange"), object: self?.user)
             }

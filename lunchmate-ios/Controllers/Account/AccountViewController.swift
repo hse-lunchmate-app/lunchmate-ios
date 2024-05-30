@@ -77,7 +77,7 @@ class AccountViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if viewModel.user.value == nil {
-            viewModel.retrieveUser(with: "id3") { error in
+            viewModel.retrieveUser(with: "id1") { error in
                 if let error = error {
                     // Обработка ошибки
                 }
@@ -154,7 +154,7 @@ class AccountViewController: UIViewController {
         if let updatedUser = notification.object as? User {
             DispatchQueue.main.async {
                 self.viewModel.updateUser(newUser: updatedUser)
-                self.viewModel.retrieveUser(with: "id3") { [weak self] error in
+                self.viewModel.retrieveUser(with: "id1") { [weak self] error in
                     if let error = error {
                         // Обработка ошибки
                     }

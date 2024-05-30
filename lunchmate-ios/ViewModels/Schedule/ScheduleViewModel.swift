@@ -39,7 +39,7 @@ class ScheduleViewModel {
     }
     
     func getTimeTable() {
-        apiManager.getTimeTable(id: "id3") { [weak self] result in
+        apiManager.getTimeTable(id: "id1") { [weak self] result in
             switch result {
             case .success(let timetable):
                 self?.timeTable.value = timetable
@@ -50,7 +50,7 @@ class ScheduleViewModel {
     }
     
     func getAcceptedLunches() {
-        apiManager.getAcceptedLunches(id: "id3") { [weak self] result in
+        apiManager.getAcceptedLunches(id: "id1") { [weak self] result in
             switch result {
             case .success(let lunches):
                 self?.lunches.value = lunches
@@ -72,7 +72,7 @@ class ScheduleViewModel {
     }
     
     func getCollegueName(lunch: Lunch?) -> String? {
-        if lunch?.master.id != "id3" {
+        if lunch?.master.id != "id1" {
             return lunch?.master.name
         } else {
             return lunch?.invitee.name
