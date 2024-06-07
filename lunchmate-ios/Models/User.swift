@@ -18,3 +18,7 @@ struct User: Codable {
     var image: URL?
 }
 
+struct UserNetwork: Codable {
+    let id: String
+    let login: String
+}

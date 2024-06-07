@@ -136,24 +136,27 @@ final class NotificationsCollectionViewCell: UICollectionViewCell, UIGestureReco
     
     func configure(lunch: Lunch, selectedIndex: Int) {
         viewModel.lunch = lunch
-        var stringDate = viewModel.makeStringDay(lunchDate: lunch.lunchDate)
-        var startTime = viewModel.makeTime(time: lunch.timeslot.startTime)
-        var endTime = viewModel.makeTime(time: lunch.timeslot.endTime)
-        if selectedIndex == 0 {
-            if lunch.accepted == false && lunch.invitee.id == "id1" {
-                titleLabel.text = "Новое приглашение"
-                messageLabel.text = lunch.master.name + " позвал(а) вас на ланч"
-                dateLabel.text = "Дата: \(stringDate) с \(startTime) до \(endTime)"
-            }
-        } else {
-            if lunch.accepted == true && lunch.master.id == "id1" {
-                titleLabel.text = "Согласие"
-                messageLabel.text = lunch.invitee.name + " принял(а) приглашение на ланч"
-                dateLabel.text = "Дата: \(stringDate) с \(startTime) до \(endTime)"
-            } else if lunch.accepted == true && lunch.invitee.id == "id1" {
-                titleLabel.text = "Согласие"
-                messageLabel.text = "Вы приняли приглашение на ланч"
-                dateLabel.text = "Дата: \(stringDate) с \(startTime) до \(endTime)"
+        let stringDate = viewModel.makeStringDay(lunchDate: lunch.lunchDate)
+        let startTime = viewModel.makeTime(time: lunch.timeslot.startTime)
+        let endTime = viewModel.makeTime(time: lunch.timeslot.endTime)
+        let userId = UserDefaults.standard.string(forKey: "userId")
+        if let userId = userId {
+            if selectedIndex == 0 {
+                if lunch.accepted == false && lunch.invitee.id == userId {
+                    titleLabel.text = "Новое приглашение"
+                    messageLabel.text = lunch.master.name + " позвал(а) вас на ланч"
+                    dateLabel.text = "Дата: \(stringDate) с \(startTime) до \(endTime)"
+                }
+            } else {
+                if lunch.accepted == true && lunch.master.id == userId {
+                    titleLabel.text = "Согласие"
+                    messageLabel.text = lunch.invitee.name + " принял(а) приглашение на ланч"
+                    dateLabel.text = "Дата: \(stringDate) с \(startTime) до \(endTime)"
+                } else if lunch.accepted == true && lunch.invitee.id == userId {
+                    titleLabel.text = "Согласие"
+                    messageLabel.text = "Вы приняли приглашение на ланч"
+                    dateLabel.text = "Дата: \(stringDate) с \(startTime) до \(endTime)"
+                }
             }
         }
         configureUI()

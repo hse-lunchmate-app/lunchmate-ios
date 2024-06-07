@@ -9,6 +9,7 @@ import Foundation
 
 class ScheduleViewModel {
     
+    var userId = UserDefaults.standard.string(forKey: "userId")
     var changeWeek = 0
     var permanentSlots: [Timeslot?] = Array(repeating: nil, count: 7)
     var apiManager = APIManager.shared
@@ -39,23 +40,27 @@ class ScheduleViewModel {
     }
     
     func getTimeTable() {
-        apiManager.getTimeTable(id: "id1") { [weak self] result in
-            switch result {
-            case .success(let timetable):
-                self?.timeTable.value = timetable
-            case .failure(let error):
-                print(error)
+        if let userId = userId {
+            apiManager.getTimeTable(id: userId) { [weak self] result in
+                switch result {
+                case .success(let timetable):
+                    self?.timeTable.value = timetable
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }
     
     func getAcceptedLunches() {
-        apiManager.getAcceptedLunches(id: "id1") { [weak self] result in
-            switch result {
-            case .success(let lunches):
-                self?.lunches.value = lunches
-            case .failure(let error):
-                print(error)
+        if let userId = userId {
+            apiManager.getAcceptedLunches(id: userId) { [weak self] result in
+                switch result {
+                case .success(let lunches):
+                    self?.lunches.value = lunches
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }
@@ -72,7 +77,7 @@ class ScheduleViewModel {
     }
     
     func getCollegueName(lunch: Lunch?) -> String? {
-        if lunch?.master.id != "id1" {
+        if lunch?.master.id != userId {
             return lunch?.master.name
         } else {
             return lunch?.invitee.name

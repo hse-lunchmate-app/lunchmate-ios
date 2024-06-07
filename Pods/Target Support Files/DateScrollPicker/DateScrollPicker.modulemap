@@ -1,6 +1,0 @@
-framework module DateScrollPicker {
-  umbrella header "DateScrollPicker-umbrella.h"
-
-  export *
-  module * { export * }
-}

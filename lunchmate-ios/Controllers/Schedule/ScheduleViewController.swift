@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import DateScrollPicker
 
 protocol ScheduleViewControllerDelegate: AnyObject {
     func changeIsRightButtonEnabled()

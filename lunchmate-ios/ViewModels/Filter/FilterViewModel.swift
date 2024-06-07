@@ -35,7 +35,7 @@ class FilterViewModel {
     
     // MARK: - Methods
     
-    func getOffices() {
+    func getOffices(completion: @escaping (NSError) -> Void) {
         apiManager.getOffices{ [weak self] result in
             switch result {
             case .success(let offices):
@@ -46,7 +46,7 @@ class FilterViewModel {
                     }
                 }
             case .failure(let error):
-                print(error)
+                completion(error as NSError)
             }
         }
     }

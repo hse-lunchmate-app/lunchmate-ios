@@ -14,6 +14,8 @@
 		2D1E23722BEF895400C94D8B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D1E23712BEF895400C94D8B /* GoogleService-Info.plist */; };
 		2D23B4E12BA0D19000D59418 /* AccountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D23B4E02BA0D19000D59418 /* AccountCollectionViewCell.swift */; };
 		2D23B4E42BA0E09400D59418 /* AccountHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D23B4E32BA0E09400D59418 /* AccountHeaderCollectionView.swift */; };
+		2D38C41F2C12E78E00F3D932 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D38C41E2C12E78E00F3D932 /* AuthenticationViewController.swift */; };
+		2D38C4212C1345FC00F3D932 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D38C4202C1345FC00F3D932 /* AuthenticationViewModel.swift */; };
 		2D484DB62BB982D800C291AB /* AccountEditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DB52BB982D800C291AB /* AccountEditingViewModel.swift */; };
 		2D484DB92BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DB82BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift */; };
 		2D484DBB2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484DBA2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift */; };
@@ -33,6 +35,7 @@
 		2D7C23822B989F5C0095B94D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23812B989F5C0095B94D /* FilterViewController.swift */; };
 		2D7C23892B98B8620095B94D /* UISearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7C23882B98B8620095B94D /* UISearchBarExtension.swift */; };
 		2D7E9C742BE7D92B00B324EB /* CustomMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7E9C732BE7D92B00B324EB /* CustomMessageView.swift */; };
+		2D8438312C139A9700159859 /* AccountEditingFooterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8438302C139A9700159859 /* AccountEditingFooterCollectionView.swift */; };
 		2D8BC1092B73B0AB00CA1D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC1082B73B0AB00CA1D07 /* AppDelegate.swift */; };
 		2D8BC10B2B73B0AB00CA1D07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC10A2B73B0AB00CA1D07 /* SceneDelegate.swift */; };
 		2D8BC10D2B73B0AB00CA1D07 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC10C2B73B0AB00CA1D07 /* MainViewController.swift */; };
@@ -41,6 +44,8 @@
 		2D8BC1202B73B0AD00CA1D07 /* lunchmate_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC11F2B73B0AD00CA1D07 /* lunchmate_iosTests.swift */; };
 		2D8BC12A2B73B0AD00CA1D07 /* lunchmate_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC1292B73B0AD00CA1D07 /* lunchmate_iosUITests.swift */; };
 		2D8BC12C2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8BC12B2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift */; };
+		2DBE38622C090296004DBC7D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE38612C090296004DBC7D /* Reachability.swift */; };
+		2DCC66702C0A5B9F0001ED62 /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC666F2C0A5B9F0001ED62 /* DefaultViewController.swift */; };
 		2DCDCD132C01072700C78AB4 /* NetworkLunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD122C01072700C78AB4 /* NetworkLunch.swift */; };
 		2DCDCD152C01EEFB00C78AB4 /* NotificationsCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD142C01EEFB00C78AB4 /* NotificationsCollectionViewCellViewModel.swift */; };
 		2DCDCD1A2C03560300C78AB4 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCDCD192C03560300C78AB4 /* FilterCollectionViewCell.swift */; };
@@ -114,6 +119,8 @@
 		2D1E23712BEF895400C94D8B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2D23B4E02BA0D19000D59418 /* AccountCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D23B4E32BA0E09400D59418 /* AccountHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHeaderCollectionView.swift; sourceTree = "<group>"; };
+		2D38C41E2C12E78E00F3D932 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
+		2D38C4202C1345FC00F3D932 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		2D484DB52BB982D800C291AB /* AccountEditingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditingViewModel.swift; sourceTree = "<group>"; };
 		2D484DB82BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditionHeaderCollectionView.swift; sourceTree = "<group>"; };
 		2D484DBA2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -133,6 +140,7 @@
 		2D7C23812B989F5C0095B94D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		2D7C23882B98B8620095B94D /* UISearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBarExtension.swift; sourceTree = "<group>"; };
 		2D7E9C732BE7D92B00B324EB /* CustomMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageView.swift; sourceTree = "<group>"; };
+		2D8438302C139A9700159859 /* AccountEditingFooterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditingFooterCollectionView.swift; sourceTree = "<group>"; };
 		2D8BC1052B73B0AB00CA1D07 /* lunchmate-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lunchmate-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D8BC1082B73B0AB00CA1D07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D8BC10A2B73B0AB00CA1D07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +153,8 @@
 		2D8BC1252B73B0AD00CA1D07 /* lunchmate-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "lunchmate-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D8BC1292B73B0AD00CA1D07 /* lunchmate_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lunchmate_iosUITests.swift; sourceTree = "<group>"; };
 		2D8BC12B2B73B0AD00CA1D07 /* lunchmate_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lunchmate_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2DBE38612C090296004DBC7D /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		2DCC666F2C0A5B9F0001ED62 /* DefaultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViewController.swift; sourceTree = "<group>"; };
 		2DCDCD122C01072700C78AB4 /* NetworkLunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLunch.swift; sourceTree = "<group>"; };
 		2DCDCD142C01EEFB00C78AB4 /* NotificationsCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		2DCDCD192C03560300C78AB4 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -248,6 +258,7 @@
 			children = (
 				2D484DB82BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift */,
 				2D484DBA2BBAC5D300C291AB /* AccountEditionCollectionViewCell.swift */,
+				2D8438302C139A9700159859 /* AccountEditingFooterCollectionView.swift */,
 			);
 			path = AccountEditing;
 			sourceTree = "<group>";
@@ -379,8 +390,10 @@
 		2D7C237A2B988A160095B94D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2DCC666F2C0A5B9F0001ED62 /* DefaultViewController.swift */,
 				2DFC57CA2B8F2068000AEE8D /* Main */,
 				2D7C23832B989F700095B94D /* Filter */,
+				2D84382E2C139A2B00159859 /* Authentication */,
 				2D7C237E2B989D760095B94D /* SlotAddition */,
 				2D7C23762B9864F90095B94D /* TabBar */,
 				2D7C23722B9863C20095B94D /* AccountEditing */,
@@ -432,6 +445,22 @@
 				2D7E9C732BE7D92B00B324EB /* CustomMessageView.swift */,
 			);
 			path = CustomMessageView;
+			sourceTree = "<group>";
+		};
+		2D84382D2C139A1E00159859 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				2D38C4202C1345FC00F3D932 /* AuthenticationViewModel.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		2D84382E2C139A2B00159859 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				2D38C41E2C12E78E00F3D932 /* AuthenticationViewController.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		2D8BC0FC2B73B0AB00CA1D07 = {
@@ -571,6 +600,7 @@
 		2DFC57B62B8E0551000AEE8D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2D84382D2C139A1E00159859 /* Authentication */,
 				2D6984AB2C03ACD6009C6B8B /* Filter */,
 				2D570D882BF769F900E50A03 /* Notifications */,
 				2D570D7C2BF3C7A900E50A03 /* SlotAddition */,
@@ -586,6 +616,7 @@
 		2DFC57B72B8E057F000AEE8D /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
+				2DBE38612C090296004DBC7D /* Reachability.swift */,
 				2DFC57B12B8DF9DE000AEE8D /* APIManager.swift */,
 			);
 			path = APIManager;
@@ -893,7 +924,10 @@
 				2D570D7B2BF3B40000E50A03 /* Lunch.swift in Sources */,
 				2DFC57A92B8DEBEB000AEE8D /* User.swift in Sources */,
 				2D1E236E2BEA8EE100C94D8B /* SlotAdditionOverlayViewController.swift in Sources */,
+				2D38C4212C1345FC00F3D932 /* AuthenticationViewModel.swift in Sources */,
+				2DBE38622C090296004DBC7D /* Reachability.swift in Sources */,
 				2DFC57AB2B8DEC8B000AEE8D /* City.swift in Sources */,
+				2D8438312C139A9700159859 /* AccountEditingFooterCollectionView.swift in Sources */,
 				2D484DB62BB982D800C291AB /* AccountEditingViewModel.swift in Sources */,
 				2D570D802BF4D14800E50A03 /* NetworkTimeslot.swift in Sources */,
 				2D484DB92BBABEA600C291AB /* AccountEditionHeaderCollectionView.swift in Sources */,
@@ -916,6 +950,7 @@
 				2D8BC1092B73B0AB00CA1D07 /* AppDelegate.swift in Sources */,
 				2DCDCD1C2C03706E00C78AB4 /* CustomViewFlowLayout.swift in Sources */,
 				2DFC57CC2B8F209D000AEE8D /* MainCollectionViewCell.swift in Sources */,
+				2D38C41F2C12E78E00F3D932 /* AuthenticationViewController.swift in Sources */,
 				2D1E236C2BEA8DA200C94D8B /* UIViewExtension.swift in Sources */,
 				2D76BECD2BCEA77300BF6EEA /* SlotsCollectionViewCell.swift in Sources */,
 				2DF7B1292C00DF3C00BC9190 /* AccountSheduleCollectionViewCell.swift in Sources */,
@@ -934,6 +969,7 @@
 				2D6984AA2C03ABEB009C6B8B /* FilterViewModel.swift in Sources */,
 				2D7E9C742BE7D92B00B324EB /* CustomMessageView.swift in Sources */,
 				2D7C237D2B988B3E0095B94D /* AccountViewModel.swift in Sources */,
+				2DCC66702C0A5B9F0001ED62 /* DefaultViewController.swift in Sources */,
 				2DFC57B22B8DF9DE000AEE8D /* APIManager.swift in Sources */,
 				2DFC57C72B8E71E5000AEE8D /* AccountEditingViewController.swift in Sources */,
 				2DE3A14F2BCDB7C6008D79EE /* ScheduleViewModel.swift in Sources */,

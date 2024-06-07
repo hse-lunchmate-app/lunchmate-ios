@@ -23,6 +23,14 @@ final class AccountSheduleCollectionViewCell: UICollectionViewCell {
     weak var delegate: AccountViewControllerDelegate?
     weak var sheduleDelegate: AccountSheduleCollectionViewCellDelegate?
     
+    lazy var plugLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Здесь пока ничего нет..."
+        label.font = UIFont(name: "Roboto-Medium", size: 18)
+        label.textColor = .lightGray
+        return label
+    }()
+    
     private lazy var collegueSheduleCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -39,18 +47,22 @@ final class AccountSheduleCollectionViewCell: UICollectionViewCell {
         (collegueSheduleCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionInsetReference = .fromLayoutMargins
         collegueSheduleCollectionView.isScrollEnabled = false
         collegueSheduleCollectionView.layer.cornerRadius = 8
-        collegueSheduleCollectionView.translatesAutoresizingMaskIntoConstraints = false
         return collegueSheduleCollectionView
     }()
     
     func configure() {
         bind()
-        self.addSubview(collegueSheduleCollectionView)
+        [collegueSheduleCollectionView, plugLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview($0)
+        }
         NSLayoutConstraint.activate([
             collegueSheduleCollectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
             collegueSheduleCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             collegueSheduleCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             collegueSheduleCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            plugLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            plugLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 36)
         ])
         viewModel.changeCurrentDate(direction: nil)
     }
@@ -61,14 +73,15 @@ final class AccountSheduleCollectionViewCell: UICollectionViewCell {
         }
         viewModel.timeslots.bind { [weak self] timeslots in
             DispatchQueue.main.async {
+                if !timeslots.isEmpty {
+                    self?.plugLabel.isHidden = true
+                } else {
+                    self?.plugLabel.isHidden = false
+                }
                 self?.collegueSheduleCollectionView.reloadData()
             }
         }
     }
-    
-}
-
-extension AccountSheduleCollectionViewCell: UICollectionViewDelegate {
     
 }
 
@@ -94,10 +107,6 @@ extension AccountSheduleCollectionViewCell: UICollectionViewDataSource {
         delegate = header
         return header
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        CGSize(width: self.frame.width - 50, height: 60)
-    }
 }
 
 extension AccountSheduleCollectionViewCell: CollegueSheduleHeaderCollectionViewDelegate {
@@ -117,6 +126,9 @@ extension AccountSheduleCollectionViewCell: CollegueSheduleHeaderCollectionViewD
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension AccountSheduleCollectionViewCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        CGSize(width: self.frame.width - 50, height: 60)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 88, height: 58)

@@ -6,9 +6,6 @@ target 'lunchmate-ios' do
   use_frameworks!
 
   pod 'DropDown'
-  pod 'DateScrollPicker' 
-  pod 'FirebaseCore'
-  pod 'FirebaseMessaging'
 
   # Pods for lunchmate-ios
 

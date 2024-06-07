@@ -11,6 +11,7 @@ class SlotAdditionViewModel {
     
     // MARK: - Properties
     
+    var userId = UserDefaults.standard.string(forKey: "userId")
     var stringDate = Dynamic("")
     var start = Dynamic(Date())
     var end = Dynamic(Date())
@@ -42,7 +43,7 @@ class SlotAdditionViewModel {
     }
     
     func getCollegueName() -> String? {
-        if lunch?.master.id != "id1" {
+        if lunch?.master.id != userId {
             return lunch?.master.name
         } else {
             return lunch?.invitee.name
@@ -91,13 +92,16 @@ class SlotAdditionViewModel {
         isReload.value = false
     }
     
-    func makeNetworkTimeslot(isSwitchOn: Bool, startTime: Date, endTime: Date) -> NetworkTimeslot {
+    func makeNetworkTimeslot(isSwitchOn: Bool, startTime: Date, endTime: Date) -> NetworkTimeslot? {
         let dateFormatter = DateFormatter.makeFormatter(dateFormat: "yyyy-MM-dd")
         let date: String? = dateFormatter.string(from: self.date)
         dateFormatter.dateFormat = "HH:mm:ss"
         let startTime = dateFormatter.string(from: startTime)
         let endTime = dateFormatter.string(from: endTime)
-        return NetworkTimeslot(userId: "id1", date: date, startTime: startTime, endTime: endTime, permanent: isSwitchOn)
+        if let userId = userId {
+            return NetworkTimeslot(userId: userId, date: date, startTime: startTime, endTime: endTime, permanent: isSwitchOn)
+        }
+        return nil
     }
 
 }

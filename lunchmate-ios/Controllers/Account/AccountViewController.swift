@@ -7,11 +7,12 @@
 
 import UIKit
 
-class AccountViewController: UIViewController {
+class AccountViewController: DefaultViewController {
     
     // MARK: - Properties
     
     var viewModel: AccountViewModel
+    private var timer: Timer?
     
     // MARK: - Init
     
@@ -41,33 +42,6 @@ class AccountViewController: UIViewController {
         return navigationTitle
     }()
     
-    private lazy var activityIndicatorView: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.center = view.center
-        indicator.hidesWhenStopped = true
-        indicator.color = .gray
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        return indicator
-    }()
-    
-    private lazy var profileCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let profileCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        profileCollectionView.register(AccountCollectionViewCell.self, forCellWithReuseIdentifier: AccountCollectionViewCell.identifier)
-        profileCollectionView.register(AccountSheduleCollectionViewCell.self, forCellWithReuseIdentifier: AccountSheduleCollectionViewCell.identifier)
-        profileCollectionView.register(AccountHeaderCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AccountHeaderCollectionView.identifier)
-        profileCollectionView.delegate = self
-        profileCollectionView.dataSource = self
-        profileCollectionView.showsVerticalScrollIndicator = false
-        profileCollectionView.backgroundColor = UIColor(named: "Base0")
-        profileCollectionView.contentInsetAdjustmentBehavior = .always
-        profileCollectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        (profileCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        (profileCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).sectionInsetReference = .fromLayoutMargins
-        return profileCollectionView
-    }()
-    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -76,16 +50,34 @@ class AccountViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if viewModel.user.value == nil {
-            viewModel.retrieveUser(with: "id1") { error in
-                if let error = error {
-                    // Обработка ошибки
-                }
-            }
+        if let userId = viewModel.userId {
+            retrieveUserWithRetry(id: userId)
         }
     }
     
     // MARK: - Methods
+    
+    private func retrieveUserWithRetry(id: String) {
+        viewModel.retrieveUser(with: id) { [weak self] error in
+            if let error = error {
+                if error.code == 1 {
+                    if UserDefaults.standard.bool(forKey: "isPresentAlert") == true {
+                        self?.presentAlert()
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                        self?.retrieveUserWithRetry(id: id)
+                    }
+                }
+            } else {
+                UserDefaults.standard.set(true, forKey: "isPresentAlert")
+                DispatchQueue.main.async {
+                    if self?.presentedViewController != nil {
+                        self?.dismiss(animated: true)
+                    }
+                }
+            }
+        }
+    }
     
     private func bind() {
         viewModel.isLoading.bind({ [weak self] isLoading in
@@ -103,30 +95,31 @@ class AccountViewController: UIViewController {
         viewModel.user.bind { [weak self] user in
             DispatchQueue.main.async {
                 self?.viewModel.createDescriptions(user: user)
-                self?.profileCollectionView.reloadData()
+                self?.collectionView.reloadData()
             }
         }
     }
     
-    private func setupView() {
-        view.backgroundColor = UIColor(named: "Base0")
+    override func setupView() {
+        super.setupView()
+        setupNavigationItem()
+        collectionView.register(AccountCollectionViewCell.self, forCellWithReuseIdentifier: AccountCollectionViewCell.identifier)
+        collectionView.register(AccountSheduleCollectionViewCell.self, forCellWithReuseIdentifier: AccountSheduleCollectionViewCell.identifier)
+        collectionView.register(AccountHeaderCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AccountHeaderCollectionView.identifier)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+    
+    private func setupNavigationItem() {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
         navigationItem.titleView = navigationTitle
-        [profileCollectionView, activityIndicatorView].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview($0)
-        }
-        NSLayoutConstraint.activate([
-            profileCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            profileCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            activityIndicatorView.widthAnchor.constraint(equalToConstant: 50),
-            activityIndicatorView.heightAnchor.constraint(equalToConstant: 50),
-            profileCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
         if viewModel.isCanEdit {
             navigationItem.rightBarButtonItem = UIBarButtonItem(
                 image: UIImage(
@@ -154,10 +147,42 @@ class AccountViewController: UIViewController {
         if let updatedUser = notification.object as? User {
             DispatchQueue.main.async {
                 self.viewModel.updateUser(newUser: updatedUser)
-                self.viewModel.retrieveUser(with: "id1") { [weak self] error in
-                    if let error = error {
-                        // Обработка ошибки
-                    }
+                if let userId = self.viewModel.userId {
+                    self.retrieveUserWithRetry(id: userId)
+                }
+            }
+        }
+    }
+    
+    private func copyTG() {
+        UIPasteboard.general.string = viewModel.getTgDescription()
+        
+        let dimView = UIView(frame: UIScreen.main.bounds)
+        dimView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        
+        let messageView = CustomMessageView(message: "Telegram скопирован")
+        messageView.frame.origin.y = UIScreen.main.bounds.height
+        messageView.alpha = 0
+
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let mainWindow = windowScene.windows.first {
+                mainWindow.addSubview(dimView)
+                mainWindow.addSubview(messageView)
+                
+                UIView.animate(withDuration: 0.3, animations: {
+                    messageView.alpha = 1
+                    messageView.frame.origin.y -= messageView.frame.height + 35
+                })
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.25) {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        dimView.backgroundColor = UIColor.black.withAlphaComponent(0)
+                        messageView.alpha = 0
+                        messageView.frame.origin.y += messageView.frame.height
+                    }, completion: { _ in
+                        dimView.removeFromSuperview()
+                        messageView.removeFromSuperview()
+                    })
                 }
             }
         }
@@ -204,40 +229,9 @@ extension AccountViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 && !viewModel.isCanEdit && viewModel.user.value?.messenger != nil {
-            UIPasteboard.general.string = viewModel.getTgDescription()
-            
-            let dimView = UIView(frame: UIScreen.main.bounds)
-            dimView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-            
-            let messageView = CustomMessageView(message: "Telegram скопирован")
-            messageView.frame.origin.y = UIScreen.main.bounds.height
-            messageView.alpha = 0
-            
-            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                if let mainWindow = windowScene.windows.first {
-                    mainWindow.addSubview(dimView)
-                    mainWindow.addSubview(messageView)
-                    
-                    UIView.animate(withDuration: 0.3, animations: {
-                        messageView.alpha = 1
-                        messageView.frame.origin.y -= messageView.frame.height + 35
-                    })
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.25) {
-                        UIView.animate(withDuration: 0.3, animations: {
-                            dimView.backgroundColor = UIColor.black.withAlphaComponent(0)
-                            messageView.alpha = 0
-                            messageView.frame.origin.y += messageView.frame.height
-                        }, completion: { _ in
-                            dimView.removeFromSuperview()
-                            messageView.removeFromSuperview()
-                        })
-                    }
-                }
-            }
+            copyTG()
         }
     }
-
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let sectionType = AccountViewModel.Sections.allCases[indexPath.section]
@@ -278,7 +272,6 @@ extension AccountViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension AccountViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionType = AccountViewModel.Sections.allCases[indexPath.section]
         switch sectionType {
@@ -307,6 +300,8 @@ extension AccountViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
+
+// MARK: - AccountSheduleCollectionViewCellDelegate
 
 extension AccountViewController: AccountSheduleCollectionViewCellDelegate {
     func showAlert(error: NSError?) {

@@ -47,6 +47,7 @@ class AccountEditingViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(AccountEditingCollectionViewCell.self, forCellWithReuseIdentifier: AccountEditingCollectionViewCell.identifier)
         collectionView.register(AccountEditingHeaderCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AccountEditingHeaderCollectionView.identifier)
+        collectionView.register(AccountEditingFooterCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: AccountEditingFooterCollectionView.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
@@ -284,10 +285,19 @@ extension AccountEditingViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AccountEditingHeaderCollectionView.identifier, for: indexPath) as? AccountEditingHeaderCollectionView else { return UICollectionReusableView() }
-        header.delegate = self
-        configureHeader(for: header, at: indexPath)
-        return header
+        if kind == UICollectionView.elementKindSectionHeader {
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AccountEditingHeaderCollectionView.identifier, for: indexPath) as? AccountEditingHeaderCollectionView else { return UICollectionReusableView()
+            }
+            header.delegate = self
+            configureHeader(for: header, at: indexPath)
+            return header
+        } else {
+            guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: AccountEditingFooterCollectionView.identifier, for: indexPath) as? AccountEditingFooterCollectionView else { return UICollectionReusableView()
+            }
+            footer.delegate = self
+            footer.configure()
+            return footer
+        }
     }
     
     func configureHeader(for header: AccountEditingHeaderCollectionView, at indexPath: IndexPath) {
@@ -308,6 +318,12 @@ extension AccountEditingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let sectionType = AccountEditingViewModel.Section.allCases[section]
         let height: Double = sectionType == .personalData ? 130 : 50
+        return CGSize(width: view.frame.size.width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        let sectionType = AccountEditingViewModel.Section.allCases[section]
+        let height: Double = sectionType == .accountData ? 84 : 0
         return CGSize(width: view.frame.size.width, height: height)
     }
 }
@@ -359,6 +375,20 @@ extension AccountEditingViewController: AccountEditingCollectionViewCellDelegate
         }
         else {
             navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+    }
+}
+
+// MARK: - AccountEditingCollectionViewCellDelegate
+
+extension AccountEditingViewController: AccountEditingFooterCollectionViewDelegate {
+    func openAuthenticationScreen() {
+        if let presentingViewController = self.presentingViewController {
+            self.dismiss(animated: true)
+        } else {
+            let authenticationVC = AuthenticationViewController()
+            authenticationVC.modalPresentationStyle = .fullScreen
+            self.present(authenticationVC, animated: true)
         }
     }
 }

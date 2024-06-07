@@ -185,10 +185,12 @@ class SlotAdditionOverlayViewController: UIViewController {
             isSwitchOn = repeatEveryWeekSwitch.isOn
         }
         let timeslot = viewModel.makeNetworkTimeslot(isSwitchOn: isSwitchOn, startTime: startTime.date, endTime: endTime.date)
-        if viewModel.timeslot == nil {
-            postTimeslot(timeslot: timeslot)
-        } else {
-            patchTimeslot(timeslot: timeslot)
+        if let timeslot = timeslot {
+            if viewModel.timeslot == nil {
+                postTimeslot(timeslot: timeslot)
+            } else {
+                patchTimeslot(timeslot: timeslot)
+            }
         }
     }
     

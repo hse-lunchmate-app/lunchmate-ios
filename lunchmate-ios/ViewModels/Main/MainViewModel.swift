@@ -17,22 +17,25 @@ class MainViewModel {
     var isLoading: Dynamic<Bool> = Dynamic(false)
     var filterOfficeId: Int?
     var user: User?
+    let userId = UserDefaults.standard.string(forKey: "userId")
     
     // MARK: - Methods
     
-    func getUser() {
-        apiManager.getUser(id: "id1") { [weak self] result in
-            switch result {
-            case .success(let data):
-                self?.user = data
-                self?.getUsers()
-            case .failure(let error):
-                break
+    func getUser(completion: @escaping (NSError?) -> Void) {
+        if let userId = userId {
+            apiManager.getUser(id: userId) { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.user = data
+                    completion(nil)
+                case .failure(let error):
+                    completion(error as NSError)
+                }
             }
         }
     }
     
-    func getUsers() {
+    func getUsers(completion: @escaping (NSError?) -> Void) {
         if isLoading.value == true {
             return
         }
@@ -48,13 +51,14 @@ class MainViewModel {
                 switch result {
                 case .success(let data):
                     self?.users = data
+                    self?.isLoading.value = false
+                    self?.users.removeAll(where: { $0.id == self?.user?.id })
+                    self?.filteredData.value = self?.users.compactMap({MainCellViewModel(user: $0)}) ?? []
+                    completion(nil)
                 case .failure(let error):
                     self?.users = []
-                    print(error)
+                    completion(error as NSError)
                 }
-                self?.isLoading.value = false
-                self?.users.removeAll(where: { $0.id == self?.user?.id })
-                self?.filteredData.value = self?.users.compactMap({MainCellViewModel(user: $0)}) ?? []
             }
         }
     }
@@ -78,13 +82,13 @@ class MainViewModel {
         return 1
     }
     
-    func retrieveUser(with id: String, completion: @escaping (_ user: User?, _ error: Error?) -> Void) {
+    func retrieveUser(with id: String, completion: @escaping (_ user: User?, _ error: NSError?) -> Void) {
         apiManager.getUser(id: id) { result in
             switch result {
             case .success(let data):
                 completion(data, nil)
             case .failure(let error):
-                completion(nil, error)
+                completion(nil, error as NSError)
             }
         }
     }

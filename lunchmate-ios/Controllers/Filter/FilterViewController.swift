@@ -84,7 +84,12 @@ class FilterViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.getOffices()
+        viewModel.getOffices() { [weak self] error in
+            if error.code == 1 {
+                let alert = UIAlertController(title: "Ошибка", message: "Отсутсвует подключение к интернету", preferredStyle: .alert)
+                self?.present(alert, animated: true)
+            }
+        }
     }
     
     // MARK: - Methods
@@ -184,7 +189,7 @@ extension FilterViewController: UICollectionViewDelegateFlowLayout {
             let referenceHeight: CGFloat = 22
             let padding: CGFloat = 10
             let text = viewModel.offices.value[indexPath.row].name
-            let width = text.size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 12)]).width + padding
+            let width = text.size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 12) ?? .systemFont(ofSize: 12)]).width + padding
             return CGSize(width: width, height: referenceHeight)
         }
     }

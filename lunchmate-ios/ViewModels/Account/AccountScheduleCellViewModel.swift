@@ -15,6 +15,7 @@ class AccountScheduleCellViewModel {
     var userId = ""
     var newDateText = Dynamic("")
     var timeslots = Dynamic([Timeslot]())
+    let currentUserId = UserDefaults.standard.string(forKey: "userId")
     var currentDate: Date? = nil {
         willSet(timeslot) {
             if let date = timeslot {
@@ -93,12 +94,14 @@ class AccountScheduleCellViewModel {
     
     func postNewLunchInvite(timeslot: Timeslot, completion: @escaping (Error?) -> Void) {
         let date = getStringDate()
-        let lunch = NetworkLunchForPatch(masterId: "id1", inviteeId: userId, timeslotId: timeslot.id, lunchDate: date)
-        apiManager.postLunchInvite(lunch: lunch) { err in
-            if let err = err as? NSError {
-                completion(err)
-            } else {
-                completion(nil)
+        if let currentUserId = currentUserId {
+            let lunch = NetworkLunchForPatch(masterId: currentUserId, inviteeId: userId, timeslotId: timeslot.id, lunchDate: date)
+            apiManager.postLunchInvite(lunch: lunch) { err in
+                if let err = err as? NSError {
+                    completion(err)
+                } else {
+                    completion(nil)
+                }
             }
         }
     }

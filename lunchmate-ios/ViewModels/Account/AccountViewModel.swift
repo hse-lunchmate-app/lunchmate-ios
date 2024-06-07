@@ -22,6 +22,7 @@ class AccountViewModel {
     
     var descriptions: [AccountInfo] = []
     var user: Dynamic<User?> = Dynamic(nil)
+    var userId = UserDefaults.standard.string(forKey: "userId")
     var isLoading = Dynamic(false)
     var apiManager = APIManager.shared
     var isCanEdit = true
@@ -41,6 +42,10 @@ class AccountViewModel {
         }
     }
     
+    func setUserId(newValue: String) {
+        userId = newValue
+    }
+    
     func numberOfSections() -> Int {
         return Sections.allCases.count
     }
@@ -55,7 +60,7 @@ class AccountViewModel {
         }
     }
     
-    func retrieveUser(with id: String, completion: @escaping (_ error: Error?) -> Void) {
+    func retrieveUser(with id: String, completion: @escaping (_ error: NSError?) -> Void) {
         if isLoading.value == true {
             return
         }
@@ -66,7 +71,7 @@ class AccountViewModel {
                 self?.user.value = data
                 completion(nil)
             case .failure(let error):
-                completion(error)
+                completion(error as NSError)
             }
             self?.isLoading.value = false
         }

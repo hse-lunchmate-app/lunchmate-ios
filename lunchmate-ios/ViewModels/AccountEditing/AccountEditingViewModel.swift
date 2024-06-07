@@ -36,6 +36,7 @@ class AccountEditingViewModel {
     var user: User
     var userInfo: [String:Any] = [:]
     var apiManager = APIManager.shared
+    var userId = UserDefaults.standard.string(forKey: "userId")
     
     init(user: User) {
         self.user = user
@@ -75,9 +76,11 @@ class AccountEditingViewModel {
     }
     
     func changeAccountInfo() {
-        apiManager.patchUser(id: "id1", updatedUser: userInfo) { [weak self] error in
-            if error == nil {
-                NotificationCenter.default.post(name: Notification.Name("AccountInfoDidChange"), object: self?.user)
+        if let userId = userId {
+            apiManager.patchUser(id: userId, updatedUser: userInfo) { [weak self] error in
+                if error == nil {
+                    NotificationCenter.default.post(name: Notification.Name("AccountInfoDidChange"), object: self?.user)
+                }
             }
         }
     }
