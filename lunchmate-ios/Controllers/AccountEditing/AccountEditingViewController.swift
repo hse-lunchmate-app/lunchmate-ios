@@ -383,7 +383,7 @@ extension AccountEditingViewController: AccountEditingCollectionViewCellDelegate
 
 extension AccountEditingViewController: AccountEditingFooterCollectionViewDelegate {
     func openAuthenticationScreen() {
-        if let presentingViewController = self.presentingViewController {
+        if let presentingViewController = self.presentingViewController as? AuthenticationViewController {
             self.dismiss(animated: true)
         } else {
             let authenticationVC = AuthenticationViewController()

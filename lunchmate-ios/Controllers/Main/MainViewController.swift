@@ -114,7 +114,7 @@ class MainViewController: DefaultViewController {
                 self?.getUsersWithRetry()
                 UserDefaults.standard.set(true, forKey: "isPresentAlert")
                 DispatchQueue.main.async {
-                    if self?.presentedViewController != nil {
+                    if let vc = self?.presentedViewController as? UIAlertController {
                         self?.dismiss(animated: true)
                     }
                 }
@@ -134,7 +134,7 @@ class MainViewController: DefaultViewController {
             } else if error == nil {
                 UserDefaults.standard.set(true, forKey: "isPresentAlert")
                 DispatchQueue.main.async {
-                    if self?.presentedViewController != nil {
+                    if let vc = self?.presentedViewController as? UIAlertController {
                         self?.dismiss(animated: true)
                     }
                 }

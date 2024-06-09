@@ -15,7 +15,7 @@ class AuthenticationViewController: UIViewController {
     let loginTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Введите логин"
-        tf.textColor = .black
+        tf.textColor = UIColor(named: "Base90")
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(named: "Base20")?.cgColor
         tf.layer.cornerRadius = 8
@@ -52,7 +52,7 @@ class AuthenticationViewController: UIViewController {
     let passwordTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Введите пароль"
-        tf.textColor = .black
+        tf.textColor = UIColor(named: "Base90")
         tf.isSecureTextEntry = true
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(named: "Base20")?.cgColor
@@ -152,17 +152,13 @@ class AuthenticationViewController: UIViewController {
                 }
                 else if error == nil {
                     DispatchQueue.main.async {
-                        if let presentingViewController = self?.presentingViewController {
-                            self?.dismiss(animated: true)
-                        } else {
-                            let tabBarController = TabBarController()
-                            tabBarController.modalPresentationStyle = .fullScreen
-                            self?.loginTextField.text = ""
-                            self?.passwordTextField.text = ""
-                            self?.authButton.isEnabled = false
-                            self?.authButton.backgroundColor = UIColor(named: "Base15")
-                            self?.present(tabBarController, animated: true, completion: nil)
-                        }
+                        let tabBarController = TabBarController()
+                        tabBarController.modalPresentationStyle = .fullScreen
+                        self?.loginTextField.text = ""
+                        self?.passwordTextField.text = ""
+                        self?.authButton.isEnabled = false
+                        self?.authButton.backgroundColor = UIColor(named: "Base15")
+                        self?.present(tabBarController, animated: true, completion: nil)
                     }
                 }
             }
